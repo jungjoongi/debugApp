@@ -1,0 +1,17 @@
+{{>layout/front/web/head}}
+
+  <div class="container">
+    <h1>index</h1>
+  </div>
+<button id="googleLogin">Google</button>
+{{>layout/front/web/script}}
+
+<script>
+  $("#googleLogin").click(function() {
+    location.href="/oauth2/authorization/google";
+  })
+
+</script>
+
+
+

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default" lang="ko">
+
+<head th:fragment="configFragment">
+    <th:block layout:fragment="css"></th:block>
+    <th:block layout:fragment="script"></th:block>
+</head>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>리스트입니다.</h1>
+    </div>
+</div>
+</html>

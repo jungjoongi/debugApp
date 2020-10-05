@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+    <div class="container">
+        <h1>페이지 권한이 없습니다. 3초 후 메인페이지로 이동합니다.</h1>
+    </div>
+{{>layout/front/web/script}}
+<script>
+
+    setTimeout(function () {
+        location.href="/";
+    }, 3000);
+
+</script>
+</html>

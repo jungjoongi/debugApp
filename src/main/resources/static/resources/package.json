@@ -1,0 +1,16 @@
+{
+  "name": "debugapp",
+  "version": "1.0.0",
+  "description": "debugapp cms project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jungjoongi",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.3.1",
+    "sweetalert2": "^9.7.1"
+  }
+}

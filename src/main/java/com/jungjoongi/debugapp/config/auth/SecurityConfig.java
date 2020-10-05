@@ -1,0 +1,74 @@
+package com.jungjoongi.debugapp.config.auth;
+
+import com.jungjoongi.debugapp.config.auth.WebLogin.CustomUserDetailsService;
+import com.jungjoongi.debugapp.domain.auth.Role;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@RequiredArgsConstructor
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final CustomUserDetailsService customUserDetailsService;
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http
+                /*.csrf().disable()
+                .headers().frameOptions().disable()
+                .and()*/
+                    .authorizeRequests()
+                    .antMatchers("/", "/resources/**", "/profile", "/login").permitAll()
+                    .antMatchers("/app/**").hasRole(Role.USER.name())
+                    .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
+                    .anyRequest().authenticated()
+                .and()
+                    .formLogin()
+                    .loginPage("/login")
+                    .failureUrl("/login?error")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/common/accessDenied")
+                    .and()
+                    .logout()
+                    .logoutSuccessUrl("/")
+                    .logoutUrl("/logout")
+                    .invalidateHttpSession(true)
+                .and()
+                    .oauth2Login()
+                    .loginPage("/login")
+                    .failureUrl("/login?error")
+                    .defaultSuccessUrl("/")
+                    .userInfoEndpoint()
+                    .userService(customOAuth2UserService);
+
+
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
+
+    /**
+     * 비밀번호 암호화 관련 설정
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
+}

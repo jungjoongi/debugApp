@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/form" lang="ko">
+
+<head th:fragment="configFragment">
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/resources/css/record/form.css"/>
+    </th:block>
+
+    <th:block layout:fragment="script"></th:block>
+</head>
+<div layout:fragment="content">
+    <div class="editor-header" id="se_top_menu_area">
+        <div class="header-default">
+            <div class="header-nav">
+                <div>
+                    <button id="save">저장</button>
+                    <button id="submit" type='button' onclick='chkValue()'>발행</button>
+                    <button id="exit">나가기</button>
+                </div>
+
+            </div>
+
+
+
+            <div id="se_doctoolbar" class="header-docProperty">
+
+            </div>
+
+        </div>
+        <div class="header_title">TamLaIsJeJu</div>
+    </div>
+    <div id="sub08" class="editor_wrap">
+
+        <div class="editor_container clear">
+
+            <div class="editor-side-innerWrap">
+                <div class="editor_side_inner_content">
+                    <div class="editor_side_btn">
+                        <p>사진도구</p>
+                        <button class="side_upload_btn">
+                            <span class="side_upload"></span> 사진업로드</button>
+                        <button class="side_sns_btn">
+                            <span class="side_sns"></span>sns사진</button>
+                        <button class="side_lib_btn">
+                            <span class="side_lib"></span>사진보관함</button>
+                        <button class="side_auto_btn">
+                            <span class="side_auto"></span>자동포스팅</button>
+                    </div>
+
+                    <div class="editor_side_tag">
+                        <p>
+                            HashTag 입력
+                        </p>
+                        <div class="animated bounceInDown">
+
+                            <input id="input" type="text" placeholder="HashTag 엔터로 입력" required>
+                            <button id="enter">hashtag</button>
+                            <ul id="tag_box" class="tag_cls" title='hashTag'>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="content_wrap">
+                <div class="title_wrap">
+                    <div class="title_text">
+                        <form>
+                            <textarea id='title' class="title_textarea text_area" placeholder="제목" rows="1" data-is-observable="false" title='제목'></textarea>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="cntbox_remove clear">
+                    <button class="cntbox_remove_btn" onclick="cntRemoveBtn()">게시글 모두삭제</button>
+                </div>
+                <div id="post_wraps">
+                    <div id="cont_1" class="post_wrap" onclick='imgBoxClick(this)'>
+
+                        <div class="post_imgbox" data-toggle="modal" data-target=".bd-example-modal-lg1">
+                            <span class='post_imgbox_text'>클릭하여 사진 등록</span>
+                            <img src="">
+                        </div>
+                        <div class="post_text">
+
+
+                            <form>
+
+                                <input id="post_title_1" type="text" value="" class="post_titl" placeholder="장소" title='장소' required>
+                                <input id="post_address_1" type="text" onclick="addrClick(this)" class="post_addr" value="" placeholder="주소" readonly data-toggle="modal"
+                                       title='주소' data-target=".bd-example-modal-lg-map1" required>
+                                <input id="post_x_1" type="text" onclick="" class="post_x" value="" placeholder="위도" hidden required>
+                                <input id="post_y_1" type="text" onclick="/*sample5_execDaumPostcode()*/" class="post_y" value="" placeholder="경도" hidden
+                                       required>
+                                <!-- <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div> -->
+                                <textarea id="post_text_form_1" class="title_textarea text_area" placeholder="내용을 입력하세요." data-is-observable="false" required
+                                          title='내용'></textarea>
+                                <input id='main_img_1' value='' title='메인사진' hidden>
+                                <div class="daySelect_div">
+                                    <select id='selectid_1' name="daySelect" class="cont_select_box" title='일차입력'>
+                                        <option value="">일차를 선택해 주세요</option>
+                                        <option value="" style='display:none;'> </option>
+                                        <!-- <option value="1">1일차</option>
+                                        <option value="2">2일차</option>
+                                        <option value="3">3일차</option> -->
+                                    </select>
+                                </div>
+                                <div class="text_count text_count1">글자제한:
+                                    <span class="count count1">80</span>/80</div>
+                                <button onclick="map()"></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="cnt_add_wrap" onclick="add_div()">
+                    <span class="cnt_add_btn1">+</span>
+                    <span class="cnt_add_btn2">클릭하여 게시물 추가하기</span>
+                </div>
+
+            </div>
+            <!--모달-->
+            <div id="modalDiv">
+                <div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5>사진업로드</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <!--dropzone-->
+
+                            <div id="trueForm">
+                                <div class="dropzone" onclick="imgClickBoxs(this)">
+                                    <div>
+                                    </div>
+                                    <span class="dz_ico">+</span>
+                                    <div id="imgbox1_1" class="imgboxs1">업로드 대기중인 사진이 없습니다.</div>
+                                </div>
+
+                                <div id="imgbox2_1" class="imgboxs2">
+                                    <p>업로드 완료된 사진</p>
+                                </div>
+                                <input id="fileupload1" type="file" class='fileuploads' name="files" multiple hidden required>
+                                <!-- 고유 값이 필요한 경우 -->
+
+
+                                <div class="clear">
+
+                                    <!--업로드 버튼을 여러 장의 사진 일회용 업로드 기능 제공-->
+
+                                    <!-- <button id="btnAllClear" disabled="disabled">취소</button> -->
+
+                                    <button id="btnSubmit" class="btnSubmits" type="button" onclick='closeBtn()'>확인</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- 모달2 -->
+                <div id="map_modal" class="modal fade bd-example-modal-lg-map1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display: none">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="modal-content">
+                            <div class="map_wrap">
+                                <div id="map" style="width:800px;height:500px;position:relative;overflow:hidden;"></div>
+                                <div id="menu_wrap" class="bg_white">
+                                    <div class="option">
+                                        <div>
+                                            <form class="search_bar" onsubmit="searchPlaces(); return false;">
+                                                장소명 :
+                                                <input class="search_input" type="text" value="제주도" + id="keyword" size="15">
+                                                <button class="search_btn" type="button">검색하기</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <ul id="placesList"></ul>
+                                    <div id="pagination"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- logo font -->
+        <script src='/resources/js/record/form.js'></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=619a7dc4f7d23963aa128663f464c8d5&libraries=services"></script>
+        <script type="text/javascript" src="/resources/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+        <script src="/resources/node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+        <script src="/resources/node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+        <script src="/resources/node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+        <script src="/resources/node_modules/blueimp-load-image/js/load-image.all.min.js"></script>
+        <script src="/resources/node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+        <script src="/resources/node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+    </div>
+</html>
