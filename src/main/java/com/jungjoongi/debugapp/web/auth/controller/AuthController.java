@@ -1,13 +1,8 @@
 package com.jungjoongi.debugapp.web.auth.controller;
 
-import com.jungjoongi.debugapp.config.auth.CustomUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
-import org.springframework.security.web.savedrequest.RequestCache;
-import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,26 +21,9 @@ public class AuthController {
 //	@ResponseBody RESTFul방식 VIEW를 제공하지 않을때 사용
 	@RequestMapping(value = {""}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String loginHtml(HttpServletRequest request, HttpServletResponse response, HttpSession session, CsrfToken csrfToken, Model model) {
-			RequestCache requestCache = new HttpSessionRequestCache();
-			SavedRequest savedRequest = requestCache.getRequest(request, response);
-
-			try {
-				request.getSession().setAttribute("prevPage", savedRequest.getRedirectUrl());
-			} catch(NullPointerException e) {
-				request.getSession().setAttribute("prevPage", "/");
-			}
+		LOGGER.info("@@test334");
 
 		return "view/web/login/login";
 	}
-
-	@RequestMapping(value = {"/process"}, method= {RequestMethod.GET, RequestMethod.POST})
-	public void process(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		LOGGER.info("[AuthController] process() #START!");
-		CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
-
-		LOGGER.info("Welcome login_success! {}, {}", session.getId(), userDetails.getUsername() + "/" + userDetails.getPassword());
-		session.setAttribute("userLoginInfo", userDetails);
-	}
-
 
 }

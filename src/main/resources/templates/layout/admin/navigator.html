@@ -125,7 +125,12 @@
     </ul>
 </nav>
 
-
+<form action="/logout" method="POST">
+    {{#_csrf}}
+    <input type="hidden" id="_csrf" data-token-name="{{_csrf.parameterName}}" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
+    {{/_csrf}}
+    <button type="submit">LOGOUT</button>
+</form>
 
 </html>
 

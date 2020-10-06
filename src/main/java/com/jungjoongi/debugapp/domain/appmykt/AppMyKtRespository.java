@@ -10,4 +10,5 @@ public interface AppMyKtRespository extends JpaRepository<AppMyKt,Long> {
             "FROM APP_MYKT p " +
             "ORDER BY p.id DESC")
     Stream<AppMyKtRespository> findAllDesc();
+
 }

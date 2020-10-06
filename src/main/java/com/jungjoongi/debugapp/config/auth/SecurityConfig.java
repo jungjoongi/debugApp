@@ -17,6 +17,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomUserDetailsService customUserDetailsService;
+    private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    private final CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -36,14 +38,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .failureUrl("/login?error")
                     .usernameParameter("email")
                     .passwordParameter("password")
+                    .successHandler(customAuthenticationSuccessHandler)
+                    .failureHandler(customAuthenticationFailureHandler)
                 .and()
                     .exceptionHandling()
                     .accessDeniedPage("/common/accessDenied")
-                    .and()
+                .and()
                     .logout()
                     .logoutSuccessUrl("/")
-                    .logoutUrl("/logout")
                     .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")
                 .and()
                     .oauth2Login()
                     .loginPage("/login")

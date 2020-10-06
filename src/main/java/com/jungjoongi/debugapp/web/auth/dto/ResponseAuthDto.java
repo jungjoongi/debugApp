@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class AuthResDto {
+public class ResponseAuthDto {
 
     private String code;
     private String status;

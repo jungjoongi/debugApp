@@ -19,23 +19,22 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-
 @EnableTransactionManagement
 public class MybatisConfig {
 
     private static Logger LOGGER = LoggerFactory.getLogger(MybatisConfig.class);
-    @Value("${properties.jdbd.driver}")
+    @Value("${properties.jdbc.driver}")
     String encDriver;
-    @Value("${properties.jdbd.url}")
+    @Value("${properties.jdbc.url}")
     String encUrl;
-    @Value("${properties.jdbd.userName}")
+    @Value("${properties.jdbc.userName}")
     String encUserName;
-    @Value("${properties.jdbd.password}")
+    @Value("${properties.jdbc.password}")
     String encPassword;
     @Value("${properties.encrypt.key}")
-    String encKey;
+    String key;
     @Value("${properties.encrypt.iv}")
-    String encIv;
+    String iv;
 
     @Bean
     public DataSource batisDataSource() {
@@ -45,10 +44,10 @@ public class MybatisConfig {
         String password ="password";
 
         try {
-            driver = EncryptHelper.decAES(encDriver, encIv, encKey);
-            url = EncryptHelper.decAES(encUrl, encIv, encKey);
-            userName = EncryptHelper.decAES(encUserName, encIv, encKey);
-            password = EncryptHelper.decAES(encPassword, encIv, encKey);
+            driver = EncryptHelper.decAES(encDriver, iv, key);
+            url = EncryptHelper.decAES(encUrl, iv, key);
+            userName = EncryptHelper.decAES(encUserName, iv, key);
+            password = EncryptHelper.decAES(encPassword, iv, key);
         } catch (Exception e) {
             LOGGER.error("[JpaConfig] defaultDataSource() Exception : {}", e.getMessage());
         }
