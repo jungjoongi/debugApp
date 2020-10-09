@@ -18,10 +18,8 @@ import javax.servlet.http.HttpSession;
 public class AuthController {
 	private static Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 	
-//	@ResponseBody RESTFul방식 VIEW를 제공하지 않을때 사용
 	@RequestMapping(value = {""}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String loginHtml(HttpServletRequest request, HttpServletResponse response, HttpSession session, CsrfToken csrfToken, Model model) {
-		LOGGER.info("@@test334");
 
 		return "view/web/login/login";
 	}

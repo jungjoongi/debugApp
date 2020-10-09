@@ -1,6 +1,6 @@
-package com.jungjoongi.debugapp.config.auth.WebLogin;
+package com.jungjoongi.debugapp.config.auth;
 
-import com.jungjoongi.debugapp.common.util.ObjectHelper;
+import com.jungjoongi.debugapp.config.auth.dto.SessionUser;
 import com.jungjoongi.debugapp.domain.auth.User;
 import com.jungjoongi.debugapp.domain.auth.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.Optional;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final HttpSession httpSession;
 
     /**
      * 인증 하는 부분
@@ -32,6 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         User user = userEntity.get();
         authorities.add(new SimpleGrantedAuthority(user.getRole().getKey()));
+        this.saveSession(user);
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
     }
@@ -52,6 +55,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(user.getRole().toString());
         return authorities;
     }
+
+    private void saveSession(User user) {
+        if(user != null) {
+            httpSession.setAttribute("user", new SessionUser(user));
+        }
+    }
+
 
 
 //    /**

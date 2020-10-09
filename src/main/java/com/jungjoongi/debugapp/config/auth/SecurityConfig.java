@@ -1,6 +1,5 @@
 package com.jungjoongi.debugapp.config.auth;
 
-import com.jungjoongi.debugapp.config.auth.WebLogin.CustomUserDetailsService;
 import com.jungjoongi.debugapp.domain.auth.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -55,8 +54,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/")
                     .userInfoEndpoint()
                     .userService(customOAuth2UserService);
-
-
     }
 
     @Override

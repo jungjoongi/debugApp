@@ -13,8 +13,7 @@ public class CustomUserDetails implements UserDetails {
     private String username;
     private String password;
 
-    public CustomUserDetails(String userName, String password)
-    {
+    public CustomUserDetails(String userName, String password) {
         this.username = userName;
         this.password = password;
     }

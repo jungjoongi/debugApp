@@ -24,8 +24,6 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
 
-        System.out.println("@@@ onAuthenticationFailure");
-
         ObjectMapper mapper = new ObjectMapper();	//JSON 변경용
 
         ResponseAuthDto responseAuthDto = new ResponseAuthDto();
