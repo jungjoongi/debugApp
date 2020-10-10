@@ -26,7 +26,7 @@ public class HttpRequestHelper {
         String uri = request.getRequestURI();
 
         if(uri != null && uri.length() > 0) {
-            uri = "view/web/admin".concat(uri);
+            uri = "view/web".concat(uri);
         }
 
         LOGGER.info("[HttpRequestHelper] getAdminRequestPath() uri : {}", uri);

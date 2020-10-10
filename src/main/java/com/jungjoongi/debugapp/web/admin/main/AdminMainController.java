@@ -1,4 +1,4 @@
-package com.jungjoongi.debugapp.web.admin;
+package com.jungjoongi.debugapp.web.admin.main;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
-	private static Logger log = LoggerFactory.getLogger(AdminController.class);
+public class AdminMainController {
+	private static Logger log = LoggerFactory.getLogger(AdminMainController.class);
 
 	@RequestMapping(value = {""}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String index(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
