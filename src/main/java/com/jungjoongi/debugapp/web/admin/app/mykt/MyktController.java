@@ -1,16 +1,16 @@
 package com.jungjoongi.debugapp.web.admin.app.mykt;
 
 import com.jungjoongi.debugapp.common.util.HttpRequestHelper;
-import com.jungjoongi.debugapp.config.auth.dto.SessionUser;
+import com.jungjoongi.debugapp.domain.appmykt.AppMyKt;
 import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRespository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,15 +24,28 @@ public class MyktController {
 
 	AppMyKtRespository appMyKtRespository;
 
-
-	//	@ResponseBody RESTFul방식 VIEW를 제공하지 않을때 사용
 	@RequestMapping(value = {"list"}, method= {RequestMethod.GET, RequestMethod.POST})
-	public String index(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model model) {
+	public String list(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model mv) {
 		LOGGER.info("MyKtController.view() #START! : {}");
 
-
+			//model.addAttribute("list", appMyKtRespository.findAll());
 
 		return HttpRequestHelper.getAdminRequestPath();
+	}
+
+
+	@RequestMapping(value = {"save"}, method= {RequestMethod.GET, RequestMethod.POST})
+	public String form(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model model, AppMyKt appMyKt) {
+
+		if(appMyKt.getOs() != null) {
+			appMyKtRespository.save(appMyKt);
+		}
+
+		model.addAttribute("bbbbbbbbbb", appMyKt);
+		model.addAttribute("bbb111111111bbb", "bbb");
+
+
+		return "jsonView";
 	}
 
 

@@ -22,6 +22,6 @@
 
 ----------
 ### auther : JOONGI. JUNG
-### project site : https://debug.jungjoongi.com / https://debugapp.ba
+### project site : https://debug.jungjoongi.com / https://debugapp.ga
 ### e-mail : dev.joongi@gmail.com
 ### blog : https://jungjoongi.com
