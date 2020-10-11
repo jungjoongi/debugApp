@@ -1,4 +1,4 @@
-package com.jungjoongi.debugapp.web.admin.app.mykt;
+package com.jungjoongi.debugapp.web.admin.app.mykt.controller;
 
 import com.jungjoongi.debugapp.common.util.HttpRequestHelper;
 import com.jungjoongi.debugapp.domain.appmykt.AppMyKt;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +18,8 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/admin/app/mykt")
-public class MyktController {
-	private static Logger LOGGER = LoggerFactory.getLogger(MyktController.class);
+public class AppMyktController {
+	private static Logger LOGGER = LoggerFactory.getLogger(AppMyktController.class);
 
 	AppMyKtRespository appMyKtRespository;
 
@@ -33,16 +32,26 @@ public class MyktController {
 		return HttpRequestHelper.getAdminRequestPath();
 	}
 
+	@RequestMapping(value = {"form"}, method= {RequestMethod.GET, RequestMethod.POST})
+	public String form(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model mv) {
+		LOGGER.info("MyKtController.view() #START! : {}");
+
+		return HttpRequestHelper.getAdminRequestPath();
+	}
+
 
 	@RequestMapping(value = {"save"}, method= {RequestMethod.GET, RequestMethod.POST})
-	public String form(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model model, AppMyKt appMyKt) {
+	public String save(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model model, AppMyKt appMyKt) {
 
-		if(appMyKt.getOs() != null) {
+		String result = "SUCCESS";
+
+		try {
 			appMyKtRespository.save(appMyKt);
+		} catch (Exception e) {
+			result = "FAIL";
 		}
 
-		model.addAttribute("bbbbbbbbbb", appMyKt);
-		model.addAttribute("bbb111111111bbb", "bbb");
+		model.addAttribute("result", result);
 
 
 		return "jsonView";

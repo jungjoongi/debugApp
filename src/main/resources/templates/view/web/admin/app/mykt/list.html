@@ -18,22 +18,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>마이케이티</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                            <li class="breadcrumb-item">앱 관리</li>
-                            <li class="breadcrumb-item active">마이케이티</li>
-                        </ol>
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
+        {{>layout/admin/gnb}}
 
         <!-- Main content -->
         <section class="content">
@@ -52,7 +37,7 @@
                                                 <i class="fas fa-search"></i>
                                             </button>
                                         </div>-->
-                                        <button type="button" class="btn btn-block btn-outline-info btn-sm">앱 등록하기</button>
+                                        <button type="button" id="form-btn" class="btn btn-block btn-outline-info btn-sm">앱 등록하기</button>
                                     </div>
                                 </div>
                             </div>
@@ -96,12 +81,7 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.1.0-pre
-        </div>
-        <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+    {{>layout/admin/footer}}
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -113,5 +93,6 @@
 
 <!-- 공통 스크립트 선언 s -->
 {{>layout/admin/script}}
+<script src="/resources/web/admin/js/app/mykt/list.js"></script>
 </body>
 </html>

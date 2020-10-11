@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+{{>layout/admin/head}}
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    {{>layout/admin/navigator}}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Sidebar -->
+        {{>layout/admin/lnb}}
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        {{>layout/admin/gnb}}
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">앱 등록</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form id="app-from" name="app-form">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>OS</label>
+                                        <select class="custom-select" name="os">
+                                            <option value="IOS">IOS</option>
+                                            <option value="AND">AND</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group version">
+                                        <label>VERSION</label>
+                                        <select class="custom-select" id="version1">
+                                            <option value="6">6</option>
+                                        </select>
+                                        <select class="custom-select" id="version2">
+                                            <option value="3">3</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                        <select class="custom-select" id="version3">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                    <input tpye="hidden" name="version" id="version" style="display:none">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">앱</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>설명</label>
+                                        <textarea class="form-control" rows="3" placeholder="설명" style="margin-top: 0px; margin-bottom: 0px; height: 163px;"></textarea>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (left) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {{>layout/admin/footer}}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<!-- 공통 스크립트 선언 s -->
+{{>layout/admin/script}}
+</body>
+</html>

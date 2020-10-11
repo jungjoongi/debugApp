@@ -4,3 +4,11 @@
 .content-wrapper .content .table thead th {
     text-align: center;
 }
+
+#app-from .version label{
+    display: block;
+}
+
+#app-from .version .custom-select{
+    width: 10%;
+}
