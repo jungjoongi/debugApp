@@ -20,7 +20,6 @@ let form = {
     validation : function() {
 
 
-
     }
 }
 $(document).ready(function() {
