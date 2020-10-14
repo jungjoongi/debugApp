@@ -1,6 +1,9 @@
 let lnb = {
     init : function() {
         this.activeMenu();
+    },
+    create : function() {
+
     }
     , activeMenu : function() {
         $('.nav-link').each(function(idx, item) {
