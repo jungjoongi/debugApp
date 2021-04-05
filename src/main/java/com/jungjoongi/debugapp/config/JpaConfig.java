@@ -52,7 +52,7 @@ public class JpaConfig {
     public DataSource defaultDataSource() {
 
         String driver = "oracle.jdbc.driver";
-        String url = "jdbc:oracle://localhost:3306";
+        String url = "jdbc:mariadb://localhost:3306";
         String userName = "admin";
         String password ="password";
 
