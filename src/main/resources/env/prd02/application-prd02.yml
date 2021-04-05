@@ -1,0 +1,119 @@
+##spring.datasource.driverClassName: org.mariadb.jdbc.Driver
+spring:
+  ##spring.jpa 설정
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        hbm2ddl:
+          auto: validate
+          #   ddl-auto: validate    	# create, update, create-drop, none, validate 등의 옵션이 있다.
+          # create: 기존테이블 삭제 후 다시 생성
+          # update: 변경된 부분만 반영
+          # create-drop: create와 같으나 종료 시점에 테이블 DROP
+          # none: 사용하지 않음
+          # validate: Repository 값 비교
+    show-sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
+            client-secret: ENC(aMXfFXUHhtMIQhkTca83KHnbRamfNzUL8aJW22KgPrkZhnkRquRn4A==)
+            scope: profile,email
+  profiles:
+    include=oauth: oauth
+
+  #    generate-ddl: false 	# DDl 생성 시 데이터베이스 고유의 기능 사용여부
+  #    show-sql: true 				# 실행되는 쿼리문 보여주기 여부
+  #    database: mysql 			# 사용되는 데이터베이스(MariaDB는 없기 때문에 mysql로 지정)
+  #    # 테이블 생성시 엔진을 InnoDB 로 생성. 설정하지 않으면 myisam로 등록
+  #        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  #spring.http
+  http:
+    #encodring 설정
+    encoding:
+      charset: UTF-8
+      enabled: true
+      forcew: true
+
+  #spring.devtools 소스 재갱신
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+
+  # spring.${template} 탬플릿 소스 재 갱신
+  groovy:
+    template:
+      cache: false
+  freemarker:
+    cache: false
+  thymeleaf:
+    cache: false
+
+  #spring.mustache 설정
+  mustache:
+    cache: false
+    suffix: .html
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attribute: true
+    expose-session-attributes: true
+
+
+
+  #Jackson 설정
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+
+#health 체크
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    health:
+      sensitive: false
+    web:
+      exposure:
+        include: health
+  management:
+    security:
+      enabled: false
+
+#logger
+logging:
+  level:
+    root: error
+    #org.springframwork.security: debug
+
+  #config: classpath:log/logback-config.xml
+
+server:
+  port: 8092
+
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+
+properties:
+  jdbc:
+    driver: swmS4o33Dm43F+eyUWfA6IAvXXQZRzBLJqRCf73n7G0=
+    url: I7ncim8hmVlwa1Tx5gPub19dYCGJA/kFRXbVbpHYefbJU3bLNzu9kUm/nDeGXzOt
+    userName: JvKWGIqiS4gaeCqvzrFH5A==
+    password: 543LXO7Mm82/rdZk5LFTlQ==
+  encrypt:
+    key: ENC(ElGoFdtb/YyU+L2mfJZP8IZDA5H+KwC32WRMtTfQHPg=)
+    iv: ENC(LZMdpB1uc/dv6SLHBvmBqCLwdI6YL7t0RKqNz8ziXBU=)
+
+
+

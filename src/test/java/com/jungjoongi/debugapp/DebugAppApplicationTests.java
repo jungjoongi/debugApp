@@ -1,6 +1,5 @@
 package com.jungjoongi.debugapp;
 
-import com.jungjoongi.debugapp.common.util.EncryptHelper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +25,7 @@ class DebugAppApplicationTests {
     void contextLoads() {
     }
 
+
     @Test
     void PasswordTest() {
         BCryptPasswordEncoder a = new BCryptPasswordEncoder();
@@ -35,7 +35,7 @@ class DebugAppApplicationTests {
 
     @Test
     void EncTest() {
-        try {
+  /*      try {
             System.out.println("-------------");
             System.out.println("#!#!"+ EncryptHelper.decAES(driver, iv, key));
             System.out.println("#!#!"+ EncryptHelper.decAES(url, iv, key));
@@ -45,7 +45,7 @@ class DebugAppApplicationTests {
         } catch (Exception e) {
 
         }
-
+*/
 
     }
 
