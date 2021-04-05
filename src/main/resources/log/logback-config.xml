@@ -26,10 +26,10 @@
         </rollingPolicy>
     </appender>
 
-    <logger name="com.debugapp" level="DEBUG">
+    <logger name="com.jungjoongi.debugapp" level="INFO">
         <appender-ref ref="DEBUG_LOG" />
     </logger>
-    <logger name="com.debugapp" level="INFO">
+    <logger name="com.jungjoongi.debugapp" level="INFO">
         <appender-ref ref="DAILY_ROLLING_FILE_APPENDER" />
     </logger>
 
