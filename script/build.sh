@@ -1,5 +1,7 @@
 echo "debugApp build"
 echo "=============="
 
-echo '/var/lib/jenkins/workspace/debugApp/debugApp/gradlew bootjar'
-/var/lib/jenkins/workspace/debugApp/debugApp/gradlew bootjar
+cd /var/lib/jenkins/workspace/debugApp/debugApp
+
+echo './gradlew bootjar'
+./gradlew bootjar
