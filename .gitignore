@@ -119,7 +119,4 @@ local.properties
 ## log
 logs/
 
-#sh
-deploy.sh
-stop.sh
-switch.sh
+
