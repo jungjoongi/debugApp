@@ -17,8 +17,6 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/status")
 public class StatusController {
 	private final static Logger LOGGER = LogManager.getLogger(StatusController.class);
-	@Value("${server.port}")
-	private String port;
 
 	@RequestMapping(value = {"/where"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String where(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
