@@ -1,5 +1,6 @@
 package com.jungjoongi.debugapp.web.status;
 
+import com.jungjoongi.debugapp.common.util.StringHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,15 +23,8 @@ public class StatusController {
 	@RequestMapping(value = {"/where"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String where(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
-		String env = "";
+		String profile = StringHelper.nvl(System.getProperty("spring.profiles.active"));
 
-		if(port.equals("8081")) {
-			env = "prd01";
-		} else if (port.equals("8082")) {
-			env = "prd02";
-		} else {
-			env = "dev";
-		}
-		return env;
+		return profile;
 	}
 }
