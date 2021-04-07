@@ -23,6 +23,8 @@ public class StatusController {
 
 		String profile = StringHelper.nvl(System.getProperty("spring.profiles.active"));
 
+		LOGGER.info("[StatusController] (where) profile : {}", profile);
+
 		return profile;
 	}
 }
