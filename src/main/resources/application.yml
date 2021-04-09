@@ -91,7 +91,7 @@ management:
 
 #logger
 logging:
-  config: classpath:log/logback-config.xml
+  #config: classpath:log/logback-config.xml
   level:
     root: debug
 #    #org.springframwork.security: debug
@@ -114,6 +114,8 @@ properties:
   encrypt:
     key: ENC(ElGoFdtb/YyU+L2mfJZP8IZDA5H+KwC32WRMtTfQHPg=)
     iv: ENC(LZMdpB1uc/dv6SLHBvmBqCLwdI6YL7t0RKqNz8ziXBU=)
-
+  social:
+    google:
+      client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
 
 
