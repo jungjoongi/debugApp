@@ -20,10 +20,9 @@ spring:
       client:
         registration:
           google:
-            client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
-            client-secret: ENC(aMXfFXUHhtMIQhkTca83KHnbRamfNzUL8aJW22KgPrkZhnkRquRn4A==)
+            client-id: 663340949978-j8meqpt3itklrtj6cgnm4bt2hjdv6brb.apps.googleusercontent.com
+            client-secret: ENC(s1NlmUlGDOy/NWngN8KtmoiWEmfXx2G5m16fHpJP9FuHq7TdflPx+A==)
             scope: profile,email
-            redirect_url : https://cms.jungjoongi.com/login/oauth2/code/google
   profiles:
     include=oauth: oauth
 
