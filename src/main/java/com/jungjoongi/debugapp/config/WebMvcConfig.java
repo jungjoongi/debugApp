@@ -17,14 +17,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    private final com.jungjoongi.debugapp.config.interceptor.CsrfInterceptor CsrfInterceptor;
     private final com.jungjoongi.debugapp.config.interceptor.ResponseInterceptor ResponseInterceptor;
     private final LoginUserArgumentResolver loginUserArgumentResolver;
     private final MustacheViewResolver mustacheViewResolver;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(CsrfInterceptor);
         registry.addInterceptor(ResponseInterceptor);
     }
 
