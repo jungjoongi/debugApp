@@ -36,5 +36,3 @@ let login = {
         login.execute();
     });
 
-
-console.log("ssss")
