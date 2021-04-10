@@ -27,10 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()*/
                     .authorizeRequests()
-                    .antMatchers("/", "/resources/**", "/profile", "/login", "/status/*").permitAll()
                     .antMatchers("/app/**").hasRole(Role.USER.name())
                     .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
-                    .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
+                    .antMatchers("/**").permitAll()
+                    //.antMatchers("/", "/resources/**", "/profile", "/login", "/status/*", "/actuator/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
