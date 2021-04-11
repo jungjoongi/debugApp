@@ -23,7 +23,7 @@ spring:
             client-id: 663340949978-j8meqpt3itklrtj6cgnm4bt2hjdv6brb.apps.googleusercontent.com
             client-secret: ENC(s1NlmUlGDOy/NWngN8KtmoiWEmfXx2G5m16fHpJP9FuHq7TdflPx+A==)
             scope: profile,email
-            redirect_uri: https://cms.jungjoongi.com/login/oauth2/code/google
+            #redirect_uri: https://cms.jungjoongi.com/login/oauth2/code/google
   profiles:
     include=oauth: oauth
 
