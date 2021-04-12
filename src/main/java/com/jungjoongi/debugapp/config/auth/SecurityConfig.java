@@ -2,6 +2,7 @@ package com.jungjoongi.debugapp.config.auth;
 
 import com.jungjoongi.debugapp.domain.auth.Role;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
@@ -21,6 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomUserDetailsService customUserDetailsService;
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
     private final CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+    @Value("${properties.https.enabled}")
+    boolean isHttpsEnabled;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -58,6 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/")
                     .userInfoEndpoint()
                     .userService(customOAuth2UserService);
+
+
+        if (this.isHttpsEnabled) {
+            http.requiresChannel().anyRequest().requiresSecure().antMatchers("/login");
+        }
     }
 
     @Override
