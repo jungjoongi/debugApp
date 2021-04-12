@@ -118,5 +118,6 @@ properties:
   social:
     google:
       client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
-
+  https:
+    enabled: false
 
