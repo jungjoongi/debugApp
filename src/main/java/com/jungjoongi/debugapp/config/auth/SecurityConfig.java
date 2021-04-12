@@ -62,10 +62,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .userInfoEndpoint()
                     .userService(customOAuth2UserService);
 
-
-/*        if (this.isHttpsEnabled) {
-            http.requiresChannel().anyRequest().requiresSecure().antMatchers("/login");
-        }*/
     }
 
     @Override
