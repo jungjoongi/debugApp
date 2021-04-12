@@ -22,8 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomUserDetailsService customUserDetailsService;
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
     private final CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
-    @Value("${properties.https.enabled}")
-    boolean isHttpsEnabled;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
