@@ -93,10 +93,10 @@ management:
 #logger
 logging:
   level:
-    root: error
+    root: debug
     #org.springframwork.security: debug
 
-  config: classpath:log/logback-config.xml
+  #config: classpath:log/logback-config.xml
 
 server:
   port: 8091
