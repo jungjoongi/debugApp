@@ -19,10 +19,11 @@ spring:
     oauth2:
       client:
         registration:
+          google:
             client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
             client-secret: ENC(aMXfFXUHhtMIQhkTca83KHnbRamfNzUL8aJW22KgPrkZhnkRquRn4A==)
             scope: profile,email
-            redirect_uri: http://localhost/login/oauth2/code/google
+            #redirect_uri: http://localhost/login/oauth2/code/google
 #  profiles:
 #    include=oauth: oauth
 
