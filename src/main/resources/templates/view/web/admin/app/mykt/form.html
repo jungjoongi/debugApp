@@ -31,7 +31,10 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form id="app-from" name="app-form">
+                            <form id="app-from" name="app-form" enctype="multipart/form-data">
+
+
+                                  출처: https://androphil.tistory.com/708 [소림사의 홍반장!]>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>OS</label>
@@ -75,7 +78,7 @@
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                <label class="custom-file-label" for="exampleInputFile" id="exampleInputFile-label">파일을 업로드 해주세요</label>
                                             </div>
                                         </div>
                                     </div>
@@ -112,5 +115,7 @@
 <!-- ./wrapper -->
 <!-- 공통 스크립트 선언 s -->
 {{>layout/admin/script}}
+<script src="/resources/web/admin/js/app/mykt/form.js"></script>
+
 </body>
 </html>
