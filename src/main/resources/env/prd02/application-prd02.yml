@@ -24,8 +24,8 @@ spring:
             client-secret: ENC(s1NlmUlGDOy/NWngN8KtmoiWEmfXx2G5m16fHpJP9FuHq7TdflPx+A==)
             scope: profile,email
             redirect_uri: https://cms.jungjoongi.com/login/oauth2/code/google
-  profiles:
-    include=oauth: oauth
+#  profiles:
+#    include=oauth: oauth
 
   #    generate-ddl: false 	# DDl 생성 시 데이터베이스 고유의 기능 사용여부
   #    show-sql: true 				# 실행되는 쿼리문 보여주기 여부
