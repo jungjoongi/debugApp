@@ -4,11 +4,18 @@ let form = {
     },
     create : function () {
         this.submit();
-        this.getFileName();
     },
     submit : function() {
-        $(document).on("click", ".download-btn", function(){
-               let target = $(this).data("target");
+        $(document).on("click", ".download-btn", function(e){
+                e.preventDefault();
+                let target = $(this).data("target");
+                let os = $(this).data("os");
+                let iosRoot = "itms-services://?action=download-manifest&url=";
+
+               if("IOS" == os) {
+                   target = iosRoot + target;
+               }
+
                if(target != undefined && target != "") {
                    location.href = target;
                } else {
