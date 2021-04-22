@@ -1,6 +1,7 @@
 package com.jungjoongi.debugapp.web.admin.app.mykt.controller;
 
 import com.jungjoongi.debugapp.common.util.HttpRequestHelper;
+import com.jungjoongi.debugapp.common.util.ObjectHelper;
 import com.jungjoongi.debugapp.domain.appmykt.AppMyKt;
 import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRespository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class AppMyktController {
 
 	@RequestMapping(value = {"list"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String list(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model mv) {
-		LOGGER.info("MyKtController.view() #START! : {}");
+		//LOGGER.info("MyKtController.view() #START! : {}", ObjectHelper.convertObjectToMap(appMyKtRespository.findAll()));
 
 			//model.addAttribute("list", appMyKtRespository.findAll());
 
