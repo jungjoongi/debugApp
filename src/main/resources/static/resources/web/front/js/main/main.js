@@ -10,7 +10,8 @@ let form = {
                 e.preventDefault();
                 let target = $(this).data("target");
                 let os = $(this).data("os");
-                let iosRoot = "itms-services://?action=download-manifest&url=";
+                let location = location.href;
+                let iosRoot = "itms-services://?action=download-manifest&url="+location;
 
                if("IOS" == os) {
                    target = iosRoot + target;
