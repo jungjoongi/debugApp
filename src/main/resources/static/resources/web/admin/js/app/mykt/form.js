@@ -9,12 +9,12 @@ let form = {
     isProgress : false,
     submit : function() {
         $(document).on('click', '#submit' , function(){
-            if(!isProgress) {
+            if(!form.isProgress) {
                 form.isProgress = true;
-                if(this.validation()) {
+                if(form.validation()) {
                         let formData = $('#app-from').serialize() // serialize 사용
                         $.ajax({
-                            url: "/admin/app/mykt/insert",
+                            url: "/admin/app/mykt/save",
                             enctype: 'multipart/form-data',
                             type: "POST",
                             cache: false,
