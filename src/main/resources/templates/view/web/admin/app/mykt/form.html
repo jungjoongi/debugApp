@@ -32,9 +32,9 @@
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form id="app-from" name="app-form" enctype="multipart/form-data">
-
-
-                                  출처: https://androphil.tistory.com/708 [소림사의 홍반장!]>
+                                {{#_csrf}}
+                                <input type="hidden" id="_csrf" data-token-name="{{_csrf.parameterName}}" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
+                                {{/_csrf}}
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>OS</label>

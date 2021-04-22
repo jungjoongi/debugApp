@@ -4,22 +4,44 @@
   {{#_csrf}}
   <input type="hidden" id="_csrf" data-token-name="{{_csrf.parameterName}}" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
   {{/_csrf}}
+  {{#user}}
   <button type="submit">LOGOUT</button>
+  {{/user}}
+
 </form>
 
-
   <div class="container">
-    <h1>index</h1>
+    <h1>디버그앱 저장소</h1>
+    <table class="table table-hover text-nowrap">
+      <thead>
+      <tr>
+        <th>OS</th>
+        <th>Version</th>
+        <th>개발</th>
+        <th>디버그</th>
+        <th>운영</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>AND</td>
+        <td>6.3.2</td>
+        <td><button type="button" class="btn btn-block btn-outline-warning btn-sm download-btn">X</button></td>
+        <td><button type="button" data-target="/web/mykt_632_release.apk" class="btn btn-block btn-outline-info btn-sm download-btn">디버그</button></td>
+        <td><button type="button" class="btn btn-block btn-outline-danger btn-sm download-btn">X</button></td>
+      </tr>
+      <tr>
+        <td>IOS</td>
+        <td>6.3.2</td>
+        <td><button type="button" class="btn btn-block btn-outline-warning btn-sm download-btn">X</button></td>
+        <td><button type="button" data-target="/web/mykt_632_release.plist" class="btn btn-block btn-outline-info btn-sm download-btn">디버그</button></td>
+        <td><button type="button" class="btn btn-block btn-outline-danger btn-sm download-btn">X</button></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-<button id="googleLogin">Google</button>
 {{>layout/front/web/script}}
-
-<script>
-  $("#googleLogin").click(function() {
-    location.href="/oauth2/authorization/google";
-  })
-
-</script>
+<script src="/resources/web/front/js/main/main.js"></script>
 
 
 
