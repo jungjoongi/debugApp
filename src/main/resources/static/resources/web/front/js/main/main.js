@@ -1,9 +1,10 @@
 let form = {
     init : function() {
-
+        form.create();
     },
     create : function () {
         this.submit();
+        this.makeUI();
     },
     submit : function() {
         $(document).on("click", ".download-btn", function(e){
@@ -23,11 +24,26 @@ let form = {
                    alert("파일이 손상되었습니다. 관리자에게 문의하세요");
                }
         });
+    },
+    makeUI : function() {
+        $.ajax({
+            type: "get",
+            url: "/getAppList",
+            dataType: "json",
+            success: function (data, status, xhr) {
+                console.log(data);
+                console.log(status);
+                console.log(xhr);
+            },
+            error: function (xhr, status, e) {
+                console.log("error", e);
+                console.log("status", status);
+            }
+        });
     }
 }
 $(document).ready(function() {
     form.init();
-    form.create();
 });
 
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jungjoongi.debugapp.web.front.main.mapper.MainMapper">
+
+    <select id="selectAppList" resultType="com.jungjoongi.debugapp.web.front.main.domain.MainVO">
+        select
+                OS
+            , VERSION
+            , max(case when env = 'DEV' then file_name ELSE '' end) AS 'DEV_PATH'
+            , max(case when env = 'PREPRED' then file_name  ELSE '' end) AS 'PREPRD_PATH'
+            , max(case when env = 'PRD' then file_name  ELSE '' end) AS 'PRD_PATH'
+        from app_mykt
+        group by version
+        order by version desc
+    </select>
+
+</mapper>

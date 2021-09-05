@@ -3,6 +3,7 @@
 <configuration>
     <settings>
         <setting name="callSettersOnNulls" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
 </configuration>

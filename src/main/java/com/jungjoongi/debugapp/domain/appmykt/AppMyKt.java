@@ -35,14 +35,18 @@ public class AppMyKt extends BaseTimeEntity {
     @Column(nullable = false,name = "MANAGER_ID")
     private Long managerId;
 
+    @Column(length = 10, nullable = false)
+    private String env;
+
     @Builder
-    public AppMyKt(Long id, String os, String version, String fileName, String comment, Long managerId) {
+    public AppMyKt(Long id, String os, String version, String fileName, String comment, Long managerId, String env) {
         this.id = id;
         this.os = os;
         this.version = version;
         this.fileName = fileName;
         this.comment = comment;
         this.managerId = managerId;
+        this.env = env;
     }
 
 }

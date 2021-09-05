@@ -32,9 +32,9 @@ public class MybatisConfig {
     @Value("${properties.jdbc.password}")
     String encPassword;
     @Value("${properties.encrypt.key}")
-    String key;
+    String encKey;
     @Value("${properties.encrypt.iv}")
-    String iv;
+    String encIv;
 
     @Bean
     public DataSource batisDataSource() {
@@ -44,10 +44,10 @@ public class MybatisConfig {
         String password ="password";
 
         try {
-            driver = EncryptHelper.decAES(encDriver, iv, key);
-            url = EncryptHelper.decAES(encUrl, iv, key);
-            userName = EncryptHelper.decAES(encUserName, iv, key);
-            password = EncryptHelper.decAES(encPassword, iv, key);
+            driver = EncryptHelper.decAES(encDriver, encIv, encKey);
+            url = EncryptHelper.decAES(encUrl, encIv, encKey);
+            userName = EncryptHelper.decAES(encUserName, encIv, encKey);
+            password = EncryptHelper.decAES(encPassword, encIv, encKey);
         } catch (Exception e) {
             LOGGER.error("[JpaConfig] defaultDataSource() Exception : {}", e.getMessage());
         }
@@ -70,7 +70,7 @@ public class MybatisConfig {
         SqlSessionFactoryBean sqlSession = new SqlSessionFactoryBean();
         sqlSession.setDataSource(batisDataSource);
         sqlSession.setConfigLocation(applicationContext.getResource("classpath:mybatis/mybatis-config.xml")); //mybatis-config.xml의 경로
-        sqlSession.setMapperLocations(applicationContext.getResources("classpath:mapper/**/*SQL.xml")); //쿼리문을 관리하는 mapper파일의 경로
+        sqlSession.setMapperLocations(applicationContext.getResources("classpath:mapper/**/*Mapper.xml")); //쿼리문을 관리하는 mapper파일의 경로
 
         return sqlSession.getObject();
 

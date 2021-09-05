@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +28,7 @@ public class AppMyktController {
 
 	@RequestMapping(value = {"list"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String list(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model mv) {
-		//LOGGER.info("MyKtController.view() #START! : {}", ObjectHelper.convertObjectToMap(appMyKtRespository.findAll()));
+		LOGGER.info("MyKtController.view() #START! : {}", ObjectHelper.convertObjectToMap(appMyKtRespository.findAll()));
 
 			//model.addAttribute("list", appMyKtRespository.findAll());
 
@@ -42,12 +44,20 @@ public class AppMyktController {
 
 
 	@RequestMapping(value = {"save"}, method= {RequestMethod.GET, RequestMethod.POST})
-	public String save(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model model, AppMyKt appMyKt) {
+	public String save(
+			HttpServletRequest request
+			, HttpServletResponse response
+			, HttpSession httpSession
+			, Model model
+			, AppMyKt appMyKt
+			, @RequestParam("file") MultipartFile files) {
 
 		String result = "SUCCESS";
+		LOGGER.info("appMyKt : {}", ObjectHelper.convertObjectToString(appMyKt));
+		LOGGER.info("files : {}", ObjectHelper.convertObjectToString(files));
 
 		try {
-			appMyKtRespository.save(appMyKt);
+			//appMyKtRespository.save(appMyKt);
 		} catch (Exception e) {
 			result = "FAIL";
 		}

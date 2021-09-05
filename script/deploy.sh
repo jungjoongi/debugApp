@@ -6,4 +6,3 @@ cp /var/lib/jenkins/workspace/debugApp/debugApp/build/libs/debugapp.jar /home/pi
 
 echo 'sh /home/pi/server/application/debugapp/start.sh'
 sh /home/pi/server/application/debugapp/start.sh
-#sh('JENKINS_NODE_COOKIE=dontKillMe && /home/pi/server/application/debugapp/start.sh &')

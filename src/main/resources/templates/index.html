@@ -9,7 +9,6 @@
   {{/user}}
 
 </form>
-
   <div class="container">
     <h1>디버그앱 저장소</h1>
     <table class="table table-hover text-nowrap">
@@ -23,20 +22,15 @@
       </tr>
       </thead>
       <tbody>
+      {{#res}}
       <tr>
-        <td>AND</td>
-        <td>6.3.2</td>
-        <td><button type="button" class="btn btn-block btn-outline-warning btn-sm download-btn">X</button></td>
-        <td><button type="button" data-target="/web/mykt_632_release.apk" data-os="AND" class="btn btn-block btn-outline-info btn-sm download-btn">디버그</button></td>
-        <td><button type="button" class="btn btn-block btn-outline-danger btn-sm download-btn">X</button></td>
+        <td>{{os}}</td>
+        <td>{{version}}</td>
+        <td><button type="button" data-target="" data-os="{{os}}" class="btn btn-block btn-outline-warning btn-sm download-btn">개발</button></td>
+        <td><button type="button" data-target="" data-os="{{os}}" class="btn btn-block btn-outline-info btn-sm download-btn">디버그</button></td>
+        <td><button type="button" data-target="" data-os="{{os}}" class="btn btn-block btn-outline-danger btn-sm download-btn">운영</button></td>
       </tr>
-      <tr>
-        <td>IOS</td>
-        <td>6.3.2</td>
-        <td><button type="button" class="btn btn-block btn-outline-warning btn-sm download-btn">X</button></td>
-        <td><button type="button" data-target="/web/mykt_632_release.plist" data-os="IOS" class="btn btn-block btn-outline-info btn-sm download-btn">디버그</button></td>
-        <td><button type="button" class="btn btn-block btn-outline-danger btn-sm download-btn">X</button></td>
-      </tr>
+      {{/res}}
       </tbody>
     </table>
   </div>
