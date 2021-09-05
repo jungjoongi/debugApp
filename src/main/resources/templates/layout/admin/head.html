@@ -45,6 +45,9 @@
     <!-- custom css -->
     <link rel="stylesheet" href="/resources/web/admin/css/layout/admin-custom.css">
 
+    {{#_csrf}}
+    <input type="hidden" id="_csrf" data-token-name="{{_csrf.parameterName}}" data-token-header="{{_csrf.headerName}}" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
+    {{/_csrf}}
 </head>
 </html>
 

@@ -47,7 +47,7 @@ public class MainController {
         log.info("MyKtController.view() #findAll! : {}", ObjectHelper.convertObjectToString(appMyKtRespository.findAll()));
         log.info("MyKtController.view() #getAppDownloadList! : {}", ObjectHelper.convertObjectToString(mainService.getAppDownloadList()));
         //log.info("[MainController] index() #START! ");
-        model.addAttribute("res", mainService.getAppDownloadList());
+        model.addAttribute("appList", mainService.getAppDownloadList());
         return "jsonView";
     }
 

@@ -1,16 +1,13 @@
 {{>layout/front/web/head}}
 
 <form action="/logout" method="POST">
-  {{#_csrf}}
-  <input type="hidden" id="_csrf" data-token-name="{{_csrf.parameterName}}" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
-  {{/_csrf}}
   {{#user}}
   <button type="submit">LOGOUT</button>
   {{/user}}
 
 </form>
   <div class="container">
-    <h1>디버그앱 저장소</h1>
+    <h1 class="center">디버그앱 저장소</h1>
     <table class="table table-hover text-nowrap">
       <thead>
       <tr>
@@ -21,21 +18,9 @@
         <th>운영</th>
       </tr>
       </thead>
-      <tbody>
-      {{#res}}
-      <tr>
-        <td>{{os}}</td>
-        <td>{{version}}</td>
-        <td><button type="button" data-target="" data-os="{{os}}" class="btn btn-block btn-outline-warning btn-sm download-btn">개발</button></td>
-        <td><button type="button" data-target="" data-os="{{os}}" class="btn btn-block btn-outline-info btn-sm download-btn">디버그</button></td>
-        <td><button type="button" data-target="" data-os="{{os}}" class="btn btn-block btn-outline-danger btn-sm download-btn">운영</button></td>
-      </tr>
-      {{/res}}
+      <tbody id="appListWarp">
       </tbody>
     </table>
   </div>
 {{>layout/front/web/script}}
 <script src="/resources/web/front/js/main/main.js"></script>
-
-
-

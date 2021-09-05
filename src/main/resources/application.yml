@@ -92,11 +92,10 @@ management:
 
 #logger
 logging:
+  #config: classpath:log/logback-config.xml
   level:
-    root: info
-    #org.springframwork.security: debug
-
-  config: classpath:log/logback-config.xml
+    root: debug
+#    #org.springframwork.security: debug
 
 
 server:

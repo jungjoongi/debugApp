@@ -50,15 +50,16 @@ public class AppMyktController {
 			, HttpSession httpSession
 			, Model model
 			, AppMyKt appMyKt
-			, @RequestParam("file") MultipartFile files) {
+			, MultipartFile files) {
 
 		String result = "SUCCESS";
-		LOGGER.info("appMyKt : {}", ObjectHelper.convertObjectToString(appMyKt));
-		LOGGER.info("files : {}", ObjectHelper.convertObjectToString(files));
+		LOGGER.debug("appMyKt : {}", ObjectHelper.convertObjectToString(appMyKt));
+		LOGGER.debug("files : {}", ObjectHelper.convertObjectToString(files));
 
 		try {
-			//appMyKtRespository.save(appMyKt);
+			appMyKtRespository.save(appMyKt);
 		} catch (Exception e) {
+			e.printStackTrace();
 			result = "FAIL";
 		}
 

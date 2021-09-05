@@ -21,7 +21,9 @@ let form = {
                             type: "POST",
                             cache: false,
                             data: formData, // data에 바로 serialze한 데이터를 넣는다.
-                            success: function(data){
+                            processData: false,
+                            contentType: false,
+                            success: function(data) {
                                 form.isProgress = false;
                                 console.log(data)
                             },

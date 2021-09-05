@@ -32,9 +32,6 @@
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form id="app-from" name="app-form" enctype="multipart/form-data">
-                                {{#_csrf}}
-                                <input type="hidden" id="_csrf" data-token-name="{{_csrf.parameterName}}" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
-                                {{/_csrf}}
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>OS</label>
@@ -61,7 +58,6 @@
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                             <option value="6">6</option>
-
                                             <option value="7">7</option>
                                             <option value="8">8</option>
                                             <option value="9">9</option>
