@@ -15,14 +15,15 @@ let form = {
                 form.isProgress = true;
                 if(form.validation()) {
                         let formData = $('#app-from').serialize() // serialize 사용
+                    console.log(formData);
                         $.ajax({
                             url: "/admin/app/mykt/save",
                             enctype: 'multipart/form-data',
                             type: "POST",
+                            dataType:'json',
+                            contentType: "application/json; charset=utf-8",
                             cache: false,
                             data: formData, // data에 바로 serialze한 데이터를 넣는다.
-                            processData: false,
-                            contentType: false,
                             success: function(data) {
                                 form.isProgress = false;
                                 console.log(data)
@@ -40,13 +41,13 @@ let form = {
         });
     },
     validation : function() {
-        let fileInput = $("#exampleInputFile").val();
+        let fileInput = $("#files").val();
         form.versionSetting();
 
         if("" == fileInput) {
 
             alert("파일을 업로드 해주세요");
-            $("#exampleInputFile").focus();
+            $("#files").focus();
             return false;
         } else {
             return true;
@@ -62,8 +63,8 @@ let form = {
     }
     ,
     getFileName : function() {
-        $("#exampleInputFile").change(function(obj){
-            $("#exampleInputFile-label").html(obj.target.files[0].name);
+        $("#files").change(function(obj){
+            $("#files-label").html(obj.target.files[0].name);
         });
     }
 }

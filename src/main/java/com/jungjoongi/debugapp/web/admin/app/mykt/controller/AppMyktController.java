@@ -4,11 +4,13 @@ import com.jungjoongi.debugapp.common.util.HttpRequestHelper;
 import com.jungjoongi.debugapp.common.util.ObjectHelper;
 import com.jungjoongi.debugapp.domain.appmykt.AppMyKt;
 import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRespository;
+import com.jungjoongi.debugapp.web.admin.app.mykt.domain.AppMyKtVo;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,15 +51,13 @@ public class AppMyktController {
 			, HttpServletResponse response
 			, HttpSession httpSession
 			, Model model
-			, AppMyKt appMyKt
-			, MultipartFile files) {
+			, @RequestBody AppMyKtVo appMyKtVo) {
 
 		String result = "SUCCESS";
-		LOGGER.debug("appMyKt : {}", ObjectHelper.convertObjectToString(appMyKt));
-		LOGGER.debug("files : {}", ObjectHelper.convertObjectToString(files));
+		LOGGER.debug("appMyKt : {}", ObjectHelper.convertObjectToString(appMyKtVo));
 
 		try {
-			appMyKtRespository.save(appMyKt);
+			//appMyKtRespository.save(appMyKtVo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = "FAIL";
