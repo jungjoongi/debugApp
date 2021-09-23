@@ -14,25 +14,26 @@ let form = {
             if(!form.isProgress) {
                 form.isProgress = true;
                 if(form.validation()) {
-                        let formData = $('#app-from').serialize() // serialize 사용
-                    console.log(formData);
-                        $.ajax({
-                            url: "/admin/app/mykt/save",
-                            enctype: 'multipart/form-data',
-                            type: "POST",
-                            dataType:'json',
-                            contentType: "application/json; charset=utf-8",
-                            cache: false,
-                            data: formData, // data에 바로 serialze한 데이터를 넣는다.
-                            success: function(data) {
-                                form.isProgress = false;
-                                console.log(data)
-                            },
-                            error: function (request, status, error){
-                                form.isProgress = false;
-                                console.log(error)
-                            }
-                        })
+                    let form = $('#app-from')[0];
+                    let data = new FormData(form)
+
+                    $.ajax({
+                        url: "/admin/app/mykt/save",
+                        type: "POST",
+                        enctype: 'multipart/form-data',
+                        processData : false,
+                        contentType : false,
+                        cache: false,
+                        data: data,
+                        success: function(data) {
+                            form.isProgress = false;
+                            console.log(data)
+                        },
+                        error: function (request, status, error){
+                            form.isProgress = false;
+                            console.log(error)
+                        }
+                    })
 
                 } else {
                     form.isProgress = false;

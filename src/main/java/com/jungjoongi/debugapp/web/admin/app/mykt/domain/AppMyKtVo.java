@@ -1,17 +1,22 @@
 package com.jungjoongi.debugapp.web.admin.app.mykt.domain;
 
-import lombok.Data;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@Data
+import java.io.Serializable;
+
 @ToString
-public class AppMyKtVo {
+@Getter
+@Setter
+@EqualsAndHashCode
+public class AppMyKtVo implements Serializable {
     private String os;
     private String version;
     private String fileName;
     private String comment;
     private String managerId;
     private String env;
-    //private MultipartFile files;
+    @JsonIgnore
+    private MultipartFile files;
 }

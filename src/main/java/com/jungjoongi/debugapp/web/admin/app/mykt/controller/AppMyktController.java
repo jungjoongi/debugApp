@@ -51,11 +51,9 @@ public class AppMyktController {
 			, HttpServletResponse response
 			, HttpSession httpSession
 			, Model model
-			, @RequestBody AppMyKtVo appMyKtVo) {
-
+			, AppMyKtVo appMyKtVo) {
 		String result = "SUCCESS";
-		LOGGER.debug("appMyKt : {}", ObjectHelper.convertObjectToString(appMyKtVo));
-
+		LOGGER.debug("appMyKt : {}", appMyKtVo.toString());
 		try {
 			//appMyKtRespository.save(appMyKtVo);
 		} catch (Exception e) {
