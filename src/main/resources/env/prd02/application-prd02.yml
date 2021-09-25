@@ -118,5 +118,5 @@ properties:
   social:
     google:
       client-id: 663340949978-j8meqpt3itklrtj6cgnm4bt2hjdv6brb.apps.googleusercontent.com
-  app:
-    dir: /mnt/hdd1/html/resources/debugapp/mykt
+  filepath:
+    app: /mnt/hdd1/html/resources/debugapp/mykt/

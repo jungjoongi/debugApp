@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jungjoongi.debugapp.web.admin.app.mykt.mapper.MyktMapper">
+
+    <insert id="save" parameterType ="com.jungjoongi.debugapp.web.admin.app.mykt.domain.AppMyKtVO">
+        insert into app_mykt (os, version, file_name, origin_file_name, comment, manager_id, env, reg_date, mdfy_date)
+        values (#{os}, #{version}, #{fileName}, #{originFileName} ,#{comment}, #{managerId}, #{env}, now(), now());
+    </insert>
+
+</mapper>

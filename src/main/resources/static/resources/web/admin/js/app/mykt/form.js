@@ -1,15 +1,13 @@
 let form = {
     init : function() {
-
+        form.create();
     },
     create : function () {
-        this.submit();
         this.getFileName();
     },
     isProgress : false,
     submit : function() {
-        $(document).on('click', '#submit' , function(e){
-            e.preventDefault();
+        $("#submit").click(function() {
 
             if(!form.isProgress) {
                 form.isProgress = true;
@@ -71,7 +69,6 @@ let form = {
 }
 $(document).ready(function() {
     form.init();
-    form.create();
 });
 
 

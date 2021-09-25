@@ -29,6 +29,9 @@ public class AppMyKt extends BaseTimeEntity {
     @Column(length = 300, nullable = false, name = "FILE_NAME")
     private String fileName;
 
+    @Column(length = 300, nullable = false, name = "ORIGIN_FILE_NAME")
+    private String originFileName;
+
     @Column(length = 3000, nullable = true)
     private String comment;
 
@@ -39,11 +42,12 @@ public class AppMyKt extends BaseTimeEntity {
     private String env;
 
     @Builder
-    public AppMyKt(Long id, String os, String version, String fileName, String comment, Long managerId, String env) {
+    public AppMyKt(Long id, String os, String version, String fileName, String originFileName, String comment, Long managerId, String env) {
         this.id = id;
         this.os = os;
         this.version = version;
         this.fileName = fileName;
+        this.originFileName = originFileName;
         this.comment = comment;
         this.managerId = managerId;
         this.env = env;

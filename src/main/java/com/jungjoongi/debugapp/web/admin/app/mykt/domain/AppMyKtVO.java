@@ -10,12 +10,13 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class AppMyKtVo implements Serializable {
+public class AppMyKtVO implements Serializable {
     private String os;
     private String version;
     private String fileName;
+    private String originFileName;
     private String comment;
-    private String managerId;
+    private Long managerId;
     private String env;
     @JsonIgnore
     private MultipartFile files;

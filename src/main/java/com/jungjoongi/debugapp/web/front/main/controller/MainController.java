@@ -32,10 +32,6 @@ public class MainController {
 
     @RequestMapping(value = {""}, method= {RequestMethod.GET, RequestMethod.POST})
     public String index(HttpServletRequest request, HttpServletResponse response, HttpSession session, @LoginUser SessionUser user, Model model) {
-        log.info("[MainController] index() #START! : {}", ObjectHelper.convertObjectToString(user));
-        log.info("MyKtController.view() #findAll! : {}", ObjectHelper.convertObjectToString(appMyKtRespository.findAll()));
-        log.info("MyKtController.view() #getAppDownloadList! : {}", ObjectHelper.convertObjectToString(mainService.getAppDownloadList()));
-        //log.info("[MainController] index() #START! ");
         model.addAttribute("res", mainService.getAppDownloadList());
         return "index";
     }
@@ -43,10 +39,7 @@ public class MainController {
 
     @RequestMapping(value = {"getAppList"}, method= {RequestMethod.GET, RequestMethod.POST})
     public String jsonGetAppList(HttpServletRequest request, HttpServletResponse response, HttpSession session, @LoginUser SessionUser user, Model model) {
-        log.info("[MainController] index() #START! : {}", ObjectHelper.convertObjectToString(user));
-        log.info("MyKtController.view() #findAll! : {}", ObjectHelper.convertObjectToString(appMyKtRespository.findAll()));
-        log.info("MyKtController.view() #getAppDownloadList! : {}", ObjectHelper.convertObjectToString(mainService.getAppDownloadList()));
-        //log.info("[MainController] index() #START! ");
+        log.info("[MainController] index() #START! : {}", user.toString());
         model.addAttribute("appList", mainService.getAppDownloadList());
         return "jsonView";
     }
