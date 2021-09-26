@@ -8,7 +8,7 @@
 
     <insert id="save" parameterType ="com.jungjoongi.debugapp.web.admin.app.mykt.domain.AppMyKtVO">
         insert into app_mykt (os, version, file_name, origin_file_name, comment, manager_id, env, reg_date, mdfy_date)
-        values (#{os}, #{version}, #{fileName}, #{originFileName} ,#{comment}, #{managerId}, #{env}, now(), now());
+        values (#{os}, #{version}, #{fileName}, #{originFileName} ,#{comment}, #{managerId}, #{env}, DATE_FORMAT(now(), '%Y-%m-%d %T'), DATE_FORMAT(now(), '%Y-%m-%d %T'));
     </insert>
 
 </mapper>

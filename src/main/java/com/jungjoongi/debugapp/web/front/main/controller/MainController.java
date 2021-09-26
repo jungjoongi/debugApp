@@ -39,7 +39,6 @@ public class MainController {
 
     @RequestMapping(value = {"getAppList"}, method= {RequestMethod.GET, RequestMethod.POST})
     public String jsonGetAppList(HttpServletRequest request, HttpServletResponse response, HttpSession session, @LoginUser SessionUser user, Model model) {
-        log.info("[MainController] index() #START! : {}", user.toString());
         model.addAttribute("appList", mainService.getAppDownloadList());
         return "jsonView";
     }

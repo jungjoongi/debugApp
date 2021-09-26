@@ -3,17 +3,18 @@ let form = {
         form.create();
     },
     create : function () {
-        this.getFileName();
+        form.getFileName();
+        form.submit();
     },
     isProgress : false,
     submit : function() {
-        $("#submit").click(function() {
+         $(document).on("click", "#submit", function() {
 
             if(!form.isProgress) {
                 form.isProgress = true;
                 if(form.validation()) {
-                    let form = $('#app-from')[0];
-                    let data = new FormData(form)
+                    let formData = $('#app-from')[0];
+                    let data = new FormData(formData)
 
                     $.ajax({
                         url: "/admin/app/mykt/save",
@@ -26,6 +27,7 @@ let form = {
                         success: function(data) {
                             form.isProgress = false;
                             console.log(data)
+                            location.href="/admin/app/mykt/list";
                         },
                         error: function (request, status, error){
                             form.isProgress = false;

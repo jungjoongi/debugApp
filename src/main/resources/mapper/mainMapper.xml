@@ -8,14 +8,25 @@
 
     <select id="selectAppList" resultType="com.jungjoongi.debugapp.web.front.main.domain.MainVO">
         select
-                OS
-            , VERSION
-            , max(case when env = 'DEV' then file_name ELSE '' end) AS 'DEV_PATH'
-            , max(case when env = 'PREPRED' then file_name  ELSE '' end) AS 'PREPRD_PATH'
-            , max(case when env = 'PRD' then file_name  ELSE '' end) AS 'PRD_PATH'
-        from app_mykt
-        group by version
-        order by version desc
+            grandParent.version
+            ,grandParent.os
+            ,max(grandParent.DEV_PATH) DEV_PATH
+            ,max(grandParent.PREPRD_PATH) PREPRD_PATH
+            ,max(grandParent.PRD_PATH) PRD_PATH
+        from(
+            select
+                parent.version
+                , parent.os
+                , case when parent.env = 'DEV' then parent.file_name ELSE '' end AS 'DEV_PATH'
+                , case when parent.env = 'PREPRED' then parent.file_name  ELSE '' end AS 'PREPRD_PATH'
+                , case when parent.env = 'PRD' then parent.file_name  ELSE '' end AS 'PRD_PATH'
+            from (
+                select version, os, env, file_name , RANK() OVER (ORDER BY mdfy_date desc) as rm from app_mykt
+            ) as parent
+            group by version, os, env
+                order by parent.rm desc, version desc
+        ) as grandParent
+        group by grandParent.os, grandParent.version;
     </select>
 
 </mapper>

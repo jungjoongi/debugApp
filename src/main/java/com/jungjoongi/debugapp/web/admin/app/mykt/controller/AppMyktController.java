@@ -4,6 +4,7 @@ import com.jungjoongi.debugapp.common.util.HttpRequestHelper;
 import com.jungjoongi.debugapp.common.util.ObjectHelper;
 import com.jungjoongi.debugapp.config.auth.LoginUser;
 import com.jungjoongi.debugapp.config.auth.dto.SessionUser;
+import com.jungjoongi.debugapp.domain.appmykt.AppMyKt;
 import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRespository;
 import com.jungjoongi.debugapp.web.admin.app.mykt.domain.AppMyKtVO;
 import com.jungjoongi.debugapp.web.admin.app.mykt.service.AppMyktService;
@@ -18,22 +19,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/app/mykt")
 public class AppMyktController {
 
 	private AppMyktService appMyktService;
+	private AppMyKtRespository appMyKtRespository;
 
-	public AppMyktController(AppMyktService appMyktService) {
+	public AppMyktController(AppMyktService appMyktService, AppMyKtRespository appMyKtRespository) {
+
 		this.appMyktService = appMyktService;
+		this.appMyKtRespository = appMyKtRespository;
 	}
 
 	private static Logger LOGGER = LoggerFactory.getLogger(AppMyktController.class);
 	@RequestMapping(value = {"list"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String list(HttpServletRequest request, HttpServletResponse response, HttpSession httpSession, Model model) {
 
-			//model.addAttribute("list", appMyKtRespository.findAll());
+		model.addAttribute("list", appMyKtRespository.findAll());
 
 		return HttpRequestHelper.getAdminRequestPath();
 	}

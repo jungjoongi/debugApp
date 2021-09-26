@@ -49,24 +49,26 @@
                                         <th>No</th>
                                         <th>Version</th>
                                         <th>OS</th>
-                                        <th>Server</th>
+                                        <th>환경</th>
                                         <th>Date</th>
                                         <th>User</th>
-                                        <th>Modify</th>
+                                        <th>등록일</th>
                                         <th>Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    {{#list}}
                                     <tr>
-                                        <td>1</td>
-                                        <td>6.2.3</td>
-                                        <td>AND</td>
-                                        <td>DEV</td>
-                                        <td>2020-09-10</td>
-                                        <td>Admin</td>
+                                        <td>{{id}}</td>
+                                        <td>{{version}}</td>
+                                        <td>{{os}}</td>
+                                        <td>{{env}}</td>
+                                        <td>{{regDate}}</td>
+                                        <td>{{managerId}}</td>
                                         <td><button type="button" class="btn btn-block btn-outline-warning btn-sm">수정</button></td>
                                         <td><button type="button" class="btn btn-block btn-outline-danger btn-sm">삭제</button></td>
                                     </tr>
+                                    {{/list}}
                                     </tbody>
                                 </table>
                             </div>
