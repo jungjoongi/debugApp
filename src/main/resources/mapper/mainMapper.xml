@@ -8,25 +8,24 @@
 
     <select id="selectAppList" resultType="com.jungjoongi.debugapp.web.front.main.domain.MainVO">
         select
-            grandParent.version
-            ,grandParent.os
-            ,max(grandParent.DEV_PATH) DEV_PATH
-            ,max(grandParent.PREPRD_PATH) PREPRD_PATH
-            ,max(grandParent.PRD_PATH) PRD_PATH
-        from(
+             parent.os os
+            , parent.version version
+            , max(case when parent.env = 'dev' then parent.file_name ELSE '' end) 'dev_path'
+            , max(case when parent.env = 'preprd' then parent.file_name  ELSE '' end) 'preprd_path'
+            , max(case when parent.env = 'prd' then parent.file_name  ELSE '' end) 'prd_path'
+        from (
             select
-                parent.version
-                , parent.os
-                , case when parent.env = 'DEV' then parent.file_name ELSE '' end AS 'DEV_PATH'
-                , case when parent.env = 'PREPRED' then parent.file_name  ELSE '' end AS 'PREPRD_PATH'
-                , case when parent.env = 'PRD' then parent.file_name  ELSE '' end AS 'PRD_PATH'
-            from (
-                select version, os, env, file_name , RANK() OVER (ORDER BY mdfy_date desc) as rm from app_mykt
-            ) as parent
-            group by version, os, env
-                order by parent.rm desc, version desc
-        ) as grandParent
-        group by grandParent.os, grandParent.version;
+                RANK() OVER (PARTITION by version, os, env ORDER BY mdfy_date desc) as rm
+                , os
+                , version
+                , file_name
+                , env
+            from app_mykt
+        ) parent
+        where parent.rm = 1
+        group by version, os
+        order by version desc, os desc
+        limit 10;
     </select>
 
 </mapper>
