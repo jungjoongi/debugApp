@@ -8,6 +8,7 @@ import com.jungjoongi.debugapp.common.util.ObjectHelper;
 import com.jungjoongi.debugapp.config.auth.LoginUser;
 import com.jungjoongi.debugapp.config.auth.dto.SessionUser;
 import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRespository;
+import com.jungjoongi.debugapp.web.front.main.domain.MainVO;
 import com.jungjoongi.debugapp.web.front.main.service.MainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 
 @Controller
@@ -39,6 +42,8 @@ public class MainController {
 
     @RequestMapping(value = {"getAppList"}, method= {RequestMethod.GET, RequestMethod.POST})
     public String jsonGetAppList(HttpServletRequest request, HttpServletResponse response, HttpSession session, @LoginUser SessionUser user, Model model) {
+
+        List<MainVO> mainVoList = mainService.getAppDownloadList();
         model.addAttribute("appList", mainService.getAppDownloadList());
         return "jsonView";
     }

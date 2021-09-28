@@ -7,8 +7,24 @@
 <mapper namespace="com.jungjoongi.debugapp.web.admin.app.mykt.mapper.MyktMapper">
 
     <insert id="save" parameterType ="com.jungjoongi.debugapp.web.admin.app.mykt.domain.AppMyKtVO">
-        insert into app_mykt (os, version, file_name, origin_file_name, comment, manager_id, env, reg_date, mdfy_date)
-        values (#{os}, #{version}, #{fileName}, #{originFileName} ,#{comment}, #{managerId}, #{env}, DATE_FORMAT(now(), '%Y-%m-%d %T'), DATE_FORMAT(now(), '%Y-%m-%d %T'));
+        insert into app_mykt (os, version, comment, manager_id, env, reg_date, mdfy_date)
+        values (#{os}, #{version} ,#{comment}, #{managerId}, #{env}, DATE_FORMAT(now(), '%Y-%m-%d %T'), DATE_FORMAT(now(), '%Y-%m-%d %T'));
+
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
     </insert>
+
+    <insert id="saveFile" parameterType ="com.jungjoongi.debugapp.web.admin.app.mykt.domain.FileUploadVO">
+
+
+        INSERT INTO file_upload ( content_id, file_name, origin_file_name, download_yn, reg_date, mdfy_date)
+        VALUES
+        <foreach item="item" index="index" collection="list" separator=" , ">
+        ( #{item.contentId}, #{item.fileName}, #{item.originFileName}, #{item.downloadYn}, DATE_FORMAT(now(), '%Y-%m-%d %T'), DATE_FORMAT(now(), '%Y-%m-%d %T'))
+        </foreach>
+    </insert>
+
 
 </mapper>

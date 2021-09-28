@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface AppMyktService {
     public List<CodeInfo> getCodeList();
-    public int save(AppMyKtVO appMyKtVO);
+    public String save(AppMyKtVO appMyKtVO);
 }

@@ -35,7 +35,7 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>OS</label>
-                                        <select class="custom-select" name="os">
+                                        <select class="custom-select" name="os" id="select-os">
                                             <option value="IOS">IOS</option>
                                             <option value="AND">AND</option>
                                         </select>
@@ -70,11 +70,17 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="files">앱</label>
+                                        <label for="files1">앱</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" name="files" class="custom-file-input" id="files">
-                                                <label class="custom-file-label" for="files" id="files-label">파일을 업로드 해주세요</label>
+                                                <input type="file" name="files" class="custom-file-input" id="files1">
+                                                <label class="custom-file-label" for="files1" id="files-label1">파일을 업로드 해주세요</label>
+                                            </div>
+                                        </div>
+                                        <div class="input-group for-ios" style="display:none">
+                                            <div class="custom-file">
+                                                <input type="file" name="files" class="custom-file-input" id="files2">
+                                                <label class="custom-file-label" for="files2" id="files-label2">파일을 업로드 해주세요</label>
                                             </div>
                                         </div>
                                     </div>

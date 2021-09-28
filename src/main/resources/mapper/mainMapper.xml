@@ -8,19 +8,22 @@
 
     <select id="selectAppList" resultType="com.jungjoongi.debugapp.web.front.main.domain.MainVO">
         select
-             parent.os os
-            , parent.version version
+             parent.os
+            , parent.version
             , max(case when parent.env = 'dev' then parent.file_name ELSE '' end) 'dev_path'
             , max(case when parent.env = 'preprd' then parent.file_name  ELSE '' end) 'preprd_path'
             , max(case when parent.env = 'prd' then parent.file_name  ELSE '' end) 'prd_path'
-        from (
+        from(
             select
-                RANK() OVER (PARTITION by version, os, env ORDER BY mdfy_date desc) as rm
-                , os
-                , version
-                , file_name
-                , env
-            from app_mykt
+                 a.id
+                , b.content_id
+                , a.os
+                , a.version
+                , b.file_name
+                , a.env
+                , RANK() OVER (PARTITION by a.version, a.os, a.env ORDER BY a.mdfy_date desc) as rm
+            from app_mykt a join file_upload b on a.id = b.content_id
+            where b.download_yn = 'Y'
         ) parent
         where parent.rm = 1
         group by version, os

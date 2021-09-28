@@ -65,7 +65,7 @@ public class AppMyktController {
 		LOGGER.debug("appMyKt : {}", appMyKtVO.toString());
 		appMyKtVO.setManagerId(user.getId());
 		try {
-			result = appMyktService.save(appMyKtVO) > 0 ? "SUCCESS" : "FAIL";
+			result = appMyktService.save(appMyKtVO);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = "FAIL";

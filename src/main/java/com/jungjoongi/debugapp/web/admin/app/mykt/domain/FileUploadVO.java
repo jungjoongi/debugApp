@@ -1,7 +1,10 @@
 package com.jungjoongi.debugapp.web.admin.app.mykt.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
@@ -10,15 +13,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class AppMyKtVO implements Serializable {
-    private long id;
-    private String os;
-    private String version;
+public class FileUploadVO implements Serializable {
+    private long contentId;
     private String fileName;
     private String originFileName;
-    private String comment;
-    private Long managerId;
-    private String env;
-    @JsonIgnore
-    private MultipartFile[] files;
+    private String downloadYn;
 }

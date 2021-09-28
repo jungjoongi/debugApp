@@ -11,10 +11,11 @@ let form = {
                 e.preventDefault();
                 let target = $(this).data("target");
                 let os = $(this).data("os");
-                let webRoot = location.href;
+                let webRoot = location.href.substring(0, location.href.lastIndexOf("/"));;
                 let iosRoot = "itms-services://?action=download-manifest&url="+webRoot;
 
                if(target != undefined && target != "") {
+                   target = "/web/mykt/"+target;
                    if("IOS" == os) {
                        target = iosRoot + target;
                    }
