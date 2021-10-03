@@ -18,6 +18,14 @@
         <!-- Content Header (Page header) -->
         {{>layout/admin/gnb}}
 
+        {{#appMyKt}}
+        <input type="hidden" id="isModify" value="true"/>
+        <input type="hidden" id="modifyOs" value="{{appMyKt.os}}"/>
+        <input type="hidden" id="modifyVersion" value="{{appMyKt.version}}"/>
+        <input type="hidden" id="modifyComment" value="{{appMyKt.comment}}"/>
+        <input type="hidden" id="modifyEnv" value="{{appMyKt.env}}"/>
+        <input type="hidden" id="modifyId" value="{{appMyKt.id}}"/>
+        {{/appMyKt}}
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -32,6 +40,9 @@
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form id="app-from" name="app-form" enctype="multipart/form-data">
+                                {{#appMyKt}}
+                                <input type="hidden" name="id" value="{{appMyKt.id}}"/>
+                                {{/appMyKt}}
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>OS</label>
@@ -86,7 +97,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>설명</label>
-                                        <textarea class="form-control" name="comment" rows="3" placeholder="설명" style="margin-top: 0px; margin-bottom: 0px; height: 163px;"></textarea>
+                                        <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="설명" style="margin-top: 0px; margin-bottom: 0px; height: 163px;"></textarea>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

@@ -17,7 +17,7 @@ import java.util.Date;
 public abstract class BaseTimeEntity {
 
     @CreatedDate
-    @Column(name = "REG_DATE", columnDefinition = "datetime")
+    @Column(name = "REG_DATE", columnDefinition = "datetime", updatable = false)
     private String regDate;
 
     @LastModifiedDate
@@ -39,9 +39,13 @@ public abstract class BaseTimeEntity {
     void onPostLoad() throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss.s");
         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-DD HH:mm");
-        Date regDateFormat = format.parse(regDate);
-        Date mdfyFormat = format.parse(mdfyDate);
-        this.regDate = format2.format(regDateFormat);
-        this.mdfyDate = format2.format(mdfyFormat);
+        if(regDate != null) {
+            Date regDateFormat = format.parse(regDate);
+            this.regDate = format2.format(regDateFormat);
+        }
+        if(mdfyDate != null) {
+            Date mdfyFormat = format.parse(mdfyDate);
+            this.mdfyDate = format2.format(mdfyFormat);
+        }
     }
 }

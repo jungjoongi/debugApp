@@ -10,4 +10,5 @@ import java.util.List;
 public interface MyktMapper {
     public int save(AppMyKtVO appMyKtVO);
     public int saveFile(List<FileUploadVO> fileUploadVOList);
+    public int deleteFile(Long id);
 }

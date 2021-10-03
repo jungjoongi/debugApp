@@ -1,6 +1,8 @@
 package com.jungjoongi.debugapp.web.admin.app.mykt.service.impl;
 
 import com.jungjoongi.debugapp.common.util.MD5Generator;
+import com.jungjoongi.debugapp.domain.appmykt.AppMyKt;
+import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRespository;
 import com.jungjoongi.debugapp.domain.code.CodeInfo;
 import com.jungjoongi.debugapp.web.admin.app.mykt.domain.AppMyKtVO;
 import com.jungjoongi.debugapp.web.admin.app.mykt.domain.FileUploadVO;
@@ -14,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.Multipart;
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -25,9 +27,11 @@ import java.util.List;
 public class AppMyKtServiceImpl implements AppMyktService {
 
     private MyktMapper myktMapper;
+    private AppMyKtRespository appMyKtRespository;
 
-    public AppMyKtServiceImpl(MyktMapper myktMapper) {
+    public AppMyKtServiceImpl(MyktMapper myktMapper, AppMyKtRespository appMyKtRespository) {
         this.myktMapper = myktMapper;
+        this.appMyKtRespository = appMyKtRespository;
     }
 
     private static Logger LOGGER = LoggerFactory.getLogger(AppMyKtServiceImpl.class);
@@ -42,51 +46,113 @@ public class AppMyKtServiceImpl implements AppMyktService {
     @Override
     @Transactional
     public String save(AppMyKtVO appMyKtVO) {
-        MD5Generator md5Generator = MD5Generator.getInstance();
-        String originFileName = "";
-        String encFileName = "";
-        String originalFileExtension;
         MultipartFile[] files = appMyKtVO.getFiles();
         List<FileUploadVO> fileUPloadVoList = new ArrayList<>();
-        String successYn = "Y";
+        String result = "SUCCESS";
         if(files != null) {
             try {
-                for(MultipartFile file : files) {
-                    FileUploadVO fileUPloadVo = new FileUploadVO();
-                    originFileName = file.getOriginalFilename();
-                    originalFileExtension = originFileName.substring(originFileName.lastIndexOf("."));
-                    encFileName = md5Generator.makeFileName(originFileName).toString() + originalFileExtension;
-                    fileUPloadVo.setOriginFileName(originFileName);
-                    fileUPloadVo.setFileName(encFileName);
-                    fileUPloadVo.setDownloadYn(originalFileExtension.contains("ipa") ? "N" : "Y");
-                    File dir = new File(filepath);
-                    File saveFile = new File(filepath.concat(encFileName));
-                    dir.mkdirs();
-                    file.transferTo(saveFile);
-                    fileUPloadVoList.add(fileUPloadVo);
-                }
+                fileUPloadVoList.addAll(this.fileSave(files));
                 myktMapper.save(appMyKtVO);
                 for(FileUploadVO list : fileUPloadVoList) {
                     list.setContentId(appMyKtVO.getId());
                 }
                 myktMapper.saveFile(fileUPloadVoList);
 
-            } catch (UnsupportedEncodingException e) {
-                LOGGER.error("[AppMyKtServiceImpl] (save) UnsupportedEncodingException : {}", e.getMessage());
-                successYn = "N";
-            } catch (NoSuchAlgorithmException e) {
-                LOGGER.error("[AppMyKtServiceImpl] (save) NoSuchAlgorithmException : {}", e.getMessage());
-                successYn = "N";
             } catch (Exception e) {
                 e.printStackTrace();
                 LOGGER.error("[AppMyKtServiceImpl] (save) Exception : {}", e.getMessage());
                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                successYn = "N";
+                result = "FAIL";
             }
         }
 
+        return result;
+    }
+
+    @Override
+    @Transactional
+    public String update(AppMyKtVO appMyKtVO) {
+        MultipartFile[] files = appMyKtVO.getFiles();
+        List<FileUploadVO> fileUPloadVoList = new ArrayList<>();
+        String result = "SUCCESS";
+        if(files != null) {
+            try {
+                appMyKtRespository.save(AppMyKt.builder()
+                        .id(appMyKtVO.getId())
+                        .env(appMyKtVO.getEnv())
+                        .os(appMyKtVO.getOs())
+                        .version(appMyKtVO.getVersion())
+                        .comment(appMyKtVO.getComment())
+                        .managerId(appMyKtVO.getManagerId())
+                        .build());
+                fileUPloadVoList.addAll(this.fileSave(files));
+                for(FileUploadVO list : fileUPloadVoList) {
+                    list.setContentId(appMyKtVO.getId());
+                }
+                myktMapper.deleteFile(appMyKtVO.getId());
+                myktMapper.saveFile(fileUPloadVoList);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                LOGGER.error("[AppMyKtServiceImpl] (save) Exception : {}", e.getMessage());
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                result = "FAIL";
+            }
+        }
+
+        return result;
+    }
+
+    private List<FileUploadVO> fileSave(MultipartFile[] files) {
+        List<FileUploadVO> fileUPloadVoList = new ArrayList<>();
+        String originFileName = "";
+        String originalFileExtension = "";
+        String encFileName = "";
+        MD5Generator md5Generator = MD5Generator.getInstance();
+        try {
+            for(MultipartFile file : files) {
+                FileUploadVO fileUPloadVo = new FileUploadVO();
+                originFileName = file.getOriginalFilename();
+                originalFileExtension = originFileName.substring(originFileName.lastIndexOf("."));
+                encFileName = md5Generator.makeFileName(originFileName).toString() + originalFileExtension;
+                fileUPloadVo.setOriginFileName(originFileName);
+                fileUPloadVo.setFileName(encFileName);
+                fileUPloadVo.setDownloadYn(originalFileExtension.contains("ipa") ? "N" : "Y");
+                File dir = new File(filepath);
+                File saveFile = new File(filepath.concat(encFileName));
+                dir.mkdirs();
+                file.transferTo(saveFile);
+                fileUPloadVoList.add(fileUPloadVo);
+            }
+        } catch (UnsupportedEncodingException e) {
+            LOGGER.error("[AppMyKtServiceImpl] (save) UnsupportedEncodingException : {}", e.getMessage());
+        } catch (NoSuchAlgorithmException e) {
+            LOGGER.error("[AppMyKtServiceImpl] (save) NoSuchAlgorithmException : {}", e.getMessage());
+        } catch (IOException e) {
+            LOGGER.error("[AppMyKtServiceImpl] (save) IOException : {}", e.getMessage());
+        } catch (Exception e) {
+            LOGGER.error("[AppMyKtServiceImpl] (save) IOException : {}", e.getMessage());
+        }
+
+        return fileUPloadVoList;
+    }
+
+    @Override
+    public String delete(AppMyKtVO appMyKtVO) {
+        AppMyKt AppMyKtRequest = AppMyKt.builder().id(appMyKtVO.getId()).build();
+        String result = "SUCCESS";
+        try {
+            appMyKtRespository.delete(AppMyKtRequest);
+        } catch (IllegalArgumentException e) {
+            result = "FAIL";
+            LOGGER.error("[AppMyKtServiceImpl] (delete) IllegalArgumentException : {}", e.getMessage());
+
+        } catch (Exception e) {
+            result = "FAIL";
+            LOGGER.error("[AppMyKtServiceImpl] (delete) Exception : {}", e.getMessage());
+        }
 
 
-        return successYn;
+        return result;
     }
 }

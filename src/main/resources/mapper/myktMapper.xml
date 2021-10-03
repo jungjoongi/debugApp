@@ -17,14 +17,17 @@
     </insert>
 
     <insert id="saveFile" parameterType ="com.jungjoongi.debugapp.web.admin.app.mykt.domain.FileUploadVO">
-
-
         INSERT INTO file_upload ( content_id, file_name, origin_file_name, download_yn, reg_date, mdfy_date)
         VALUES
         <foreach item="item" index="index" collection="list" separator=" , ">
         ( #{item.contentId}, #{item.fileName}, #{item.originFileName}, #{item.downloadYn}, DATE_FORMAT(now(), '%Y-%m-%d %T'), DATE_FORMAT(now(), '%Y-%m-%d %T'))
         </foreach>
+        ON DUPLICATE KEY UPDATE file_name=VALUES(file_name), origin_file_name=  VALUES(origin_file_name);
+
     </insert>
 
+    <delete id="deleteFile" parameterType ="java.lang.Long">
+        delete from file_upload where content_id = #{id};
+    </delete>
 
 </mapper>

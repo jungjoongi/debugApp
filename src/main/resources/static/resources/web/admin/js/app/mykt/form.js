@@ -1,6 +1,7 @@
 let form = {
     init : function() {
         form.create();
+        form.modifyCheck();
     },
     create : function () {
         form.getFileName();
@@ -11,6 +12,11 @@ let form = {
     ALLOW_EXTENTION : ["apk", "plist", "ipa"],
     submit : function() {
          $(document).on("click", "#submit", function() {
+            let isModify = $("#isModify").val();
+            let url = "/admin/app/mykt/save";
+            if(isModify == 'true') {
+                url = "/admin/app/mykt/update";
+            }
 
             if(!form.isProgress) {
                 form.isProgress = true;
@@ -19,7 +25,7 @@ let form = {
                     let data = new FormData(formData)
 
                     $.ajax({
-                        url: "/admin/app/mykt/save",
+                        url: url,
                         type: "POST",
                         enctype: 'multipart/form-data',
                         processData : false,
@@ -29,7 +35,7 @@ let form = {
                         success: function(data) {
                             form.isProgress = false;
                             console.log(data)
-                            if(data.result == "Y") {
+                            if(data.result == "SUCCESS") {
                                 location.href="/admin/app/mykt/list";
                             }
                         },
@@ -37,7 +43,7 @@ let form = {
                             form.isProgress = false;
                             console.log(error)
                         }
-                    })
+                    });
 
                 } else {
                     form.isProgress = false;
@@ -117,6 +123,31 @@ let form = {
         }
 
         return isFile1Pass && isFile2Pass ? true : false;
+
+    },
+    modifyCheck : function() {
+        let isModify = $("#isModify").val();
+        let modifyOs = $("#modifyOs").val();
+        let modifyVersion = $("#modifyVersion").val();
+        let modifyComment = $("#modifyComment").val();
+        let modifyEnv = $("#modifyEnv").val();
+        let modifyId = $("#modifyId").val();
+        if(isModify != 'true') {
+            return false;
+        }
+
+        $("#select-os").val(modifyOs);
+        $("#version1").val(modifyVersion.substr(0,1));
+        $("#version2").val(modifyVersion.substr(1,1));
+        $("#version3").val(modifyVersion.substr(2,2));
+        $("#env").val(modifyEnv);
+        $("#comment").val(modifyComment);
+
+
+
+
+
+
 
     }
 }
