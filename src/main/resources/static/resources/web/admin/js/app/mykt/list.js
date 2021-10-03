@@ -15,7 +15,7 @@ let list = {
     goModify : function() {
         $(document).on('click', '#modify-button' , function(){
             let id = $(this).data("id");
-            location.href="/admin/app/mykt/form?" + id;
+            location.href="/admin/app/mykt/form?id=" + id;
         });
     },
     goDelete : function() {
