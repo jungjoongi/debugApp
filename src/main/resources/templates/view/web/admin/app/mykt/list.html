@@ -30,13 +30,6 @@
                             <div class="card-header">
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm">
-                                        <!--<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-default">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>-->
                                         <button type="button" id="form-btn" class="btn btn-block btn-outline-info btn-sm">앱 등록하기</button>
                                     </div>
                                 </div>
@@ -65,8 +58,8 @@
                                         <td>{{env}}</td>
                                         <td>{{regDate}}</td>
                                         <td>{{managerId}}</td>
-                                        <td><button type="button" class="btn btn-block btn-outline-warning btn-sm">수정</button></td>
-                                        <td><button type="button" class="btn btn-block btn-outline-danger btn-sm">삭제</button></td>
+                                        <td><button type="button" id="modify-button" class="btn btn-block btn-outline-warning btn-sm" data-id="{{id}}">수정</button></td>
+                                        <td><button type="button" id="delete-button" class="btn btn-block btn-outline-danger btn-sm" data-id="{{id}}">삭제</button></td>
                                     </tr>
                                     {{/list}}
                                     </tbody>

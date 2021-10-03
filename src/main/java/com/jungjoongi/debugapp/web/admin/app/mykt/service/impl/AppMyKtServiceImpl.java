@@ -143,6 +143,7 @@ public class AppMyKtServiceImpl implements AppMyktService {
         String result = "SUCCESS";
         try {
             appMyKtRespository.delete(AppMyKtRequest);
+            myktMapper.deleteFile(appMyKtVO.getId());
         } catch (IllegalArgumentException e) {
             result = "FAIL";
             LOGGER.error("[AppMyKtServiceImpl] (delete) IllegalArgumentException : {}", e.getMessage());

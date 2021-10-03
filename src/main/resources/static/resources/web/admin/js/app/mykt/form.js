@@ -36,6 +36,7 @@ let form = {
                             form.isProgress = false;
                             console.log(data)
                             if(data.result == "SUCCESS") {
+                                alert("등록완료");
                                 location.href="/admin/app/mykt/list";
                             }
                         },
