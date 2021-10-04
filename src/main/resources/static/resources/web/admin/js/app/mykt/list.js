@@ -1,6 +1,6 @@
 let list = {
     init : function() {
-
+        list.create();
     },
     create : function () {
         list.goForm();
@@ -46,7 +46,6 @@ let list = {
 }
 $(document).ready(function() {
     list.init();
-    list.create();
 });
 
 
