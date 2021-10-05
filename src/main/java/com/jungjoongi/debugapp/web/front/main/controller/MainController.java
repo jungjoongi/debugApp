@@ -4,10 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.jungjoongi.debugapp.common.util.ObjectHelper;
 import com.jungjoongi.debugapp.config.auth.LoginUser;
 import com.jungjoongi.debugapp.config.auth.dto.SessionUser;
-import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRespository;
+import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRepository;
 import com.jungjoongi.debugapp.web.front.main.domain.MainVO;
 import com.jungjoongi.debugapp.web.front.main.service.MainService;
 import org.slf4j.Logger;
@@ -25,11 +24,11 @@ import java.util.List;
 public class MainController {
     private static Logger log = LoggerFactory.getLogger(MainController.class);
 
-    final private AppMyKtRespository appMyKtRespository;
+    final private AppMyKtRepository appMyKtRepository;
     final private MainService mainService;
 
-    MainController(AppMyKtRespository appMyKtRespository, MainService mainService) {
-        this.appMyKtRespository = appMyKtRespository;
+    MainController(AppMyKtRepository appMyKtRepository, MainService mainService) {
+        this.appMyKtRepository = appMyKtRepository;
         this.mainService = mainService;
     }
 

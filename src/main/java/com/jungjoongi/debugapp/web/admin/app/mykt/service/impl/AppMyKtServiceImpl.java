@@ -2,7 +2,7 @@ package com.jungjoongi.debugapp.web.admin.app.mykt.service.impl;
 
 import com.jungjoongi.debugapp.common.util.MD5Generator;
 import com.jungjoongi.debugapp.domain.appmykt.AppMyKt;
-import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRespository;
+import com.jungjoongi.debugapp.domain.appmykt.AppMyKtRepository;
 import com.jungjoongi.debugapp.domain.code.CodeInfo;
 import com.jungjoongi.debugapp.web.admin.app.mykt.domain.AppMyKtVO;
 import com.jungjoongi.debugapp.web.admin.app.mykt.domain.FileUploadVO;
@@ -27,11 +27,11 @@ import java.util.List;
 public class AppMyKtServiceImpl implements AppMyktService {
 
     private MyktMapper myktMapper;
-    private AppMyKtRespository appMyKtRespository;
+    private AppMyKtRepository appMyKtRepository;
 
-    public AppMyKtServiceImpl(MyktMapper myktMapper, AppMyKtRespository appMyKtRespository) {
+    public AppMyKtServiceImpl(MyktMapper myktMapper, AppMyKtRepository appMyKtRepository) {
         this.myktMapper = myktMapper;
-        this.appMyKtRespository = appMyKtRespository;
+        this.appMyKtRepository = appMyKtRepository;
     }
 
     private static Logger LOGGER = LoggerFactory.getLogger(AppMyKtServiceImpl.class);
@@ -75,16 +75,18 @@ public class AppMyKtServiceImpl implements AppMyktService {
         MultipartFile[] files = appMyKtVO.getFiles();
         List<FileUploadVO> fileUPloadVoList = new ArrayList<>();
         String result = "SUCCESS";
-        if(files != null) {
+
+        appMyKtRepository.save(AppMyKt.builder()
+                .id(appMyKtVO.getId())
+                .env(appMyKtVO.getEnv())
+                .os(appMyKtVO.getOs())
+                .version(appMyKtVO.getVersion())
+                .comment(appMyKtVO.getComment())
+                .managerId(appMyKtVO.getManagerId())
+                .build());
+
+        if(files != null && files.length > 0) {
             try {
-                appMyKtRespository.save(AppMyKt.builder()
-                        .id(appMyKtVO.getId())
-                        .env(appMyKtVO.getEnv())
-                        .os(appMyKtVO.getOs())
-                        .version(appMyKtVO.getVersion())
-                        .comment(appMyKtVO.getComment())
-                        .managerId(appMyKtVO.getManagerId())
-                        .build());
                 fileUPloadVoList.addAll(this.fileSave(files));
                 for(FileUploadVO list : fileUPloadVoList) {
                     list.setContentId(appMyKtVO.getId());
@@ -142,7 +144,7 @@ public class AppMyKtServiceImpl implements AppMyktService {
         AppMyKt AppMyKtRequest = AppMyKt.builder().id(appMyKtVO.getId()).build();
         String result = "SUCCESS";
         try {
-            appMyKtRespository.delete(AppMyKtRequest);
+            appMyKtRepository.delete(AppMyKtRequest);
             myktMapper.deleteFile(appMyKtVO.getId());
         } catch (IllegalArgumentException e) {
             result = "FAIL";

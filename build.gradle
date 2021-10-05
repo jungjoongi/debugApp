@@ -50,7 +50,6 @@ dependencies {
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
     compile "com.github.ulisesbocchio:jasypt-spring-boot-starter:1.17"
 
-
 }
 
 test {
