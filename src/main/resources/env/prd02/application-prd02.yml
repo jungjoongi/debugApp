@@ -1,5 +1,9 @@
 ##spring.datasource.driverClassName: org.mariadb.jdbc.Driver
 spring:
+  servlet:
+    multipart:
+      maxFileSize: 70MB
+      maxRequestSize: 70MB
   ##spring.jpa 설정
   jpa:
     properties:
