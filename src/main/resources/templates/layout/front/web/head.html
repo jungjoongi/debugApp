@@ -19,6 +19,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    {{#_csrf}}
+    <input type="hidden" id="_csrf" data-token-name="{{_csrf.parameterName}}" data-token-header="{{_csrf.headerName}}" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
+    {{/_csrf}}
 
     <!-- 공통으로 쓰이는 css파일을넣는다.-->
     <link rel="stylesheet" href="/resources/web/common/css/bootstrap.css">

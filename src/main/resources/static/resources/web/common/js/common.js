@@ -1,4 +1,4 @@
-var common = {
+let common = {
     init : function() {
         this.create();
     },
@@ -6,9 +6,14 @@ var common = {
         this.setHeader();
     },
     setHeader : function() {
+        /**
+         * 공통 헤더값 세팅
+         * 1. _CSRF 토큰값 세팅
+         */
         $(document).ajaxSend(function(e, xhr, option) {
             let $token = $("#_csrf");
-            xhr.setRequestHeader($token.data("token-name"), $token.val());
+            let header = $token.data("token-header")
+            xhr.setRequestHeader(header, $token.val());
         });
     }
 }
@@ -16,6 +21,8 @@ var common = {
 $(document).ready(function() {
     common.init();
 });
+
+
 
 
 

@@ -1,11 +1,8 @@
 {{>layout/front/web/head}}
 
-<form action="/logout" method="POST">
   {{#user}}
-  <button type="submit">LOGOUT</button>
+  <button type="button" id="logout-button">LOGOUT</button>
   {{/user}}
-
-</form>
   <div class="container">
     <h1 class="center">디버그앱 저장소</h1>
     <table class="table table-hover text-nowrap">
