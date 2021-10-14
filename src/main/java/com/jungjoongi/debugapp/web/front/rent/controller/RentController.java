@@ -31,7 +31,7 @@ public class RentController {
         this.phoneRentRepository = phoneRentRepository;
     }
 
-    @RequestMapping(value = {""}, method= {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = {"auth"}, method= {RequestMethod.GET, RequestMethod.POST})
     public String index(
             HttpServletRequest request
             , HttpServletResponse response
@@ -42,22 +42,25 @@ public class RentController {
 
         LOGGER.info("### phoneRent : ", phoneRentVO.toString());
 
-/*        List<PhoneRent> phoneRentList = phoneRentRepository.findAllByEmployeeNameAndEmployeeNumber(PhoneRent.builder()
-                .employeeNumber(phoneRentVO.getEmployeeNumber())
-                .employeeName(phoneRentVO.getEmployeeName()).build());
-
-        model.addAttribute("list",  phoneRentList);*/
-
         return HttpRequestHelper.getFrontRequestPath();
     }
 
 
-/*    @RequestMapping(value = {"getAppList"}, method= {RequestMethod.GET, RequestMethod.POST})
-    public String jsonGetAppList(HttpServletRequest request, HttpServletResponse response, HttpSession session, @LoginUser SessionUser user, Model model) {
+    @RequestMapping(value = {"getPhoneList"}, method= {RequestMethod.GET, RequestMethod.POST})
+    public String jsonGetAppList(HttpServletRequest request
+            , HttpServletResponse response
+            , HttpSession session
+            , @LoginUser SessionUser user
+            , Model model
+            , @ModelAttribute PhoneRentVO phoneRentVO) {
 
-        List<MainVO> mainVoList = mainService.getAppDownloadList();
-        model.addAttribute("appList", mainService.getAppDownloadList());
+        List<PhoneRent> phoneRentList = phoneRentRepository.findAllByEmployeeNameAndEmployeeNumber(
+                phoneRentVO.getEmployeeName(),
+                phoneRentVO.getEmployeeNumber());
+
+        model.addAttribute("list",  phoneRentList);
+
         return "jsonView";
-    }*/
+    }
 
 }

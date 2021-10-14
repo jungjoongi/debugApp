@@ -18,6 +18,6 @@ public interface PhoneRentRepository extends JpaRepository<PhoneRent,Long> {
             "ORDER BY p.dueDate ASC, p.rentDate DESC")
     List<PhoneRent> fileAllDueDateIsNotNull();
 
-    //List<PhoneRent> findAllByEmployeeNameAndEmployeeNumber(PhoneRent phoneRent);
+    List<PhoneRent> findAllByEmployeeNameAndEmployeeNumber(String employeeName, int employeenumber);
 
 }
