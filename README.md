@@ -7,8 +7,7 @@
 4. 새로운 문법과 트랜드를 익힌다.
 5. CI/CD 통합, 테스트, 빌드 자동화를 구성한다.
 6. 인증서 처리작업
-    - https://debug.jungjoongi.com는 NginX에서 Let's Encrypt 인증서 처리 80 -> 443 
-    - https://debugapp.ba는 cloudflare 적용및 인증서 처리
+    - https://debugap.me 는 cloudflare 적용및 인증서 처리  80 -> 443
         - 클라이언트 <--(cloudflare 인증서)--> 웹 <--(Let's Encrypt 인증서)--> 서버
 7. 그 외 하고싶은 것 진행
 
