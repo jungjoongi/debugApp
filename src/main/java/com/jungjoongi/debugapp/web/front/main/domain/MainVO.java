@@ -9,7 +9,9 @@ public class MainVO {
     private String os;
     private String version;
     private String devPath;
+    private String devOriginFileName;
     private String prePrdPath;
+    private String prePrdOriginFileName;
     private String prdPath;
-
+    private String prdOriginFileName;
 }

@@ -11,8 +11,11 @@
              parent.os
             , parent.version
             , max(case when parent.env = 'dev' then parent.file_name ELSE '' end) 'dev_path'
+            , max(case when parent.env = 'dev' then parent.origin_file_name ELSE '' end) 'dev_origin_file_name'
             , max(case when parent.env = 'preprd' then parent.file_name  ELSE '' end) 'preprd_path'
+            , max(case when parent.env = 'preprd' then parent.origin_file_name ELSE '' end) 'preprd_origin_file_name'
             , max(case when parent.env = 'prd' then parent.file_name  ELSE '' end) 'prd_path'
+            , max(case when parent.env = 'prd' then parent.origin_file_name ELSE '' end) 'prd_origin_file_name'
         from(
             select
                  a.id
@@ -20,6 +23,7 @@
                 , a.os
                 , a.version
                 , b.file_name
+                , b.origin_file_name
                 , a.env
                 , RANK() OVER (PARTITION by a.version, a.os, a.env ORDER BY a.mdfy_date desc) as rm
             from app_mykt a join file_upload b on a.id = b.content_id
