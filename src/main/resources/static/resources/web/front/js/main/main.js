@@ -31,7 +31,7 @@ let form = {
     },
     saveAs : function(target, originFileName) {
         let link = document.createElement('form');
-        document.body.appendChild(target);
+        document.body.appendChild(link);
         link.download = originFileName;
         link.href = target;
         link.click();
@@ -50,7 +50,7 @@ let form = {
                     appListHtml += '<td>'+appList[i].os+'</td>';
                     appListHtml += '<td>'+appList[i].version+'</td>';
                     appListHtml += '<td><button type="button" data-target="'+appList[i].devPath+'" data-os="'+appList[i].os+'" data-origin-file-name="'+appList[i].devOriginFileName+'" class="btn btn-block btn-outline-warning btn-sm download-btn">개발</button></td>';
-                    appListHtml += '<td><button type="button" data-target="'+appList[i].prePrdPath+'" data-os="'+appList[i].os+'" data-origin-file-name="'+appList[i].preprdOriginFileName+'" class="btn btn-block btn-outline-info btn-sm download-btn">디버그</button></td>';
+                    appListHtml += '<td><button type="button" data-target="'+appList[i].prePrdPath+'" data-os="'+appList[i].os+'" data-origin-file-name="'+appList[i].prePrdOriginFileName+'" class="btn btn-block btn-outline-info btn-sm download-btn">디버그</button></td>';
                     appListHtml += '<td><button type="button" data-target="'+appList[i].prdPath+'" data-os="'+appList[i].os+'" data-origin-file-name="'+appList[i].prdOriginFileName+'" class="btn btn-block btn-outline-danger btn-sm download-btn">운영</button></td>';
                     appListHtml += '</tr>';
                 }
