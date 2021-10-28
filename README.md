@@ -17,11 +17,11 @@
 ### web server : nginx
 ### was : openjdk-11 / spring-boot (2.2.4)
 ### java : openjdk 11
-### dbms : mariadb 
+### dbms : mariadb / JPA / MyBatis
 ### view : mustache
 
 ----------
 ### auther : JOONGI. JUNG
-### project site : https://debug.jungjoongi.com / https://debugapp.ga
+### project site : https://debug.jungjoongi.com / https://debugap.me
 ### e-mail : dev.joongi@gmail.com
 ### blog : https://jungjoongi.com

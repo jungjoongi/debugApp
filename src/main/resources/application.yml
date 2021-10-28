@@ -3,8 +3,8 @@ spring:
 ##spring multipart upload file Size limit
   servlet:
     multipart:
-      maxFileSize: 70MB
-      maxRequestSize: 70MB
+      maxFileSize: 100MB
+      maxRequestSize: 100MB
 ##spring.jpa 설정
   jpa:
     properties:

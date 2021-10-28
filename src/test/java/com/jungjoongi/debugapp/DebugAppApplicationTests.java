@@ -10,6 +10,7 @@ import java.util.List;
 
 @SpringBootTest
 class DebugAppApplicationTests {
+/*
 
 	@Autowired
 	PhoneRentRepository phoneRentRepository;
@@ -58,6 +59,7 @@ class DebugAppApplicationTests {
 		phoneRentRepository.findAll().forEach(e -> System.out.println(e));
 
 	}
+*/
 
 
 
