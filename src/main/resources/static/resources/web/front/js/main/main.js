@@ -30,7 +30,7 @@ let form = {
         });
     },
     saveAs : function(target, originFileName) {
-        let link = document.createElement('form');
+        let link = document.createElement('a');
         document.body.appendChild(link);
         link.download = originFileName;
         link.href = target;
