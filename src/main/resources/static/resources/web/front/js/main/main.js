@@ -8,21 +8,21 @@ let form = {
     },
     submit : function() {
         $(document).on("click", ".download-btn", function(e){
-                e.preventDefault();
-                let target = $(this).data("target");
-                let os = $(this).data("os");
-                let webRoot = location.href.substring(0, location.href.lastIndexOf("/"));;
-                let iosRoot = "itms-services://?action=download-manifest&url="+webRoot;
+            e.preventDefault();
+            let target = $(this).data("target");
+            let os = $(this).data("os");
+            let webRoot = location.href.substring(0, location.href.lastIndexOf("/"));;
+            let iosRoot = "itms-services://?action=download-manifest&url="+webRoot;
 
-               if(target != undefined && target != "") {
-                   target = "/web/mykt/"+target;
-                   if("IOS" == os) {
-                       target = iosRoot + target;
-                   }
-                   location.href = target;
-               } else {
-                   alert("파일이 손상되었습니다. 관리자에게 문의하세요");
-               }
+            if(target != undefined && target != "") {
+                target = "/web/mykt/download/"+target;
+                if("IOS" == os) {
+                   target = iosRoot + target;
+                }
+                location.href = target;
+                } else {
+                    alert("파일이 손상되었습니다. 관리자에게 문의하세요");
+                }
         });
     },
     makeUI : function() {

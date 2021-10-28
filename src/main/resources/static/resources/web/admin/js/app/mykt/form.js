@@ -103,27 +103,16 @@ let form = {
     },extentionCheck : function() {
 
         let file1Extention = $("#files1").val().split(".").pop().toLowerCase();
-        let file2Extention = "";
-        let isFile1Pass = false;
-        let isFile2Pass = false;
+        let isFilePass = false;
 
         for(let i in form.ALLOW_EXTENTION) {
             if(file1Extention == form.ALLOW_EXTENTION[i]) {
-                isFile1Pass = true;
+                isFilePass = true;
             }
-        }
-        if($("#select-os").val() == "IOS") {
-            file2Extention = $("#files2").val().split(".").pop().toLowerCase();
-            for(let i in form.ALLOW_EXTENTION) {
-                if(file1Extention == form.ALLOW_EXTENTION[i]) {
-                    isFile2Pass = true;
-                }
-            }
-        } else {
-            isFile2Pass = true;
         }
 
-        return isFile1Pass && isFile2Pass ? true : false;
+
+        return isFilePass;
 
     },
     modifyCheck : function() {
