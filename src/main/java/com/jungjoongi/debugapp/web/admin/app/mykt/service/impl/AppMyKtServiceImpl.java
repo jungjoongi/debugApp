@@ -117,6 +117,7 @@ public class AppMyKtServiceImpl implements AppMyktService {
         String originFileName = "";
         String originalFileExtension = "";
         String encFileName = "";
+        String encDbFileName = "";
         MD5Generator md5Generator = MD5Generator.getInstance();
         try {
             for(MultipartFile file : files) {
@@ -127,11 +128,11 @@ public class AppMyKtServiceImpl implements AppMyktService {
 
                 if(originalFileExtension.contains("ipa")) {
                     this.plistMaker(encFileName, "com.kt.ollehcs");
-                    encFileName = encFileName.replace("ipa", "plist");
+                    encDbFileName = encFileName.replace("ipa", "plist");
                 }
 
                 fileUPloadVo.setOriginFileName(originFileName);
-                fileUPloadVo.setFileName(encFileName);
+                fileUPloadVo.setFileName(encDbFileName);
                 fileUPloadVo.setDownloadYn("Y");
                 File dir = new File(filepath);
                 File saveFile = new File(filepath.concat(encFileName));
