@@ -104,7 +104,7 @@ logging:
 
 
 server:
-  port: 80
+  port: 8080
 
 
 jasypt:
@@ -124,4 +124,7 @@ properties:
     google:
       client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
   filepath:
-    app: C:/upload/
+    app: /Users/ants/tempDown/
+    appWeb: /web/mykt/download/
+    ipa: /Users/ants/plist.plist
+  root: https://localhost

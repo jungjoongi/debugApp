@@ -8,6 +8,7 @@ import com.jungjoongi.debugapp.web.admin.app.mykt.domain.AppMyKtVO;
 import com.jungjoongi.debugapp.web.admin.app.mykt.domain.FileUploadVO;
 import com.jungjoongi.debugapp.web.admin.app.mykt.mapper.MyktMapper;
 import com.jungjoongi.debugapp.web.admin.app.mykt.service.AppMyktService;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,9 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +36,14 @@ public class AppMyKtServiceImpl implements AppMyktService {
     private static Logger LOGGER = LoggerFactory.getLogger(AppMyKtServiceImpl.class);
     @Value("${properties.filepath.app}")
     String filepath;
+    @Value("${properties.filepath.ipa}")
+    String ipaPath;
+    @Value("${properties.filepath.appWeb}")
+    String appWeb;
+    @Value("${properties.root}")
+    String root;
+
+
     @Override
     public List<CodeInfo> getCodeList() {
         return null;
@@ -117,9 +124,16 @@ public class AppMyKtServiceImpl implements AppMyktService {
                 originFileName = file.getOriginalFilename();
                 originalFileExtension = originFileName.substring(originFileName.lastIndexOf("."));
                 encFileName = md5Generator.makeFileName(originFileName).toString() + originalFileExtension;
+
+                if(originalFileExtension.contains("ipa")) {
+                    LOGGER.info("@@@ contains?");
+                    this.plistMaker(encFileName, "com.kt.ollehcs");
+                    encFileName.replace("ipa", "plist");
+                }
+
                 fileUPloadVo.setOriginFileName(originFileName);
                 fileUPloadVo.setFileName(encFileName);
-                fileUPloadVo.setDownloadYn(originalFileExtension.contains("ipa") ? "N" : "Y");
+                fileUPloadVo.setDownloadYn("Y");
                 File dir = new File(filepath);
                 File saveFile = new File(filepath.concat(encFileName));
                 dir.mkdirs();
@@ -135,8 +149,39 @@ public class AppMyKtServiceImpl implements AppMyktService {
         } catch (Exception e) {
             LOGGER.error("[AppMyKtServiceImpl] (save) IOException : {}", e.getMessage());
         }
-
         return fileUPloadVoList;
+    }
+
+    private void plistMaker(String targetFilepath, String packagePath) throws IOException {
+
+        String readFile = "";
+        BufferedReader br = null;
+        BufferedWriter bw = null;
+        String saveFilePath = filepath+targetFilepath.replace("ipa", "plist");
+        try {
+            br = new BufferedReader(new FileReader(new File(ipaPath)));
+            bw = new BufferedWriter(new FileWriter(new File(saveFilePath)));
+
+            while((readFile = br.readLine()) != null) {
+                readFile = readFile.replace("${target}", root+appWeb+targetFilepath);
+                readFile = readFile.replace("${package}", packagePath);
+                bw.write(readFile + "\r\n");
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(bw != null) {
+                bw.flush();
+                bw.close();
+            }
+            if (br != null) {
+                br.close();
+            }
+        }
+
     }
 
     @Override

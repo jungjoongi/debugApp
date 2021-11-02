@@ -124,3 +124,6 @@ properties:
       client-id: 663340949978-j8meqpt3itklrtj6cgnm4bt2hjdv6brb.apps.googleusercontent.com
   filepath:
     app: /mnt/hdd1/html/resources/debugapp/mykt/download/
+    appWeb: /web/mykt/download/
+    ipa: /mnt/hdd1/html/resources/debugapp/mykt/plist.plist
+  root: https://debugap.me
