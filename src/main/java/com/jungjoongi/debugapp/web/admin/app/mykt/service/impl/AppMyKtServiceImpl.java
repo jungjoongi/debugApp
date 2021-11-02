@@ -126,9 +126,8 @@ public class AppMyKtServiceImpl implements AppMyktService {
                 encFileName = md5Generator.makeFileName(originFileName).toString() + originalFileExtension;
 
                 if(originalFileExtension.contains("ipa")) {
-                    LOGGER.info("@@@ contains?");
                     this.plistMaker(encFileName, "com.kt.ollehcs");
-                    encFileName.replace("ipa", "plist");
+                    encFileName = encFileName.replace("ipa", "plist");
                 }
 
                 fileUPloadVo.setOriginFileName(originFileName);
