@@ -66,7 +66,6 @@ public class AppMyKtServiceImpl implements AppMyktService {
                 myktMapper.saveFile(fileUPloadVoList);
 
             } catch (Exception e) {
-                e.printStackTrace();
                 LOGGER.error("[AppMyKtServiceImpl] (save) Exception : {}", e.getMessage());
                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                 result = "FAIL";
@@ -117,7 +116,6 @@ public class AppMyKtServiceImpl implements AppMyktService {
         String originFileName = "";
         String originalFileExtension = "";
         String encFileName = "";
-        String encDbFileName = "";
         MD5Generator md5Generator = MD5Generator.getInstance();
         try {
             for(MultipartFile file : files) {
@@ -128,11 +126,11 @@ public class AppMyKtServiceImpl implements AppMyktService {
 
                 if(originalFileExtension.contains("ipa")) {
                     this.plistMaker(encFileName, "com.kt.ollehcs");
-                    encDbFileName = encFileName.replace("ipa", "plist");
+                    encFileName = encFileName.replace("ipa", "plist");
                 }
 
                 fileUPloadVo.setOriginFileName(originFileName);
-                fileUPloadVo.setFileName(encDbFileName);
+                fileUPloadVo.setFileName(encFileName);
                 fileUPloadVo.setDownloadYn("Y");
                 File dir = new File(filepath);
                 File saveFile = new File(filepath.concat(encFileName));
@@ -147,7 +145,7 @@ public class AppMyKtServiceImpl implements AppMyktService {
         } catch (IOException e) {
             LOGGER.error("[AppMyKtServiceImpl] (save) IOException : {}", e.getMessage());
         } catch (Exception e) {
-            LOGGER.error("[AppMyKtServiceImpl] (save) IOException : {}", e.getMessage());
+            LOGGER.error("[AppMyKtServiceImpl] (save) Exception : {}", e.getMessage());
         }
         return fileUPloadVoList;
     }
@@ -169,7 +167,7 @@ public class AppMyKtServiceImpl implements AppMyktService {
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error("FileNotFoundException : {}", e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
