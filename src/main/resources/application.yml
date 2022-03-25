@@ -26,7 +26,7 @@ spring:
         registration:
           google:
             client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
-            client-secret: ENC(aMXfFXUHhtMIQhkTca83KHnbRamfNzUL8aJW22KgPrkZhnkRquRn4A==)
+            client-secret: ENC(bWKCsU7HRGIQsnWJ6ufl0O4GniP/JskGMhCuwnACf+Z/WBCkQoQIfg==)
             scope: profile,email
             #redirect_uri: http://localhost/login/oauth2/code/google
 #  profiles:
@@ -113,18 +113,19 @@ jasypt:
 
 properties:
   jdbc:
-    driver: swmS4o33Dm43F+eyUWfA6IAvXXQZRzBLJqRCf73n7G0=
-    url: I7ncim8hmVlwa1Tx5gPub19dYCGJA/kFRXbVbpHYefbJU3bLNzu9kUm/nDeGXzOt
-    userName: JvKWGIqiS4gaeCqvzrFH5A==
-    password: 543LXO7Mm82/rdZk5LFTlQ==
+    driver: HYKBiv4lEEShcz3pPD4VYC8vm+ptSXaPs8aOZ3djP0k=
+    url: DX/bxrmTnh9D96mpwkzvIGru7W+ATMq+udws0UeLZX4tIxCcr0N+L3t0CUpxBvb1qkSEX8v8JcJUhUdNAsek8A==
+    userName: npB5D8XtijA/H7rL58X/gg==
+    password: P2/3Gp7SHegT6d7li4GBCg==
   encrypt:
-    key: ENC(ElGoFdtb/YyU+L2mfJZP8IZDA5H+KwC32WRMtTfQHPg=)
-    iv: ENC(LZMdpB1uc/dv6SLHBvmBqCLwdI6YL7t0RKqNz8ziXBU=)
+    key: ENC(9fI7R+gQuAv9qY9FSXMiLELGef4LkPQV487VVyG/g0U=)
+    iv: ENC(vZWMlNqSD52tf97KK9en4LHLKIAYuyP1a7Fx42wwiY4=)
+
   social:
     google:
       client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
   filepath:
-    app: /Users/ants/tempDown/
+    app: /Users/joongi/tempDown/
     appWeb: /web/mykt/download/
-    ipa: /Users/ants/plist.plist
+    ipa: /Users/joongi/plist.plist
   root: https://localhost
