@@ -16,6 +16,7 @@ let common = {
             xhr.setRequestHeader(header, $token.val());
         });
     }
+
 }
 
 $(document).ready(function() {

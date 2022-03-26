@@ -20,9 +20,11 @@ let form = {
 
             if(!form.isProgress) {
                 form.isProgress = true;
+
                 if(form.validation()) {
                     let formData = $('#app-from')[0];
-                    let data = new FormData(formData)
+                    let data = new FormData(formData);
+
 
                     $.ajax({
                         url: url,
@@ -32,11 +34,17 @@ let form = {
                         contentType : false,
                         cache: false,
                         data: data,
+                        xhr: function(){
+                            let xhr = $.ajaxSettings.xhr();
+                            xhr.upload.onprogress = function(e){
+                                let per = e.loaded * 100 / e.total;
+                                common.uploadUi(per);
+                            };
+                            return xhr;
+                        },
                         success: function(data) {
                             form.isProgress = false;
-                            console.log(data)
                             if(data.result == "SUCCESS") {
-                                alert("등록완료");
                                 location.href="/admin/app/mykt/list";
                             }
                         },
@@ -76,7 +84,7 @@ let form = {
     },
     versionSetting : function() {
 
-        var version = "" + $("#version1").val() + $("#version2").val() + $("#version3").val();
+        let version = "" + $("#version1").val() + $("#version2").val() + $("#version3").val();
         $("#version").val(version);
 
     },
@@ -144,6 +152,7 @@ let form = {
 $(document).ready(function() {
     form.init();
 });
+
 
 
 

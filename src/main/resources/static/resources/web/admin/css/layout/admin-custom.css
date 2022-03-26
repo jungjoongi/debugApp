@@ -12,3 +12,311 @@
 #app-from .version .custom-select{
     width: 10%;
 }
+
+
+:root {
+    --primary: #5628ee;
+    --success: #0eac70;
+    --grey-light: #99a3ba;
+    --grey: #6c7486;
+    --grey-dark: #3f4656;
+    --light: #cdd9ed;
+    --lighter: #e4ecfa;
+    --lightest: #eef4ff;
+    --pale: #f5f9ff;
+    --shadow: rgba(18, 22, 33, 0.05);
+}
+
+.upload {
+    --percent: 0;
+    counter-increment: percent var(--percent);
+    background: #fff;
+    border-radius: 8px;
+    width: 320px;
+    box-shadow: 0 4px 16px -1px var(--shadow);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 32px 20px;
+    font-family: Roboto, Arial;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+.upload .percent {
+    background: var(--pale);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transform-origin: 0 50%;
+    overflow: hidden;
+    transition: background 0.6s ease, transform 0.16s ease;
+    transform: scaleX(calc(var(--percent) / 100));
+}
+.upload .percent span {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    bottom: 19px;
+    height: 2px;
+    opacity: 0;
+    transform: translateY(0.5px);
+    transition: transform 0.8s ease;
+}
+
+.upload .percent span:before {
+    right: 0;
+    width: 64%;
+    transform-origin: 0 50%;
+}
+.upload .percent span:after {
+    left: 0;
+    width: 38%;
+    transform-origin: 100% 50%;
+}
+.upload .percent div {
+    --x: 0;
+    transform: translateX(var(--x));
+    transition: transform 1s ease;
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+    width: 300%;
+}
+.upload .percent svg {
+    display: block;
+    height: 12px;
+    width: 100%;
+    stroke-width: 1.2px;
+    color: var(--primary);
+    transition: color 0.5s ease;
+}
+.upload.paused:not(.finished) .percent div {
+    --x: -66.66%;
+}
+.upload.paused:not(.finished) .percent div svg {
+    color: var(--light);
+    -webkit-animation: down 0.8s linear forwards;
+    animation: down 0.8s linear forwards;
+}
+
+.upload .text {
+    --y: -18px;
+    position: relative;
+    z-index: 1;
+    transform: translateY(var(--y));
+    transition: transform 0.6s ease;
+}
+.upload .text strong {
+    font-weight: 400;
+    font-size: 14px;
+    display: block;
+    color: var(--grey-dark);
+}
+.upload .text > div {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    transform: translateY(6px);
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.4s ease;
+}
+.upload .text > div small {
+    white-space: nowrap;
+    vertical-align: top;
+    display: block;
+    font-size: 12px;
+    color: var(--grey-light);
+}
+.upload .text > div > small {
+    width: 30px;
+    text-align: center;
+}
+.upload .text > div > small:before {
+    content: counter(percent);
+}
+.upload .text > div div {
+    vertical-align: top;
+    display: inline-block;
+    position: relative;
+    margin-left: 4px;
+}
+.upload .text > div div:before {
+    content: "";
+    width: 2px;
+    height: 2px;
+    display: block;
+    border-radius: 50%;
+    background: var(--grey-light);
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 9px;
+}
+.upload .text > div div small {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    transition: opacity 0.3s ease;
+}
+.upload .text > div div small:first-child {
+    transition-delay: 0.4s;
+}
+.upload .text > div div small:last-child {
+    opacity: 0;
+}
+
+
+@-webkit-keyframes down {
+    40% {
+        transform: translateY(2px);
+    }
+}
+
+@keyframes down {
+    40% {
+        transform: translateY(2px);
+    }
+}
+@-webkit-keyframes check {
+    100% {
+        background: var(--success);
+    }
+}
+@keyframes check {
+    100% {
+        background: var(--success);
+    }
+}
+.upload.finished + .restart {
+    opacity: 1;
+    visibility: visible;
+}
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: inherit;
+}
+*:before, *:after {
+    box-sizing: inherit;
+}
+
+.progress-wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 9999;
+    font-family: Roboto, Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--light);
+    padding: 20px;
+}
+.progress-wrap .dribbble {
+    position: fixed;
+    display: block;
+    right: 20px;
+    bottom: 20px;
+}
+/****************/
+
+.spinner {
+    -webkit-animation: rotator 1.4s linear infinite;
+    animation: rotator 1.4s linear infinite;
+}
+
+@-webkit-keyframes rotator {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(270deg);
+    }
+}
+
+@keyframes rotator {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(270deg);
+    }
+}
+.path {
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+    animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+
+@-webkit-keyframes colors {
+    0% {
+        stroke: #4285F4;
+    }
+    25% {
+        stroke: #DE3E35;
+    }
+    50% {
+        stroke: #F7C223;
+    }
+    75% {
+        stroke: #1B9A59;
+    }
+    100% {
+        stroke: #4285F4;
+    }
+}
+
+@keyframes colors {
+    0% {
+        stroke: #4285F4;
+    }
+    25% {
+        stroke: #DE3E35;
+    }
+    50% {
+        stroke: #F7C223;
+    }
+    75% {
+        stroke: #1B9A59;
+    }
+    100% {
+        stroke: #4285F4;
+    }
+}
+@-webkit-keyframes dash {
+    0% {
+        stroke-dashoffset: 187;
+    }
+    50% {
+        stroke-dashoffset: 46.75;
+        transform: rotate(135deg);
+    }
+    100% {
+        stroke-dashoffset: 187;
+        transform: rotate(450deg);
+    }
+}
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 187;
+    }
+    50% {
+        stroke-dashoffset: 46.75;
+        transform: rotate(135deg);
+    }
+    100% {
+        stroke-dashoffset: 187;
+        transform: rotate(450deg);
+    }
+}
