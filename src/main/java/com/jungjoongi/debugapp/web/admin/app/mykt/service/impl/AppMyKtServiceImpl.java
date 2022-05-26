@@ -120,14 +120,10 @@ public class AppMyKtServiceImpl implements AppMyktService {
         try {
             for(MultipartFile file : files) {
                 FileUploadVO fileUPloadVo = new FileUploadVO();
+                File dir = new File(filepath);
                 originFileName = file.getOriginalFilename();
                 originalFileExtension = originFileName.substring(originFileName.lastIndexOf("."));
                 encFileName = md5Generator.makeFileName(originFileName).toString() + originalFileExtension;
-
-                fileUPloadVo.setOriginFileName(originFileName);
-                fileUPloadVo.setFileName(encFileName);
-                fileUPloadVo.setDownloadYn("Y");
-                File dir = new File(filepath);
                 File saveFile = new File(filepath.concat(encFileName));
                 dir.mkdirs();
                 file.transferTo(saveFile);
@@ -137,6 +133,9 @@ public class AppMyKtServiceImpl implements AppMyktService {
                     encFileName = encFileName.replace("ipa", "plist");
                 }
 
+                fileUPloadVo.setOriginFileName(originFileName);
+                fileUPloadVo.setFileName(encFileName);
+                fileUPloadVo.setDownloadYn("Y");
                 fileUPloadVoList.add(fileUPloadVo);
             }
         } catch (UnsupportedEncodingException e) {
