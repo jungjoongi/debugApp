@@ -126,7 +126,6 @@ public class AppMyKtServiceImpl implements AppMyktService {
 
                 if(originalFileExtension.contains("ipa")) {
                     this.plistMaker(encFileName, "com.kt.ollehcs");
-                    encFileName = encFileName.replace("ipa", "plist");
                 }
 
                 fileUPloadVo.setOriginFileName(originFileName);
