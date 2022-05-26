@@ -124,10 +124,6 @@ public class AppMyKtServiceImpl implements AppMyktService {
                 originalFileExtension = originFileName.substring(originFileName.lastIndexOf("."));
                 encFileName = md5Generator.makeFileName(originFileName).toString() + originalFileExtension;
 
-                if(originalFileExtension.contains("ipa")) {
-                    this.plistMaker(encFileName, "com.kt.ollehcs");
-                }
-
                 fileUPloadVo.setOriginFileName(originFileName);
                 fileUPloadVo.setFileName(encFileName);
                 fileUPloadVo.setDownloadYn("Y");
@@ -135,6 +131,12 @@ public class AppMyKtServiceImpl implements AppMyktService {
                 File saveFile = new File(filepath.concat(encFileName));
                 dir.mkdirs();
                 file.transferTo(saveFile);
+
+                if(originalFileExtension.contains("ipa")) {
+                    this.plistMaker(encFileName, "com.kt.ollehcs");
+                    encFileName = encFileName.replace("ipa", "plist");
+                }
+
                 fileUPloadVoList.add(fileUPloadVo);
             }
         } catch (UnsupportedEncodingException e) {
