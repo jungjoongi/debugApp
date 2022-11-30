@@ -1,12 +1,12 @@
 {
-  "name": "debugapp",
+  "name": "weolbuAdmin",
   "version": "1.0.0",
-  "description": "debugapp cms project",
+  "description": "weolbuAdmin web project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "jungjoongi",
+  "author": "awesome",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.4.1",

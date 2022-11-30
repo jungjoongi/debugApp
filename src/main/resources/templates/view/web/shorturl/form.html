@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+{{>layout/head}}
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    {{>layout/navigator}}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Sidebar -->
+        {{>layout/lnb}}
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        {{>layout/gnb}}
+
+        {{#dto}}
+        <input type="hidden" id="isModify" value="true"/>
+        <input type="hidden" id="modifyOs" value="{{dto.os}}"/>
+        <input type="hidden" id="modifyVersion" value="{{dto.version}}"/>
+        <input type="hidden" id="modifyComment" value="{{dto.comment}}"/>
+        <input type="hidden" id="modifyEnv" value="{{dto.env}}"/>
+        <input type="hidden" id="modifyId" value="{{dto.id}}"/>
+        {{/dto}}
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">앱 등록</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form id="app-from" name="app-form" enctype="multipart/form-data">
+                                {{#dto}}
+                                <input type="hidden" name="id" value="{{dto.id}}"/>
+                                {{/dto}}
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>url</label>
+                                        <input class="form-control" id="url" name="url" placeholder="https://..."/>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (left) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {{>layout/footer}}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<!-- 공통 스크립트 선언 s -->
+{{>layout/script}}
+<script src="/resources/web/js/shorturl/form.js"></script>
+
+</body>
+</html>
