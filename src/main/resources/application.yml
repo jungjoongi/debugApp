@@ -121,8 +121,8 @@ properties:
     slave :
       driver: org.mariadb.jdbc.Driver
       url: jdbc:mariadb://localhost/weolbu_db
-      userName: weolbu
-      password: w!eo#l#bu@
+      userName: -
+      password: -
   encrypt:
     key: ENC(9fI7R+gQuAv9qY9FSXMiLELGef4LkPQV487VVyG/g0U=)
     iv: ENC(vZWMlNqSD52tf97KK9en4LHLKIAYuyP1a7Fx42wwiY4=)
