@@ -2,6 +2,7 @@ package com.weolbu.admin.config.auth;
 
 import com.weolbu.admin.config.auth.dto.SessionUser;
 import com.weolbu.admin.domain.auth.User;
+import com.weolbu.admin.domain.auth.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -21,7 +22,7 @@ import java.util.Optional;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    /*private final UserRepository userRepository;*/
+    private final UserRepository userRepository;
     private final HttpSession httpSession;
 
     /**
@@ -29,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> userEntity = Optional.of(new User());/*userRepository.findByEmail(email);*/
+        Optional<User> userEntity = userRepository.findByEmail(email);
         List<GrantedAuthority> authorities = new ArrayList<>();
         User user = userEntity.get();
         authorities.add(new SimpleGrantedAuthority(user.getRole().getKey()));

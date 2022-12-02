@@ -11,7 +11,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         hbm2ddl:
-          auto: validate
+          auto: create
+
 #   ddl-auto: validate    	# create, update, create-drop, none, validate 등의 옵션이 있다.
           # create: 기존테이블 삭제 후 다시 생성
           # update: 변경된 부분만 반영
@@ -62,7 +63,7 @@ spring:
   thymeleaf:
     cache: false
 
-#spring.mustache 설정
+  #spring.mustache 설정
   mustache:
     cache: false
     suffix: .html
@@ -104,7 +105,7 @@ logging:
 
 
 server:
-  port: 8080
+  port: 80
 
 
 jasypt:
@@ -113,22 +114,18 @@ jasypt:
 
 properties:
   jdbc:
-    master:
-      driver: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://localhost/weolbu_db
-      userName: weolbu
-      password: w!eo#l#bu@
-    slave :
-      driver: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://localhost/weolbu_db
-      userName: -
-      password: -
+    driver: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost/weolbu
+    userName: weolbu
+    password: test1234
+
   encrypt:
     key: ENC(9fI7R+gQuAv9qY9FSXMiLELGef4LkPQV487VVyG/g0U=)
     iv: ENC(vZWMlNqSD52tf97KK9en4LHLKIAYuyP1a7Fx42wwiY4=)
 
-  social:
-    google:
-      client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
   filepath:
     common: /Users/weolbu/files/common
+
+  social:
+    google:
+      client-id: test

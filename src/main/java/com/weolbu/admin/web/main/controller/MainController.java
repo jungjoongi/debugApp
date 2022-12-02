@@ -27,8 +27,7 @@ public class MainController {
 
     @RequestMapping(value = {""}, method= {RequestMethod.GET})
     public String index(HttpServletRequest request, HttpServletResponse response, HttpSession session, @LoginUser SessionUser user, Model model) {
-
-        return "index";
+        return "view/web/index";
     }
 
 

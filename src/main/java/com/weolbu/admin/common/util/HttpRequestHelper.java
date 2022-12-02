@@ -20,7 +20,7 @@ public class HttpRequestHelper {
      * @return : view/admin/list
      */
 
-    public static String getAdminRequestPath() {
+    public static String getRequestPath() {
 
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String uri = request.getRequestURI();
@@ -30,26 +30,6 @@ public class HttpRequestHelper {
         }
 
         LOGGER.info("[HttpRequestHelper] getAdminRequestPath() uri : {}", uri);
-        return uri;
-    }
-
-    /**
-     * Front의 HttpRequestPath를 리턴 <br>
-     * ex)
-     *     요청 : https://localhost/login/list
-     * @return : view/web/login/list
-     */
-
-    public static String getFrontRequestPath() {
-
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        String uri = request.getRequestURI();
-
-        if(uri != null && uri.length() > 0) {
-            uri = "view/web/front".concat(uri);
-        }
-
-        LOGGER.info("[HttpRequestHelper] getFrontRequestPath() uri : {}", uri);
         return uri;
     }
 }

@@ -34,13 +34,13 @@ public class JpaConfig {
             = "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy";
 
     private static Logger LOGGER = LoggerFactory.getLogger(JpaConfig.class);
-    @Value("${properties.jdbc.master.driver}")
+    @Value("${properties.jdbc.driver}")
     String encDriver;
-    @Value("${properties.jdbc.master.url}")
+    @Value("${properties.jdbc.url}")
     String encUrl;
-    @Value("${properties.jdbc.master.userName}")
+    @Value("${properties.jdbc.userName}")
     String encUserName;
-    @Value("${properties.jdbc.master.password}")
+    @Value("${properties.jdbc.password}")
     String encPassword;
     @Value("${properties.encrypt.key}")
     String encKey;

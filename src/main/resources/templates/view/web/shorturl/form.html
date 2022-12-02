@@ -35,24 +35,33 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">앱 등록</h3>
+                                <h3 class="card-title">Short URL 생성하기</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form id="app-from" name="app-form" enctype="multipart/form-data">
+                            <form id="from" name="app-form">
                                 {{#dto}}
                                 <input type="hidden" name="id" value="{{dto.id}}"/>
                                 {{/dto}}
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>url</label>
+                                        <label>원본 URL</label>
                                         <input class="form-control" id="url" name="url" placeholder="https://..."/>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <label>생성된 URL</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="shortUrl" class="form-control" placeholder="생성된 URL" aria-label="생성된 URL" aria-describedby="basic-addon2" readonly>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" id="copyBtn" type="button">복사하기</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                                    <button type="button" id="submit" class="btn btn-primary">생성하기</button>
                                 </div>
                             </form>
                         </div>
