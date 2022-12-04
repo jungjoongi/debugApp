@@ -49,9 +49,9 @@ public class ShortUrlController {
 
         ShortUrl shortUrl = shortUrlRepository.save(
                 ShortUrl.builder()
-                .originUrl(shortUrlReqDto.getUrl())
-                .shortUrl("")
-                .build()
+                        .originUrl(shortUrlReqDto.getUrl())
+                        .shortUrl("")
+                        .build()
         );
         String sUrl = Base62Util.encoding(shortUrl.getId());
         shortUrl.setShortUrl(sUrl);

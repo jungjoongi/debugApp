@@ -58,8 +58,111 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /.card-body -->
+                                <div class="card-body">
+                                    <label>데이터 추적기능</label>
 
+
+                                    <div class="row g-2">
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingSelectGrid">
+                                                    <option selected>미선택시 ALL</option>
+                                                    <option value="instargram">instargram</option>
+                                                    <option value="facebook">facebook</option>
+                                                    <option value="naver_cafe">naver_cafe</option>
+                                                    <option value="naver_blog">naver_blog</option>
+                                                    <option value="youtube">youtube</option>
+                                                </select>
+                                                <label for="floatingSelectGrid">게시될 페이지 구분</label>
+                                            </div>
+                                        </div>
+
+                       <!--                 <div class="col-md">
+                                            <button type="button" class="btn btn-primary">라벨편집</button>
+                                        </div>-->
+                                    </div>
+                                    <div style="padding-left: 1.3rem">
+                                        <div class="form-switch form-check">
+                                            <input class="form-check-input" type="checkbox" id="defaultCheckBox" checked disabled>
+                                            <label class="form-check-label" for="defaultCheckBox">단말기정보, IP 기본수집 </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--
+                                &lt;!&ndash; /.card-body &ndash;&gt;
+                                <div id="myModal" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">
+                                            <i class="ion ion-clipboard mr-1"></i>
+                                            링크추적 라벨 편집
+                                        </h3>
+                                    </div>
+                                    &lt;!&ndash; /.card-header &ndash;&gt;
+                                    <div class="card-body">
+                                        <ul class="todo-list" data-widget="todo-list">
+                                            <li>
+                                                &lt;!&ndash; drag handle &ndash;&gt;
+                                                <span class="handle">
+                                                  <i class="fas fa-ellipsis-v"></i>
+                                                  <i class="fas fa-ellipsis-v"></i>
+                                                </span>
+                                                &lt;!&ndash; todo text &ndash;&gt;
+                                                <span class="text">인스타..등</span>
+                                                &lt;!&ndash; Emphasis label &ndash;&gt;
+                                                <div  class="icheck-primary d-inline ml-2">
+                                                    <input type="checkbox" value="1" name="todo1" id="todoCheck1">
+                                                </div>
+                                                <label for="todoCheck1">
+                                                    <small class="badge badge-danger"><i class="far fa-clock"></i> 삭제</small>
+                                                </label>
+                                                &lt;!&ndash; General tools such as edit or delete&ndash;&gt;
+                                            </li>
+                                            <li>
+                                                &lt;!&ndash; drag handle &ndash;&gt;
+                                                <span class="handle">
+                                                  <i class="fas fa-ellipsis-v"></i>
+                                                  <i class="fas fa-ellipsis-v"></i>
+                                                </span>
+                                                &lt;!&ndash; todo text &ndash;&gt;
+                                                <span class="text">인스타..등</span>
+                                                &lt;!&ndash; Emphasis label &ndash;&gt;
+                                                <div  class="icheck-primary d-inline ml-2">
+                                                    <input type="checkbox" value="1" name="todo1" id="todoCheck2">
+                                                </div>
+                                                <label for="todoCheck2">
+                                                    <small class="badge badge-danger"><i class="far fa-clock"></i> 삭제</small>
+                                                </label>
+                                                &lt;!&ndash; General tools such as edit or delete&ndash;&gt;
+                                            </li>
+                                            <li>
+                                                &lt;!&ndash; drag handle &ndash;&gt;
+                                                <span class="handle">
+                                                  <i class="fas fa-ellipsis-v"></i>
+                                                  <i class="fas fa-ellipsis-v"></i>
+                                                </span>
+                                                &lt;!&ndash; todo text &ndash;&gt;
+                                                <span class="text">인스타..등</span>
+                                                &lt;!&ndash; Emphasis label &ndash;&gt;
+                                                <div  class="icheck-primary d-inline ml-2">
+                                                    <input type="checkbox" value="1" name="todo1" id="todoCheck3">
+                                                </div>
+                                                <label for="todoCheck3">
+                                                    <small class="badge badge-danger"><i class="far fa-clock"></i> 삭제</small>
+                                                </label>
+                                                &lt;!&ndash; General tools such as edit or delete&ndash;&gt;
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    &lt;!&ndash; /.card-body &ndash;&gt;
+                                    <div class="card-footer clearfix">
+                                        <button type="button" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add item</button>
+                                    </div>
+                                </div>
+
+                                </div>
+-->
                                 <div class="card-footer">
                                     <button type="button" id="submit" class="btn btn-primary">생성하기</button>
                                 </div>
@@ -86,7 +189,8 @@
 <!-- ./wrapper -->
 <!-- 공통 스크립트 선언 s -->
 {{>layout/script}}
-<script src="/resources/web/js/shorturl/form.js"></script>
+<script src="/resources/web/plugins/adminLTE/js/pages/dashboard.js"></script>
+<script src="/resources/web/js/shortUrl/form.js"></script>
 
 </body>
 </html>

@@ -101,6 +101,7 @@ let form = {
         });
     }
 }
+
 $(document).ready(function() {
     form.init();
 });
