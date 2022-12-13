@@ -17,19 +17,31 @@ public class ShortUrl extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long shortUrlId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String originUrl;
 
-    @Column(nullable = false)
+    @Column
     private String shortUrl;
 
+    @Column
+    private String campCode;
+
+    @Column
+    private String platform;
+
+    @Column
+    private String paidYn;
+
     @Builder
-    public ShortUrl(Long id, String originUrl, String shortUrl) {
-        this.id = id;
+    public ShortUrl(Long shortUrlId, String originUrl, String shortUrl, String campCode, String platform, String paidYn) {
+        this.shortUrlId = shortUrlId;
         this.originUrl = originUrl;
         this.shortUrl = shortUrl;
+        this.campCode = campCode;
+        this.platform = platform;
+        this.paidYn = paidYn;
     }
 }
 

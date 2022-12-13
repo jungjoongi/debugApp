@@ -12,5 +12,8 @@ public class ShortUrlReqDto {
     /** url */
     private String url;
 
+    private String platform;
+
+    private String paidYn = "N";
 
 }

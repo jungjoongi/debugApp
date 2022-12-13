@@ -8,7 +8,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
-//@Entity(name="CODE_INFO")
+@Entity(name="CODE_INFO")
 public class CodeInfo extends BaseTimeEntity {
 
     @Id

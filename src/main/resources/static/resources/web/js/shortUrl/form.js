@@ -9,26 +9,17 @@ let form = {
     isProgress : false,
     submit : function() {
          $(document).on("click", "#submit", function() {
-            let isModify = $("#isModify").val();
             let url = "/shortUrl/save";
-            if(isModify == 'true') {
-                url = "/shortUrl/update";
-            }
-
+            const formData = $("#form").serialize();
             if(!form.isProgress) {
                 form.isProgress = true;
 
                 if(form.validation()) {
 
-                    const data = {
-                        url : $("#url").val()
-                    }
-
-
                     $.ajax({
                         url: url,
                         type: "POST",
-                        data: data,
+                        data: formData,
                         /** 파일업로드 UI
                         xhr: function(){
                             let xhr = $.ajaxSettings.xhr();
@@ -56,6 +47,7 @@ let form = {
                 } else {
                     form.isProgress = false;
                     alert("url을 입력해주세요");
+                    $("#url").focus();
                 }
             }
         });
