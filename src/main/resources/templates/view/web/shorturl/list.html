@@ -40,26 +40,28 @@
                                     <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>용도</th>
-                                        <th>url</th>
-                                        <th>User</th>
-                                        <th>등록일</th>
+                                        <th>캠페인코드</th>
+                                        <th>공유플랫폼</th>
+                                        <th>shortUrl</th>
+                                        <th>원본URL</th>
+                                        <th>유료광고여부</th>
                                         <th>수정</th>
                                         <th>삭제</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {{#list}}
-                                    <tr>
-                                        <td><!--{{id}}--></td>
-                                        <td><!--{{id}}--></td>
-                                        <td><!--{{id}}--></td>
-                                        <td><!--{{id}}--></td>
-                                        <td><!--{{id}}--></td>
-                                        <td><button type="button" id="modify-button" class="btn btn-block btn-outline-warning btn-sm" data-id="">수정</button></td>
-                                        <td><button type="button" id="delete-button" class="btn btn-block btn-outline-danger btn-sm" data-id="">삭제</button></td>
-                                    </tr>
-                                    {{/list}}
+                                    {{#content}}
+                                        <tr>
+                                            <td>{{shortUrlId}}</td>
+                                            <td>{{campCode}}</td>
+                                            <td>{{platform}}</td>
+                                            <td>https://link.weolbu.com/{{shortUrl}}</td>
+                                            <td>{{originUrl}}</td>
+                                            <td>{{paidYn}}</td>
+                                            <td><button type="button" id="modify-button" class="btn btn-block btn-outline-warning btn-sm" data-id="">수정</button></td>
+                                            <td><button type="button" id="delete-button" class="btn btn-block btn-outline-danger btn-sm" data-id="">삭제</button></td>
+                                        </tr>
+                                    {{/content}}
                                     </tbody>
                                 </table>
                             </div>
@@ -68,6 +70,7 @@
                         <!-- /.card -->
                     </div>
                 </div>
+                {{{html}}}
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
         </section>
@@ -86,6 +89,6 @@
 
 <!-- 공통 스크립트 선언 s -->
 {{>layout/script}}
-<script src="/resources/web/js/app/shortUrl/list.js"></script>
+<script src="/resources/web/js/shortUrl/list.js"></script>
 </body>
 </html>
