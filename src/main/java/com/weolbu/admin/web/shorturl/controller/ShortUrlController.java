@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -50,11 +51,17 @@ public class ShortUrlController {
 
         return "view/web/shortUrl/list";
     }
-    @RequestMapping(value = {"form"}, method= {RequestMethod.GET})
-    public String form(HttpServletRequest request, HttpServletResponse response, HttpSession session, @LoginUser SessionUser user, Model model) {
+    @RequestMapping(value = {"form/{id}"}, method= {RequestMethod.GET})
+    public String form(
+            HttpServletRequest request
+            , HttpServletResponse response
+            , HttpSession session
+            , @LoginUser SessionUser user
+            , Model model
+            , @PathVariable long id
+    ) {
 
-
-
+        model.addAttribute("dto", shortUrlRepository.findById(id).orElse(new ShortUrl()));
 
 
         return "view/web/shortUrl/form";

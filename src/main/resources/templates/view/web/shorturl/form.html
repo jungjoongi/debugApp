@@ -18,14 +18,6 @@
         <!-- Content Header (Page header) -->
         {{>layout/gnb}}
 
-        {{#dto}}
-        <input type="hidden" id="isModify" value="true"/>
-        <input type="hidden" id="modifyOs" value="{{dto.os}}"/>
-        <input type="hidden" id="modifyVersion" value="{{dto.version}}"/>
-        <input type="hidden" id="modifyComment" value="{{dto.comment}}"/>
-        <input type="hidden" id="modifyEnv" value="{{dto.env}}"/>
-        <input type="hidden" id="modifyId" value="{{dto.id}}"/>
-        {{/dto}}
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -41,7 +33,7 @@
                             <!-- form start -->
                             <form id="form" name="form">
                                 {{#dto}}
-                                <input type="hidden" id="shortUrlId" name="shortUrlId" value="{{dto.id}}"/>
+                                <input type="hidden" id="shortUrlId" name="shortUrlId" value="{{dto.shortUrlId}}"/>
                                 {{/dto}}
                                 <div class="card-body">
                                     <div class="form-group">

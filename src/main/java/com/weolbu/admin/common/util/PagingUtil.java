@@ -8,6 +8,7 @@ public class PagingUtil {
     private static final Logger LOG = LoggerFactory.getLogger(PagingUtil.class);
 
     public static String pagingHtml(Page page, String path) {
+        long totalElements = page.getTotalElements();
         int pageNum = page.getNumber()+1; // 현재 페이지 번호
         int startPageNum = (pageNum -1) / 10 * 10 + 1;
         int endPageNum = startPageNum + 10 - 1;
@@ -32,6 +33,13 @@ public class PagingUtil {
             buffer.append("<a href=\"").append(path).append("?page=").append(prevBlock).append("\" aria-controls=\"previous\" data-dt-idx=\"").append(prevBlock).append("\"tabindex=\"0\" class=\"page-link\">Previous</a>");
         }
         buffer.append("</li>");
+
+
+        if(totalElements == 0) {
+            buffer.append("<li class=\"paginate_button page-item active").append("\">");
+            buffer.append("<a href=\"").append(path).append("?page=").append(1).append("\" aria-controls=\"pageNo-").append(1).append("\" data-dt-idx=\"").append(1).append("\" tabindex=\"0\" class=\"page-link\">").append(1).append("</a>");
+            buffer.append("</li>");
+        }
 
         for(int i = startPageNum; i<=endPageNum;i++) {
             if (i != pageNum) {
