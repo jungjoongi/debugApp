@@ -1,4 +1,4 @@
-package com.weolbu.admin.web.auth.dto;
+package com.weolbu.admin.web.common.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

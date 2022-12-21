@@ -1,8 +1,8 @@
 package com.weolbu.admin.config.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.weolbu.admin.web.auth.dto.ResponseAuthDto;
-import com.weolbu.admin.web.auth.dto.ResponseDataCode;
+import com.weolbu.admin.web.common.dto.ResponseCommonDto;
+import com.weolbu.admin.web.common.dto.ResponseDataCode;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
@@ -21,14 +21,14 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 
         ObjectMapper mapper = new ObjectMapper();	//JSON 변경용
 
-        ResponseAuthDto responseAuthDto = new ResponseAuthDto();
-        responseAuthDto.setCode(ResponseDataCode.LOGIN_FAIL.getCode());
-        responseAuthDto.setStatus(ResponseDataCode.LOGIN_FAIL.getStatus());
-        responseAuthDto.setMessage(ResponseDataCode.LOGIN_FAIL.getCodeMsg());
+        ResponseCommonDto responseCommonDto = new ResponseCommonDto();
+        responseCommonDto.setCode(ResponseDataCode.LOGIN_FAIL.getCode());
+        responseCommonDto.setStatus(ResponseDataCode.LOGIN_FAIL.getStatus());
+        responseCommonDto.setMessage(ResponseDataCode.LOGIN_FAIL.getCodeMsg());
 
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().print(mapper.writeValueAsString(responseAuthDto));
+        response.getWriter().print(mapper.writeValueAsString(responseCommonDto));
         response.getWriter().flush();
 
     }

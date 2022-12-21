@@ -3,10 +3,9 @@ package com.weolbu.admin.web.shorturl.controller;
 import com.weolbu.admin.common.util.PagingUtil;
 import com.weolbu.admin.config.auth.LoginUser;
 import com.weolbu.admin.config.auth.dto.SessionUser;
+import com.weolbu.admin.config.exception.BusinessException;
 import com.weolbu.admin.domain.shortUrl.ShortUrl;
 import com.weolbu.admin.domain.shortUrl.ShortUrlRepository;
-import com.weolbu.admin.web.shorturl.dto.ShortUrlReqDto;
-import com.weolbu.admin.web.shorturl.dto.ShortUrlResDto;
 import com.weolbu.admin.web.shorturl.service.ShortUrlService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -17,14 +16,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,6 +30,8 @@ public class ShortUrlController {
 
     final private ShortUrlService shortUrlService;
     final private ShortUrlRepository shortUrlRepository;
+
+    final private String SHORT_URL_ROOT = "https://link.weolbu.com/";
 
     @RequestMapping(value = {"list"}, method= {RequestMethod.GET})
     public String list(
@@ -51,37 +49,32 @@ public class ShortUrlController {
 
         return "view/web/shortUrl/list";
     }
-    @RequestMapping(value = {"form/{id}"}, method= {RequestMethod.GET})
-    public String form(
+    @GetMapping(value = {"form/{id}"})
+    public String update(
             HttpServletRequest request
             , HttpServletResponse response
             , HttpSession session
             , @LoginUser SessionUser user
             , Model model
-            , @PathVariable long id
-    ) {
+            , @PathVariable long id) {
 
-        model.addAttribute("dto", shortUrlRepository.findById(id).orElse(new ShortUrl()));
+        model.addAttribute("dto", shortUrlRepository.findById(id).map(o -> {
+            o.setShortUrl(SHORT_URL_ROOT+o.getShortUrl());
+            return o;
+        }).orElseThrow(() -> new BusinessException("해당 게시물이 없습니다.")));
 
 
         return "view/web/shortUrl/form";
     }
 
-    @RequestMapping(value = {"save"}, method= {RequestMethod.POST})
-    @Transactional
-    public String save(HttpServletRequest request, HttpServletResponse response, HttpSession session, @LoginUser SessionUser user, Model model, ShortUrlReqDto shortUrlReqDto) {
+    @GetMapping(value = {"form"})
+    public String form(
+            HttpServletRequest request
+            , HttpServletResponse response
+            , HttpSession session
+            , @LoginUser SessionUser user
+            , Model model) {
 
-
-
-        String shortUrl = shortUrlService.saveUrl(shortUrlReqDto);
-        ShortUrlResDto resDto = new ShortUrlResDto();
-
-        resDto.setShortUrl(shortUrl);
-        model.addAttribute("res",resDto);
-        model.addAttribute("result","SUCCESS");
-
-        return "jsonview";
+        return "view/web/shortUrl/form";
     }
-
-
 }

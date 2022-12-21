@@ -43,6 +43,14 @@ public class ShortUrl extends BaseTimeEntity {
         this.platform = platform;
         this.paidYn = paidYn;
     }
+
+    public void update(String originUrl, String platform, String paidYn) {
+        this.originUrl = originUrl;
+        this.platform = platform;
+        this.paidYn = paidYn;
+    }
+
+
 }
 
 

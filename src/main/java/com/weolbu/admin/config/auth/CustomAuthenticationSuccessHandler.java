@@ -1,22 +1,21 @@
 package com.weolbu.admin.config.auth;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.weolbu.admin.web.auth.dto.ResponseAuthDto;
-import com.weolbu.admin.web.auth.dto.ResponseDataCode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weolbu.admin.web.common.dto.ResponseCommonDto;
+import com.weolbu.admin.web.common.dto.ResponseDataCode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -39,20 +38,20 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
 
         ObjectMapper mapper = new ObjectMapper();	//JSON 변경용
-        ResponseAuthDto responseAuthDto = new ResponseAuthDto();
-        responseAuthDto.setCode(ResponseDataCode.SUCCESS.getCode());
-        responseAuthDto.setStatus(ResponseDataCode.SUCCESS.getStatus());
-        responseAuthDto.setMessage(ResponseDataCode.SUCCESS.getCodeMsg());
+        ResponseCommonDto responseCommonDto = new ResponseCommonDto();
+        responseCommonDto.setCode(ResponseDataCode.SUCCESS.getCode());
+        responseCommonDto.setStatus(ResponseDataCode.SUCCESS.getStatus());
+        responseCommonDto.setMessage(ResponseDataCode.SUCCESS.getCodeMsg());
 
         //String referer = StringHelper.nvl(request.getHeader("referer"), "/");	//이전 페이지 가져오기
 
-        Map<String, String> items = new HashMap<String,String>();
-        items.put("url", referer);	// 이전 페이지 저장
-        responseAuthDto.setItem(items);
+        Map<String, String> resData = new HashMap<String,String>();
+        resData.put("url", referer);	// 이전 페이지 저장
+        responseCommonDto.setResData(resData);
 
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().print(mapper.writeValueAsString(responseAuthDto));
+        response.getWriter().print(mapper.writeValueAsString(responseCommonDto));
         response.getWriter().flush();
     }
 }

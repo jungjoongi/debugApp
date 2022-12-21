@@ -1,5 +1,4 @@
-
-var common = {
+let common = {
     init : function() {
         this.create();
     },
@@ -60,7 +59,30 @@ var common = {
         ui += '    </span>';
         ui += '</strong>';
         $(".upload .text").html(ui);
-    }
+    },
+    toastAlert : function(text, timer) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: timer,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            },
+            showClass: {
+                popup: 'animate__animated animate__slideInRight'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__slideOutRight'
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: text
+        })
+    },
 }
 
 $(document).ready(function() {

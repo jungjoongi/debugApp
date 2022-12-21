@@ -31,7 +31,7 @@ public class ResponseInterceptor implements HandlerInterceptor {
 
     private void makeResModel(HttpServletRequest request, ModelAndView modelAndView) {
         String googleClientId = this.getGoogleKey();
-        CsrfToken csrfToken = this.getCsrfToken(request, modelAndView);
+        CsrfToken csrfToken = this.getCsrfToken(request);
 
         if (modelAndView != null) {
             modelAndView.addObject("googleClientId", googleClientId);
@@ -43,7 +43,7 @@ public class ResponseInterceptor implements HandlerInterceptor {
         return StringHelper.nvl(GOOGLE_CLIENT_ID);
     }
 
-    private CsrfToken getCsrfToken(HttpServletRequest request, ModelAndView modelAndView) {
+    private CsrfToken getCsrfToken(HttpServletRequest request) {
         return (CsrfToken) request.getAttribute("_csrf");
     }
 }

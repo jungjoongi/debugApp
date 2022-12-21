@@ -7,22 +7,18 @@ import com.weolbu.admin.domain.logTracking.LogTracking;
 import com.weolbu.admin.domain.logTracking.LogTrackingRepository;
 import com.weolbu.admin.domain.shortUrl.ShortUrl;
 import com.weolbu.admin.domain.shortUrl.ShortUrlRepository;
-import com.weolbu.admin.web.main.service.MainService;
 import com.weolbu.admin.web.shorturl.dto.ShortUrlReqDto;
 import com.weolbu.admin.web.shorturl.service.ShortUrlService;
 import lombok.RequiredArgsConstructor;
 import net.sf.uadetector.UserAgentStringParser;
 import net.sf.uadetector.service.UADetectorServiceFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Persistence;
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 @RequiredArgsConstructor
 @Service
@@ -30,6 +26,8 @@ public class ShortUrlServiceImpl implements ShortUrlService {
 
     final private ShortUrlRepository shortUrlRepository;
     final private LogTrackingRepository logTrackingRepository;
+
+    private static Logger log = LoggerFactory.getLogger(ShortUrlServiceImpl.class);
 
     @Override
     @Transactional
@@ -48,6 +46,29 @@ public class ShortUrlServiceImpl implements ShortUrlService {
         shortUrl.setShortUrl(sUrl);
 
         return sUrl;
+    }
+
+    @Override
+    @Transactional
+    public ShortUrl updateUrl(ShortUrlReqDto shortUrlReqDto) {
+
+        ShortUrl shortUrl = shortUrlRepository.findById(
+                shortUrlReqDto.getId()).orElseThrow(() ->
+                new IllegalArgumentException("해당 게시물이 없습니다." + shortUrlReqDto.getId()));
+
+
+        shortUrl.update(shortUrlReqDto.getUrl(), shortUrlReqDto.getPlatform(), shortUrlReqDto.getPaidYn());
+        log.debug("shortUrlReqDto : " + shortUrl.getOriginUrl());
+        return shortUrl;
+    }
+
+    @Override
+    public void deleteUrl(Long id) {
+        shortUrlRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다."))
+                .getShortUrlId();
+
+        shortUrlRepository.deleteById(id);
     }
 
     private void userAgentSave() {

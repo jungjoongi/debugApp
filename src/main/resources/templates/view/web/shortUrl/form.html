@@ -33,19 +33,20 @@
                             <!-- /.card-header -->
                             <!-- form start -->
                             <form id="form" name="form">
-                                {{#dto}}
+                                {{#dto.shortUrlId}}
                                     <input type="hidden" id="shortUrlId" name="shortUrlId" value="{{dto.shortUrlId}}"/>
-                                {{/dto}}
+                                s
+                                {{/dto.shortUrlId}}
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>원본 URL</label>
-                                        <input class="form-control" id="url" name="url" placeholder="https://..."/>
+                                        <input class="form-control" id="url" name="url" placeholder="https://..." value="{{#dto.originUrl}}{{dto.originUrl}}{{/dto.originUrl}}"/>
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <label>생성된 URL</label>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="shortUrl" class="form-control" placeholder="생성된 URL" aria-label="생성된 URL" aria-describedby="basic-addon2" readonly>
+                                        <input type="text" id="shortUrl" class="form-control" placeholder="생성된 URL" aria-label="생성된 URL" aria-describedby="basic-addon2" readonly value="{{#dto.shortUrl}}{{dto.shortUrl}}{{/dto.shortUrl}}">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-secondary" id="copyBtn" type="button">복사하기</button>
                                         </div>
@@ -57,13 +58,9 @@
                                         <div class="col-md">
                                             <div class="form-floating">
                                                 <select class="form-select" name="platform" id="platform">
-                                                    <option value="UNKNOWN" selected>미선택시 UNKNOWN</option>
-                                                    <option value="IG">instargram</option>
-                                                    <option value="FB">facebook</option>
-                                                    <option value="NC">naver_cafe</option>
-                                                    <option value="NB">naver_blog</option>
-                                                    <option value="YT">youtube</option>
-                                                    <option value="KA">kakao</option>
+                                                    <script type="text-x-mustache" id="option">
+                                                        {{#dto.platform}}{{dto.platform}}{{/dto.platform}}
+                                                    </script>
                                                 </select>
                                                 <label for="platform">게시될 페이지 구분</label>
                                             </div>
@@ -80,6 +77,9 @@
                                         </div>
                                         <div class="form-switch form-check">
                                             <input class="form-check-input" type="checkbox" name="paidYn" id="paidYn" value="Y">
+                                                <script type="text-x-mustache" id="paidCheck">
+                                                    {{#dto.paidYn}}{{dto.paidYn}}{{/dto.paidYn}}
+                                                </script>
                                             <label class="form-check-label" for="paidYn">(선택)페이드 마케팅 여부 </label>
                                         </div>
                                     </div>
@@ -159,7 +159,7 @@
                                 </div>
 -->
                                 <div class="card-footer">
-                                    <button type="button" id="submit" class="btn btn-primary">생성하기</button>
+                                    <button type="button" id="submit" class="btn btn-primary"></button>
                                 </div>
                             </form>
                         </div>

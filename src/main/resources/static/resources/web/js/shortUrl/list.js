@@ -15,30 +15,26 @@ let list = {
     goModify : function() {
         $(document).on('click', '#modify-button' , function(){
             let id = $(this).data("id");
-            location.href="/shortUrl/form?id=" + id;
+            location.href="/shortUrl/form/" + id;
         });
     },
     goDelete : function() {
         $(document).on('click', '#delete-button' , function(){
             let id = $(this).data("id");
-            let data = {
-                id : id
-            }
             $.ajax({
-                url: "/shortUrl/delete",
-                type: "POST",
-                data: data,
+                url: "/api/v1/shortUrl/"+id,
+                type: "DELETE",
                 success: function(data) {
-                    console.log(data)
-                    if(data.result == "SUCCESS") {
-                        alert("삭제완료");
-                        location.reload();
+                    if(data.code == "SUCCESS") {
+                        common.toastAlert("삭제완료", 1500);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
+
                     }
                 },
                 error: function (request, status, error){
-                    alert("삭제실패");
-                    form.isProgress = false;
-                    console.log(error)
+                    alert(request.responseJSON.message);
                 }
             });
         });
