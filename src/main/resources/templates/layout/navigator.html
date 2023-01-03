@@ -8,11 +8,7 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/" class="nav-link">Home</a>
         </li>
-        {{#user}}
-        <li class="nav-item d-none d-sm-inline-block">
-            <button type="button" class="nav-link" id="logout-button">LOGOUT</button>
-        </li>
-        {{/user}}
+
 <!--        <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
         </li>-->
@@ -33,6 +29,13 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
+        <li>
+            {{#user}}
+            <div>
+            <button type="button" class="float-right btn btn-sm btn-outline-dark" id="logout-button">LOGOUT</button>
+            </div>
+            {{/user}}
+        </li>
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>

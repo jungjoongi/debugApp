@@ -8,7 +8,7 @@ let lnb = {
     , activeMenu : function() {
         $('.nav-link').each(function(idx, item) {
                 let itemUri = $(item).data("uri");
-                if(itemUri != undefined && itemUri == window.location.pathname) {
+                if(itemUri != undefined && itemUri == window.location.pathname.split("/")[1]) {
                     $(item).addClass("active");
                     $(item).parent("ul").css("display", "block");
                     $(item).parent("li").parents("li").children("a").addClass("active");

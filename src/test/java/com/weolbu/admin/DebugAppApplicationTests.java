@@ -1,9 +1,34 @@
 package com.weolbu.admin;
 
+import com.weolbu.admin.domain.auth.Role;
+import com.weolbu.admin.domain.auth.User;
+import com.weolbu.admin.domain.auth.UserRepository;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@SpringBootTest
+@SpringBootTest(properties = "jasypt.encryptor.password:")
 class DebugAppApplicationTests {
+
+    @Autowired
+    UserRepository userRepository;
+    @Test
+    public void login() {
+
+        BCryptPasswordEncoder pw = new BCryptPasswordEncoder();
+        userRepository.save(
+                User.builder()
+                        .email("")
+                        .name("")
+                        .password(pw.encode(""))
+                        .role(Role.ADMIN)
+                        .build()
+        );
+
+
+    }
+
 /*
 
 	@Autowired

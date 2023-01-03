@@ -4,6 +4,7 @@ let form = {
     },
     create : function () {
         form.submit();
+        form.goList();
         form.copy();
         form.makeUI();
     },
@@ -48,6 +49,11 @@ let form = {
                     $("#url").focus();
                 }
             }
+        });
+    },
+    goList : function() {
+        $(document).on("click", "#goList", function() {
+            location.href="/shortUrl/list"
         });
     },
     copy : function() {
