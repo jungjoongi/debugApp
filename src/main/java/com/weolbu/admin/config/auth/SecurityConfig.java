@@ -1,7 +1,9 @@
 package com.weolbu.admin.config.auth;
 
+import com.weolbu.admin.config.filter.LoginPageFilter;
 import com.weolbu.admin.domain.auth.Role;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
@@ -11,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
 @RequiredArgsConstructor
@@ -27,38 +30,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                /*.csrf().disable()
+
+            /*.csrf()
+                .disable()
                 .headers().frameOptions().disable()
                 .and()*/
-                    .authorizeRequests()
-                    .antMatchers("/**").hasRole(Role.MANAGER.name())
-                    .antMatchers("/**").hasRole(Role.ADMIN.name())
-                    .antMatchers("/**").permitAll()
-                    //.antMatchers("/", "/resources/**", "/profile", "/login", "/status/*", "/actuator/**").permitAll()
-                    .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .failureUrl("/login?error")
-                    .usernameParameter("email")
-                    .passwordParameter("password")
-                    .successHandler(customAuthenticationSuccessHandler)
-                    .failureHandler(customAuthenticationFailureHandler)
-                .and()
-                    .exceptionHandling()
-                    .accessDeniedPage("/common/accessDenied")
-                .and()
-                    .logout()
-                    .logoutSuccessUrl("/")
-                    .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID")
-                .and()
-                    .oauth2Login()
-                    .loginPage("/login")
-                    .failureUrl("/login?error")
-                    .defaultSuccessUrl("/")
-                    .userInfoEndpoint()
-                    .userService(customOAuth2UserService);
+            .addFilterAfter(new LoginPageFilter(), UsernamePasswordAuthenticationFilter.class)
+            .authorizeRequests()
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                .antMatchers("/resources/**", "/common/**", "/login").permitAll()
+                .antMatchers("**").hasRole(Role.MANAGER.name())
+                .antMatchers("**").hasRole(Role.ADMIN.name())
+                .anyRequest().authenticated()
+            .and()
+                .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .successHandler(customAuthenticationSuccessHandler)
+                .failureHandler(customAuthenticationFailureHandler)
+            .and()
+                .exceptionHandling()
+                .accessDeniedPage("/common/accessDenied")
+            .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+            .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .failureUrl("/login?error")
+                .defaultSuccessUrl("/")
+                .userInfoEndpoint()
+                .userService(customOAuth2UserService);
 
     }
 

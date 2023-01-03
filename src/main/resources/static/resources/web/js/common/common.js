@@ -12,8 +12,11 @@ let common = {
          */
         $(document).ajaxSend(function(e, xhr, option) {
             let $token = $("#_csrf");
-            let header = $token.data("token-header")
-            xhr.setRequestHeader(header, $token.val());
+            if($token.val() != undefined) {
+                let header = $token.data("token-header")
+                xhr.setRequestHeader(header, $token.val());
+            }
+
         });
     },
     uploadUi : function(percent) {

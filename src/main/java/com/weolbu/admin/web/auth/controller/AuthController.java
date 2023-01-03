@@ -21,6 +21,8 @@ public class AuthController {
 	@RequestMapping(value = {""}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String loginHtml(HttpServletRequest request, HttpServletResponse response, HttpSession session, CsrfToken csrfToken, ModelAndView modelAndView) {
 
+
+
 		return "view/web/login/login";
 	}
 

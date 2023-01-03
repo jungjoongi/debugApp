@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
-{{>layout/admin/head}}
+{{>layout/head}}
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
@@ -46,14 +46,16 @@
       </form>
 
       <div class="social-auth-links text-center mb-3">
-        <p>- 소셜로그인 -</p>
+<!--        <p>- 소셜로그인 -</p> -->
 <!--        <a href="#" class="btn btn-block btn-primary">-->
 <!--          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook-->
 <!--        </a>-->
+      <!--
         <a href="/oauth2/authorization/google" class="btn btn-block btn-danger">
           <i class="fab fa-google-plus mr-2"></i> 구글로그인
         </a>
       </div>
+      -->
       <!-- /.social-auth-links -->
 
 <!--      <p class="mb-1">-->
@@ -62,13 +64,12 @@
 <!--      <p class="mb-0">-->
 <!--        <a href="register.html" class="text-center">Register a new membership</a>-->
 <!--      </p>-->
-    </div>
+      </div>
     <!-- /.login-card-body -->
-  </div>
-</div>
+    </div>
 <!-- /.login-box -->
-
-{{>layout/front/web/script}}
-<script src="/resources/web/login/login.js"></script>
+   </div>
+</div>
+{{>layout/script}}
 </body>
 </html>

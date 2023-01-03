@@ -39,7 +39,6 @@ public class ShortUrlServiceImpl implements ShortUrlService {
                             .originUrl(shortUrlReqDto.getUrl())
                             .platform(shortUrlReqDto.getPlatform())
                             .paidYn(shortUrlReqDto.getPaidYn())
-                            .campCode(this.makeCampCode(shortUrlReqDto))
                             .build()
             );
         String sUrl = Base62Util.encoding(shortUrl.getShortUrlId());

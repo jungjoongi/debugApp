@@ -14,8 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -23,6 +21,7 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     /**
      * 로그인성공 후 처리
      */
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws ServletException, IOException {
@@ -32,6 +31,7 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         String referer = "/";
         try {
             referer = savedRequest.getRedirectUrl();
+            System.out.println("## referer : "+ referer);
         } catch(NullPointerException e) {
             referer = "/";
         }
@@ -42,12 +42,7 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         responseCommonDto.setCode(ResponseDataCode.SUCCESS.getCode());
         responseCommonDto.setStatus(ResponseDataCode.SUCCESS.getStatus());
         responseCommonDto.setMessage(ResponseDataCode.SUCCESS.getCodeMsg());
-
-        //String referer = StringHelper.nvl(request.getHeader("referer"), "/");	//이전 페이지 가져오기
-
-        Map<String, String> resData = new HashMap<String,String>();
-        resData.put("url", referer);	// 이전 페이지 저장
-        responseCommonDto.setResData(resData);
+        responseCommonDto.setRedirectUrl(referer);
 
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
