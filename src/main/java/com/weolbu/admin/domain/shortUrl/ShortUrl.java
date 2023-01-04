@@ -1,6 +1,7 @@
 package com.weolbu.admin.domain.shortUrl;
 
 import com.weolbu.admin.domain.BaseTimeEntity;
+import com.weolbu.admin.domain.auth.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,20 +35,26 @@ public class ShortUrl extends BaseTimeEntity {
     @Column
     private String paidYn;
 
+    @ManyToOne
+    @JoinColumn(name = "MANAGER_ID")
+    private User user;
+
     @Builder
-    public ShortUrl(Long shortUrlId, String originUrl, String shortUrl, String campCode, String platform, String paidYn) {
+    public ShortUrl(Long shortUrlId, String originUrl, String shortUrl, String campCode, String platform, String paidYn, User user) {
         this.shortUrlId = shortUrlId;
         this.originUrl = originUrl;
         this.shortUrl = shortUrl;
         this.campCode = campCode;
         this.platform = platform;
         this.paidYn = paidYn;
+        this.user = user;
     }
 
-    public void update(String originUrl, String platform, String paidYn) {
+    public void update(String originUrl, String platform, String paidYn, User user) {
         this.originUrl = originUrl;
         this.platform = platform;
         this.paidYn = paidYn;
+        this.user = user;
     }
 
 

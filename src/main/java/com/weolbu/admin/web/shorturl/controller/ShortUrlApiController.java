@@ -32,6 +32,8 @@ public class ShortUrlApiController {
             , @LoginUser SessionUser user
             , ShortUrlReqDto shortUrlReqDto) {
 
+        shortUrlReqDto.setUserId(user.getId());
+
         return ResponseCommonDto.builder()
                 .responseDataCode(ResponseDataCode.SUCCESS)
                 .resData(ShortUrlResDto.builder().shortUrl(SHORT_URL_ROOT + shortUrlService.saveUrl(shortUrlReqDto)).build())
@@ -45,6 +47,9 @@ public class ShortUrlApiController {
             , HttpSession session
             , @LoginUser SessionUser user
             , ShortUrlReqDto shortUrlReqDto) {
+
+
+        shortUrlReqDto.setUserId(user.getId());
 
         return ResponseCommonDto.builder()
                 .responseDataCode(ResponseDataCode.SUCCESS)

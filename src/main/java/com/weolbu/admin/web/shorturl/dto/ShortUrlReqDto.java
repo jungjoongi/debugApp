@@ -10,6 +10,8 @@ public class ShortUrlReqDto {
 
     /** id */
     private Long id;
+
+    private Long userId;
     /** url */
     private String url;
 

@@ -3,6 +3,7 @@ package com.weolbu.admin.web.shorturl.service.impl;
 import com.weolbu.admin.common.util.Base62Util;
 import com.weolbu.admin.common.util.ContextUtil;
 import com.weolbu.admin.common.util.WeolbuHelper;
+import com.weolbu.admin.domain.auth.User;
 import com.weolbu.admin.domain.logTracking.LogTracking;
 import com.weolbu.admin.domain.logTracking.LogTrackingRepository;
 import com.weolbu.admin.domain.shortUrl.ShortUrl;
@@ -39,6 +40,7 @@ public class ShortUrlServiceImpl implements ShortUrlService {
                             .originUrl(shortUrlReqDto.getUrl())
                             .platform(shortUrlReqDto.getPlatform())
                             .paidYn(shortUrlReqDto.getPaidYn())
+                            .user(User.builder().id(shortUrlReqDto.getUserId()).build())
                             .build()
             );
         String sUrl = Base62Util.encoding(shortUrl.getShortUrlId());
@@ -56,7 +58,7 @@ public class ShortUrlServiceImpl implements ShortUrlService {
                 new IllegalArgumentException("해당 게시물이 없습니다." + shortUrlReqDto.getId()));
 
 
-        shortUrl.update(shortUrlReqDto.getUrl(), shortUrlReqDto.getPlatform(), shortUrlReqDto.getPaidYn());
+        shortUrl.update(shortUrlReqDto.getUrl(), shortUrlReqDto.getPlatform(), shortUrlReqDto.getPaidYn(), User.builder().id(shortUrlReqDto.getUserId()).build());
         log.debug("shortUrlReqDto : " + shortUrl.getOriginUrl());
         return shortUrl;
     }

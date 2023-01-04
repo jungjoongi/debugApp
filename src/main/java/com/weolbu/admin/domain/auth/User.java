@@ -1,11 +1,14 @@
 package com.weolbu.admin.domain.auth;
 
 import com.weolbu.admin.domain.BaseTimeEntity;
+import com.weolbu.admin.domain.shortUrl.ShortUrl;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -33,6 +36,9 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    @OneToMany(mappedBy = "shortUrlId")
+    private List<ShortUrl> shortUrl = new ArrayList<>();
 
     @Builder
     public User(Long id, String name, String password, String email, String picture, Role role) {
