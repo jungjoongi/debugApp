@@ -55,7 +55,7 @@ public class ShortUrlServiceImpl implements ShortUrlService {
 
         ShortUrl shortUrl = shortUrlRepository.findById(
                 shortUrlReqDto.getId()).orElseThrow(() ->
-                new IllegalArgumentException("해당 게시물이 없습니다." + shortUrlReqDto.getId()));
+                new IllegalArgumentException("해당 게시물이 없습니다. : " + shortUrlReqDto.getId()));
 
 
         shortUrl.update(shortUrlReqDto.getUrl(), shortUrlReqDto.getPlatform(), shortUrlReqDto.getPaidYn(), User.builder().id(shortUrlReqDto.getUserId()).build());

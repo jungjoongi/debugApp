@@ -14,16 +14,18 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping("/login")
+
 public class AuthController {
 	private static Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 	
-	@RequestMapping(value = {""}, method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = {"/login"}, method= {RequestMethod.GET})
 	public String loginHtml(HttpServletRequest request, HttpServletResponse response, HttpSession session, CsrfToken csrfToken, ModelAndView modelAndView) {
-
-
-
 		return "view/web/login/login";
+	}
+
+	@RequestMapping(value = {"/register"}, method= {RequestMethod.GET})
+	public String registerHtml(HttpServletRequest request, HttpServletResponse response, HttpSession session, CsrfToken csrfToken, ModelAndView modelAndView) {
+		return "view/web/login/register";
 	}
 
 }

@@ -9,6 +9,11 @@ let login = {
         $(document).on("click", "#login-button", function() {
             login.execute();
         });
+
+        $(document).on("click", "#register-button", function() {
+            location.href="/register";
+        });
+
     },
     execute : function() {
 

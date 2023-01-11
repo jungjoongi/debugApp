@@ -1,5 +1,8 @@
 package com.weolbu.admin.web.common.controller;
 
+import com.weolbu.admin.config.auth.LoginUser;
+import com.weolbu.admin.config.auth.dto.SessionUser;
+import com.weolbu.admin.domain.auth.Role;
 import com.weolbu.admin.web.common.dto.ResponseCommonDto;
 import com.weolbu.admin.web.common.dto.ResponseDataCode;
 import org.apache.logging.log4j.LogManager;
@@ -25,10 +28,10 @@ public class CommonController {
 			Model model,
 			HttpServletRequest request,
 			HttpServletResponse response,
-			HttpSession session) {
+			HttpSession session,
+	 		@LoginUser SessionUser user) {
 
-		LOGGER.info("[CommonController] accessDenied() #START");
-
+		/** json 요청 */
 		if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
 			ResponseCommonDto responseCommonDto = new ResponseCommonDto();
 			responseCommonDto.setCode(ResponseDataCode.FAIL.getCode());
@@ -38,9 +41,18 @@ public class CommonController {
 			return "jsonView";
 		}
 
+		/** view */
+		String view = "view/common/accessDenied";
 
-
-		return "view/common/accessDenied";
+		/** Guest 권한자 view 처리 */
+		if(Role.GUEST.equals(user.getRole())) {
+			if("Y".equals(user.getFirstLoginYn())) {
+				view = "view/common/guest";
+			} else {
+				view = "view/common/firstLogin";
+			}
+		}
+		return view;
 	}
 
 }

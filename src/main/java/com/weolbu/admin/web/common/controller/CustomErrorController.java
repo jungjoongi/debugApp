@@ -1,4 +1,4 @@
-package com.weolbu.admin.web.error.controller;
+package com.weolbu.admin.web.common.controller;
 
 import com.weolbu.admin.common.util.StringHelper;
 import com.weolbu.admin.web.common.dto.ResponseCommonDto;
@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,20 +22,24 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("${server.error.path:${error.path:/error}}")
+@RequestMapping("${server.error.path:${error.path:/common/error}}")
 public class CustomErrorController extends BasicErrorController {
     private static Logger log = LoggerFactory.getLogger(CustomErrorController.class);
 
     private static String DEFAULT_MESSAGE = "요청하신 페이지를 바르게 표시할 수 없습니다.";
+    private static String DEFAULT_JSON_MESSAGE = "요청하신 정보를 처리할 수 없습니다. 입력하신 정보를 확인해주세요";
     public CustomErrorController(ErrorAttributes errorAttributes,
                                  ServerProperties serverProperties,
                                  List<ErrorViewResolver> errorViewResolvers) {
         super(errorAttributes, serverProperties.getError(), errorViewResolvers);
     }
 
-    @RequestMapping(produces = MediaType.TEXT_HTML_VALUE)
+    @GetMapping
     public ModelAndView errorHtml(HttpServletRequest request,
                                   HttpServletResponse response) {
+
+        log.debug("##### : "+MediaType.TEXT_HTML_VALUE);
+
         HttpStatus status = getStatus(request);
         Map<String, Object> model = Collections
                 .unmodifiableMap(getErrorAttributes(request, isIncludeStackTrace(request, MediaType.TEXT_HTML)));
@@ -43,9 +47,9 @@ public class CustomErrorController extends BasicErrorController {
         ModelAndView modelAndView = resolveErrorView(request, response, status, model);
 
         if(modelAndView != null) {
-            modelAndView.setViewName("error/common");
+            modelAndView.setViewName("view/common/error");
         } else {
-            modelAndView = new ModelAndView("error/common", model);
+            modelAndView = new ModelAndView("view/common/error", model);
         }
 
         ResponseCommonDto resDto = (ResponseCommonDto)request.getAttribute("responseCommonDto");
@@ -55,6 +59,20 @@ public class CustomErrorController extends BasicErrorController {
         }
         modelAndView.addObject("resDto", resDto);
         return modelAndView;
+    }
+
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+    public ResponseCommonDto errorJson(HttpServletRequest request,
+                                  HttpServletResponse response) {
+
+        HttpStatus status = getStatus(request);
+
+        ResponseCommonDto resDto = (ResponseCommonDto)request.getAttribute("responseCommonDto");
+        if(resDto == null) {
+            String redirectUrl = StringHelper.nvl(request.getHeader("referer"), "/");
+            resDto = new ResponseCommonDto(Integer.toString(status.value()), DEFAULT_JSON_MESSAGE, redirectUrl);
+        }
+        return resDto;
     }
 
     @Override

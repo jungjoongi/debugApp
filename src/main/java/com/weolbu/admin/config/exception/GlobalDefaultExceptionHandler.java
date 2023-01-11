@@ -35,7 +35,7 @@ public class GlobalDefaultExceptionHandler {
         request.setAttribute("responseCommonDto", rDto);
 
         try {
-            request.getRequestDispatcher("/error").forward(request,response);
+            request.getRequestDispatcher("/common/error").forward(request,response);
         } catch (IOException ex) {
             log.debug("[GlobalDefaultExceptionHandler] (handlePreBaseExceptions) IOE : ", e.getMessage());
         } catch (ServletException ex) {

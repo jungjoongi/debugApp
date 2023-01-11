@@ -114,7 +114,7 @@ server:
   error:
     include-exception: false
     include-stacktrace: never
-    path: /error
+    path: /common/error
     whitelabel:
       enabled: true
 
