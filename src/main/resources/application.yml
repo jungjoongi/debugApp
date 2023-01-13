@@ -13,12 +13,17 @@ spring:
   ##spring.jpa 설정
   jpa:
     properties:
+      org:
+        hibernate:
+          envers:
+            audit_table_suffix: _history
+            store_data_at_delete: true
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         hbm2ddl:
-          auto: update
+          auto: create-drop
 
-#   ddl-auto: validate    	# create, update, create-drop, none, validate 등의 옵션이 있다.
+#   hbm2ddl.auto: validate, create, update, create-drop, none, validate 등의 옵션이 있다.
           # create: 기존테이블 삭제 후 다시 생성
           # update: 변경된 부분만 반영
           # create-drop: create와 같으나 종료 시점에 테이블 DROP

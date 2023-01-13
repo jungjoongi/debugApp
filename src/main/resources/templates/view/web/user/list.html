@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+{{>layout/head}}
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    {{>layout/navigator}}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Sidebar -->
+        {{>layout/lnb}}
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        {{>layout/gnb}}
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm">
+                                        <button type="button" id="form-btn" class="btn btn-block btn-outline-info btn-sm">사용자 등록하기</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-hover text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>닉네임</th>
+                                        <th>권한</th>
+                                        <th>이메일</th>
+                                        <th>수정</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#userList}}
+                                        <tr>
+                                            <td>{{userId}}</td>
+                                            <td>{{name}}</td>
+                                            <td>{{role}}</td>
+                                            <td>{{email}}</td>
+                                            <td><button type="button" id="modify-button" class="btn btn-block btn-outline-warning btn-sm" data-id="{{userId}}">수정</button></td>
+                                        </tr>
+                                    {{/userList}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                {{{pagination}}}
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {{>layout/footer}}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- 공통 스크립트 선언 s -->
+{{>layout/script}}
+<script src="/resources/web/js/user/list.js"></script>
+</body>
+</html>

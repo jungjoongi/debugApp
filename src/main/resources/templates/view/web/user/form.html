@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+{{>layout/head}}
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    {{>layout/navigator}}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Sidebar -->
+        {{>layout/lnb}}
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        {{>layout/gnb}}
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">사용자 등록하기</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+
+                                <div class="card">
+                                    <div class="card-body register-card-body">
+                                        <form id="register-form" action="/" method="post">
+                                            {{#dto.userId}}
+                                                <input type="hidden" id="userId" name="userId" value="{{dto.userId}}"/>
+                                            {{/dto.userId}}
+                                            <label>이름</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" id="name" name="name" class="form-control" placeholder="이름" value="{{#dto.name}}{{dto.name}}{{/dto.name}}">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-user"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <label>닉네임</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" id="nickname" name="nickname" class="form-control" placeholder="닉네임" value="{{#dto.nickname}}{{dto.nickname}}{{/dto.nickname}}">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-user"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <label>이메일</label>
+                                            <div class="input-group mb-3">
+                                                <input type="email" id="email" name="email" class="form-control" {{#dto.email}}disabled{{/dto.email}} placeholder="Email" value="{{#dto.email}}{{dto.email}}{{/dto.email}}">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-envelope"></span>
+                                                    </div>
+                                                </div>
+                                                <div id="validationServerEmailFeedback" class="invalid-feedback">
+                                                    이메일주소는 소문자+숫자@weolbu.com만 허용됩니다.
+                                                </div>
+                                            </div>
+                                            <label>암호 (수정하지 않으면 유지)</label>
+                                            <div class="input-group mb-3">
+                                                <input type="password" id="password" name="password" class="form-control" placeholder="Password" value="{{#dto.password}}a0123456789Z!{{/dto.password}}">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-lock"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <label>암호 재확인</label>
+                                            <div class="input-group mb-3 ">
+                                                <input type="password" id="password-retry" class="form-control" placeholder="Retype password" value="{{#dto.password}}a0123456789Z!{{/dto.password}}">
+
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-lock"></span>
+                                                    </div>
+                                                </div>
+                                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                                    패스워드가 일치하지 않습니다.
+                                                </div>
+                                                <div class="valid-feedback">
+                                                    패스워드가 일치합니다.
+                                                </div>
+                                            </div>
+                                            <label>권한</label>
+                                            <div class="input-group mb-3 ">
+                                                <select class="form-select" name="role" id="role">
+                                                    <script type="text-x-mustache" id="option">
+                                                        {{#dto.role}}{{dto.role}}{{/dto.role}}
+                                                    </script>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <button id="submit-button" type="button" class="btn btn-primary btn-block disabled">등록하기</button>
+                                                </div>
+                                                <!-- /.col -->
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <!-- /.form-box -->
+                                </div><!-- /.card -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (left) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {{>layout/footer}}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<!-- 공통 스크립트 선언 s -->
+{{>layout/script}}
+
+<script src="/resources/web/js/user/form.js"></script>
+
+</body>
+</html>

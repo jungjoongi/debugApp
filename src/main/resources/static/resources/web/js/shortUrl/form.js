@@ -81,11 +81,11 @@ let form = {
     makeSelectBox : function() {
         let option = [
             {value: "UNKNOWN", title:"미선택시 UNKNOWN", selected : ""},
-            {value: "IG", title:"instargram", selected : ""},
-            {value: "NC", title:"naver_cafe", selected : ""},
-            {value: "NB", title:"naver_blog", selected : ""},
-            {value: "YT", title:"youtube", selected : ""},
-            {value: "KA", title:"kakao", selected : ""}
+            {value: "INSTAGRAM", title:"인스타그램", selected : ""},
+            {value: "NAVER_CAFE", title:"네이버카페", selected : ""},
+            {value: "NAVER_BLOG", title:"네이버블로그", selected : ""},
+            {value: "YOUTUBE", title:"유튜브", selected : ""},
+            {value: "KAKAO", title:"카카오", selected : ""}
         ];
         const selectedDate = $("#option").html().trim();
         option.forEach(e => {
