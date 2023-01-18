@@ -1,8 +1,7 @@
 package com.weolbu.works.web.auth.controller;
 
 import com.weolbu.works.web.common.dto.ResponseCommonDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +12,8 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
-
+@Slf4j
 public class AuthController {
-	private static Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 	
 	@GetMapping(value = {"/login"})
 	public String loginHtml(

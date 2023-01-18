@@ -6,6 +6,7 @@ import com.weolbu.works.domain.auth.UserRepository;
 import com.weolbu.works.web.user.dto.UserReqDto;
 import com.weolbu.works.web.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,7 +22,6 @@ public class UserServiceImpl implements UserService {
     final private UserRepository userRepository;
 
     final private PasswordEncoder passwordEncoder;
-    private static Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
     final private String DEFAULT_PASSWORD = "a0123456789Z!";
 
     @Override

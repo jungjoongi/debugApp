@@ -21,7 +21,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         hbm2ddl:
-          auto: create-drop
+          auto: update
 
 #   hbm2ddl.auto: validate, create, update, create-drop, none, validate 등의 옵션이 있다.
           # create: 기존테이블 삭제 후 다시 생성

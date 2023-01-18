@@ -40,13 +40,16 @@ public class ShortUrl extends BaseTimeEntity {
     @Column
     private String paidYn;
 
+    @Column
+    private String displayYn;
+
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private User user;
 
     @Builder
-    public ShortUrl(Long shortUrlId, String originUrl, String shortUrl, String campCode, String platform, String paidYn, User user) {
+    public ShortUrl(Long shortUrlId, String originUrl, String shortUrl, String campCode, String platform, String paidYn, User user, String displayYn) {
         this.shortUrlId = shortUrlId;
         this.originUrl = originUrl;
         this.shortUrl = shortUrl;
@@ -54,6 +57,7 @@ public class ShortUrl extends BaseTimeEntity {
         this.platform = platform;
         this.paidYn = paidYn;
         this.user = user;
+        this.displayYn = displayYn;
     }
 
     public void update(String originUrl, String platform, String paidYn, User user) {
@@ -61,6 +65,11 @@ public class ShortUrl extends BaseTimeEntity {
         this.platform = platform;
         this.paidYn = paidYn;
         this.user = user;
+    }
+
+
+    public void displayNone() {
+        this.displayYn = "N";
     }
 
 

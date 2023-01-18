@@ -8,8 +8,7 @@ import com.weolbu.works.domain.auth.Role;
 import com.weolbu.works.domain.auth.User;
 import com.weolbu.works.domain.auth.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,11 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-    private static Logger log = LoggerFactory.getLogger(UserController.class);
+
 
     private final UserRepository userRepository;
 

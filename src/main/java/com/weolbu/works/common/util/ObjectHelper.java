@@ -1,26 +1,21 @@
 package com.weolbu.works.common.util;
 
+import com.nimbusds.oauth2.sdk.util.StringUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-
-import com.nimbusds.oauth2.sdk.util.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.*;
 
 
 /**
  * ObjectHelper 유틸리티
  */
+@Slf4j
 public class ObjectHelper {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(ObjectHelper.class);
 
 
     /**
@@ -162,9 +157,9 @@ public class ObjectHelper {
                         objectString.append(convertObjectToString(fieldObject, stringStyle));
                     }
                 } catch (IllegalArgumentException e) {
-                    LOGGER.debug("[ObjectHelper] IllegalArgumentException : {}", e.getMessage());
+                    log.debug("[ObjectHelper] IllegalArgumentException : {}", e.getMessage());
                 } catch (IllegalAccessException e) {
-                    LOGGER.debug("[ObjectHelper] IllegalAccessException : {}", e.getMessage());
+                    log.debug("[ObjectHelper] IllegalAccessException : {}", e.getMessage());
                 }
 
                 isFirst = false;
@@ -283,7 +278,7 @@ public class ObjectHelper {
             return resultMap;
 
         } catch (Exception e) {
-            LOGGER.info("[ObjectHelper] Exception :{} " , e.getMessage() ) ;
+            log.info("[ObjectHelper] Exception :{} " , e.getMessage() ) ;
         }
 
         return null;
@@ -320,7 +315,7 @@ public class ObjectHelper {
             }
 
         } catch (Exception e) {
-            LOGGER.info("[ObjectHelper] Exception : {} " , e.getMessage() ) ;
+            log.info("[ObjectHelper] Exception : {} " , e.getMessage() ) ;
         }
         return objClass;
     }

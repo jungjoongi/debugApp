@@ -1,11 +1,9 @@
 package com.weolbu.works.common.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 
+
 public class PagingUtil {
-    private static final Logger LOG = LoggerFactory.getLogger(PagingUtil.class);
 
     public static String pagingHtml(Page page, String path) {
         long totalElements = page.getTotalElements();

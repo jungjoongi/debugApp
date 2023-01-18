@@ -7,18 +7,17 @@ import com.weolbu.works.web.common.dto.ResponseDataCode;
 import com.weolbu.works.web.user.dto.UserReqDto;
 import com.weolbu.works.web.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class UserApiController {
-    private static Logger log = LoggerFactory.getLogger(UserApiController.class);
 
     final private UserService userService;
 

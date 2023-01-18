@@ -8,18 +8,18 @@ import com.weolbu.works.web.shorturl.dto.ShortUrlReqDto;
 import com.weolbu.works.web.shorturl.dto.ShortUrlResDto;
 import com.weolbu.works.web.shorturl.service.ShortUrlService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class ShortUrlApiController {
-    private static Logger log = LoggerFactory.getLogger(ShortUrlApiController.class);
+
 
     final private ShortUrlService shortUrlService;
 

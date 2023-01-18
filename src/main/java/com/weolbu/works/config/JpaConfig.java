@@ -2,8 +2,7 @@ package com.weolbu.works.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +20,7 @@ import java.util.Map;
 
 @Configuration
 //configuration annotation
-
+@Slf4j
 @EnableJpaRepositories(
         repositoryFactoryBeanClass = EnversRevisionRepositoryFactoryBean.class,
         basePackages= "com.weolbu.works.domain",  //repository를 관리할 패키지 명시
@@ -31,7 +30,7 @@ public class JpaConfig {
     private static final String DEFAULT_NAMING_STRATEGY
             = "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy";
 
-    private static Logger LOGGER = LoggerFactory.getLogger(JpaConfig.class);
+
     @Value("${properties.jdbc.driver}")
     String encDriver;
     @Value("${properties.jdbc.url}")
@@ -67,7 +66,7 @@ public class JpaConfig {
             password = encPassword;
 
         } catch (Exception e) {
-            LOGGER.error("[JpaConfig] defaultDataSource() Exception : {}", e.getMessage());
+            log.error("[JpaConfig] defaultDataSource() Exception : {}", e.getMessage());
         }
         HikariConfig dataSourceConfig = new HikariConfig();
         dataSourceConfig.setDriverClassName(driver);

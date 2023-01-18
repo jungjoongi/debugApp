@@ -34,6 +34,9 @@ let form = {
                                 $("#shortUrl").val(shortUrl);
                                 if(form.isUpdate) {
                                     common.toastAlert("수정완료", 3000);
+                                } else {
+                                    common.toastAlert("생성완료", 3000);
+                                    $("#submit").attr("disabled", true)
                                 }
                             }
                         },

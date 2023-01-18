@@ -2,8 +2,7 @@ package com.weolbu.works.web.common.controller;
 
 import com.weolbu.works.common.util.StringHelper;
 import com.weolbu.works.web.common.dto.ResponseCommonDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
@@ -12,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,10 +22,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Controller
 @RequestMapping("${server.error.path:${error.path:/common/error}}")
 public class CustomErrorController extends BasicErrorController {
-    private static Logger log = LoggerFactory.getLogger(CustomErrorController.class);
+
 
     private static String DEFAULT_MESSAGE = "요청하신 페이지를 바르게 표시할 수 없습니다.";
     private static String DEFAULT_JSON_MESSAGE = "요청하신 정보를 처리할 수 없습니다. 입력하신 정보를 확인해주세요";

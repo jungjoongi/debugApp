@@ -1,20 +1,16 @@
 package com.weolbu.works.common.util;
 
+import io.micrometer.core.instrument.util.StringUtils;
+import lombok.extern.slf4j.Slf4j;
+
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.SimpleTimeZone;
-
-import io.micrometer.core.instrument.util.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.*;
 
 
+@Slf4j
 public class StringHelper {
-    private static final Logger LOG = LoggerFactory.getLogger(StringHelper.class);
+
 
 
     /**
