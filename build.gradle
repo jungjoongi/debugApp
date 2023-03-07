@@ -5,13 +5,13 @@ plugins {
     id 'idea'
 }
 
-group = 'com.jungjongi.debugapp'
+group = 'com.weolbu.works'
 //version = 'beta-0.0.1'
 sourceCompatibility = '11'
 
 
 jar {
-    archivesBaseName = "debugapp"
+    archivesBaseName = "weolbuAdmin"
 }
 
 
@@ -30,25 +30,35 @@ repositories {
 }
 
 dependencies {
+    /** starter */
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+    implementation 'org.springframework.data:spring-data-envers'
+    dependencies {
+        annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    }
+
+    /** lib */
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '1.5.7'
-    compile("org.springframework.boot:spring-boot-devtools")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.0.6'
+    implementation group: 'net.sf.uadetector', name: 'uadetector-core', version: '0.9.22'
+    implementation group: 'net.sf.uadetector', name: 'uadetector-resources', version: '2014.10'
+    /** test */
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
-    compile group: 'commons-codec', name: 'commons-codec', version: '1.15'
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
-    compile "com.github.ulisesbocchio:jasypt-spring-boot-starter:1.17"
 
 }
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Lockscreen</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    {{>layout/head}}
+</head>
+<body class="hold-transition lockscreen">
+<!-- Automatic element centering -->
+<div class="lockscreen-wrapper">
+    <div class="lockscreen-logo">
+        <a href="/"><b>월급쟁이</b>부자들</a>
+    </div>
+    <!-- User name -->
+    <div class="lockscreen-name">{{user.name}}님 패스워드를 변경해주세요.</div>
+
+    <!-- START LOCK SCREEN ITEM -->
+    <div class="lockscreen-item bg-transparent">
+        <!-- lockscreen image -->
+        <!-- lockscreen credentials (contains the form) -->
+        <form class="">
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- /.lockscreen credentials -->
+
+    </div>
+    <!-- /.lockscreen-item -->
+    <div class="help-block text-center">
+        Enter your password to retrieve your session
+    </div>-
+        Copyright &copy; 2023 <b><a href="/" class="text-black">월급쟁이부자들</a></b><br>
+        All rights reserved
+    </div>
+</div>
+<!-- /.center -->
+
+<!-- jQuery -->
+
+
+</body>
+</html>

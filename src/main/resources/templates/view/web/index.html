@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+{{>layout/head}}
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  {{>layout/navigator}}
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Sidebar -->
+    {{>layout/lnb}}
+    <!-- Sidebar -->
+  </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      {{>layout/gnb}}
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+
+              <!-- DIRECT CHAT -->
+              <div class="card direct-chat direct-chat-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Works 인사말</h3>
+
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                      <i class="fas fa-comments"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <!-- Conversations are loaded here -->
+                  <div class="direct-chat-messages" style="height: 100%">
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                      <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-left">어썸</span>
+                        <span class="direct-chat-timestamp float-right">2023-01-01</span>
+                      </div>
+                      <!-- /.direct-chat-infos -->
+                      <img class="direct-chat-img" src="/resources/web/plugins/adminLTE/img/user1-128x128.jpg" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        이곳은 월부 Works 입니다. ShorkLink를 시작으로 많은 기능들이 추가될 예정입니다.
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+
+                    <!-- Message to the right -->
+                    <div class="direct-chat-msg right">
+                      <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-right">라미</span>
+                        <span class="direct-chat-timestamp float-left">2023-01-01</span>
+                      </div>
+                      <!-- /.direct-chat-infos -->
+                      <img class="direct-chat-img" src="/resources/web/plugins/adminLTE/img/user3-128x128.jpg" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        생겼으면 하는 기능들이 있다면 언제든지 말씀해주세요 :)
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+
+                    <!-- Message. Default to the left -->
+                    <div class="direct-chat-msg">
+                      <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-left">호이</span>
+                        <span class="direct-chat-timestamp float-right">2023-01-01</span>
+                      </div>
+                      <!-- /.direct-chat-infos -->
+                      <img class="direct-chat-img" src="/resources/web/plugins/adminLTE/img/user1-128x128.jpg" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        월부를 위해 애쓰시는 모든분들을 위해 많이 발전했으면 좋겠어요!
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+
+                    <!-- Message to the right -->
+                    <div class="direct-chat-msg right">
+                      <div class="direct-chat-infos clearfix">
+                        <span class="direct-chat-name float-right">프릴</span>
+                        <span class="direct-chat-timestamp float-left">2023-01-01</span>
+                      </div>
+                      <!-- /.direct-chat-infos -->
+                      <img class="direct-chat-img" src="/resources/web/plugins/adminLTE/img/user3-128x128.jpg" alt="message user image">
+                      <!-- /.direct-chat-img -->
+                      <div class="direct-chat-text">
+                        많은분들이 이용하시고 더 좋은 환경에서 일했으면 좋겠답니다.
+                      </div>
+                      <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+
+                  </div>
+                  <!--/.direct-chat-messages-->
+
+                    <!-- ./col -->
+                  <!-- /.row -->
+                </div>
+                <!-- /.card-footer -->
+              </div>
+              <!-- /.card -->
+
+          </div>
+          <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- footer 선언 s -->
+    {{>layout/footer}}
+    <!-- footer 선언 e -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- 공통 스크립트 선언 s -->
+{{>layout/script}}
+<script src="/resources/web/plugins/adminLTE/js/pages/dashboard.js"></script>
+<!-- 공통 스크립트 선언 e -->
+</body>
+</html>
+

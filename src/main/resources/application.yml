@@ -5,14 +5,25 @@ spring:
     multipart:
       maxFileSize: 100MB
       maxRequestSize: 100MB
-##spring.jpa 설정
+
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+  ##spring.jpa 설정
   jpa:
     properties:
+      org:
+        hibernate:
+          envers:
+            audit_table_suffix: _history
+            store_data_at_delete: true
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         hbm2ddl:
-          auto: validate
-#   ddl-auto: validate    	# create, update, create-drop, none, validate 등의 옵션이 있다.
+          auto: update
+
+#   hbm2ddl.auto: validate, create, update, create-drop, none, validate 등의 옵션이 있다.
           # create: 기존테이블 삭제 후 다시 생성
           # update: 변경된 부분만 반영
           # create-drop: create와 같으나 종료 시점에 테이블 DROP
@@ -62,7 +73,7 @@ spring:
   thymeleaf:
     cache: false
 
-#spring.mustache 설정
+  #spring.mustache 설정
   mustache:
     cache: false
     suffix: .html
@@ -104,7 +115,14 @@ logging:
 
 
 server:
-  port: 8080
+  port: 80
+  error:
+    include-exception: false
+    include-stacktrace: never
+    path: /common/error
+    whitelabel:
+      enabled: true
+
 
 
 jasypt:
@@ -113,19 +131,18 @@ jasypt:
 
 properties:
   jdbc:
-    driver: HYKBiv4lEEShcz3pPD4VYC8vm+ptSXaPs8aOZ3djP0k=
-    url: DX/bxrmTnh9D96mpwkzvIGru7W+ATMq+udws0UeLZX4tIxCcr0N+L3t0CUpxBvb1qkSEX8v8JcJUhUdNAsek8A==
-    userName: npB5D8XtijA/H7rL58X/gg==
-    password: P2/3Gp7SHegT6d7li4GBCg==
+    driver: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost/weolbu
+    userName: weolbu
+    password: test1234
+
   encrypt:
     key: ENC(9fI7R+gQuAv9qY9FSXMiLELGef4LkPQV487VVyG/g0U=)
     iv: ENC(vZWMlNqSD52tf97KK9en4LHLKIAYuyP1a7Fx42wwiY4=)
 
+  filepath:
+    common: /Users/weolbu/files/common
+
   social:
     google:
-      client-id: 663340949978-at6obcpd536e4r2m2i3qllqbn9n2ueri.apps.googleusercontent.com
-  filepath:
-    app: /Users/joongi/tempDown/
-    appWeb: /web/mykt/download/
-    ipa: /Users/joongi/plist.plist
-  root: https://localhost
+      client-id: test

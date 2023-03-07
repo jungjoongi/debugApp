@@ -1,3 +1,0 @@
-var login = function() {
-	
-}
